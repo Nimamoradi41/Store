@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="خانه"  android:icon="@drawable/ic_baseline_home_24" android:id="@+id/id_home" />
+    <item android:title="جستجو" android:icon="@drawable/ic_baseline_search_24"  android:id="@+id/id_search"/>
+<!--    <item android:title="خدمات" android:icon="@drawable/ic_baseline_payment_24" android:id="@+id/id_services"/>-->
+    <item android:title="دسته بندی"  android:icon="@drawable/ic_baseline_category_24" android:id="@+id/id_cate" />
+    <item android:title="لیست خرید"  android:icon="@drawable/ic_baseline_list_alt_24" android:id="@+id/id_card_payment"/>
+</menu>

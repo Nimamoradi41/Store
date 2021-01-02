@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
+
+    </style>
+
+    <style name="mythe">
+        <item name="background">@drawable/shap_12</item>
+
+    </style>
+
+
+    <style name="SheetDialog"></style>
+</resources>

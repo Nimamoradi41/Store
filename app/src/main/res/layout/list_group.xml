@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:gravity="right|center"
+    android:layoutDirection="ltr"
+    android:background="@color/Back_Color">
+    <TextView
+        android:gravity="right"
+        android:id="@+id/lblListHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:layout_marginRight="16dp"
+        android:textStyle="bold"
+        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+        android:textSize="17dp"
+        android:textColor="@color/Base_Color" />
+
+    <ImageView
+        android:id="@+id/txt_filter_grop"
+        android:rotation="270"
+        android:src="@drawable/ic_my_arrow"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+
+
+</LinearLayout>

@@ -55,22 +55,24 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view_Slider" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
-                android:layout_height="350dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/recy_category"
-                tools:layout_editor_absoluteX="193dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/recy_category">
 
                 <TextView
                     android:id="@+id/titile_discounts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:layout_marginRight="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
                     android:textColor="#000"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -99,9 +101,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
-                        android:text="مشاهده همه"
-                        android:padding="4dp"
                         android:background="@drawable/shap_25"
+                        android:padding="4dp"
+                        android:text="مشاهده همه"
                         android:textColor="@color/Base_Color"
                         android:textSize="14sp"
                         android:textStyle="bold" />
@@ -109,20 +111,24 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recy_discounts"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/discounts_more" />
             </androidx.constraintlayout.widget.ConstraintLayout>
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-                tools:layout_editor_absoluteX="193dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
                 <TextView
                     android:id="@+id/titil_spl"
@@ -143,14 +149,14 @@
                     android:id="@+id/spa_more"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
                     android:gravity="center"
                     android:padding="4dp"
                     android:textColor="#000"
-                    android:layout_marginLeft="8dp"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintBottom_toBottomOf="@+id/titil_spl"
+                    app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/titil_spl"
                     tools:ignore="MissingConstraints">
 
@@ -158,19 +164,19 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
-                        android:text="مشاهده همه"
-                        android:padding="4dp"
-                        android:textSize="14sp"
                         android:background="@drawable/shap_25"
+                        android:padding="4dp"
+                        android:text="مشاهده همه"
                         android:textColor="@color/Base_Color"
+                        android:textSize="14sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recy_special_2"
                     android:layout_width="match_parent"
-                    android:layout_marginTop="4dp"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="4dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/spa_more" />

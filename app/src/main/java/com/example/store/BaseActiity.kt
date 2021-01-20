@@ -13,17 +13,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.store.Dialog.Dial_App
 import com.example.store.Main_Fragments.ErrorCode500
 import com.example.store.Main_Fragments.Login
-import com.example.store.VIEWMODEL.Data_card
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.custome_dial_app.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
@@ -47,6 +46,7 @@ open class BaseActiity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         sharedPreferences = getSharedPreferences(mytag_sharedpreferences, MODE_PRIVATE)
         Update_Data()
     }
@@ -55,10 +55,10 @@ open class BaseActiity : AppCompatActivity() {
         Dialog_load = Dialog(this)
         Dialog_load?.setCancelable(false)
         val inflater = LayoutInflater.from(this)
-        val view: View = inflater.inflate(R.layout.layout_loading, null,false)
+        val view: View = inflater.inflate(R.layout.layout_loading, null, false)
         Dialog_load?.setContentView(view)
         Dialog_load?.window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT,
-            ConstraintLayout.LayoutParams.MATCH_PARENT)
+                ConstraintLayout.LayoutParams.MATCH_PARENT)
         Dialog_load?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         Dialog_load?.show()
 
@@ -74,10 +74,10 @@ open class BaseActiity : AppCompatActivity() {
             Dialog_load?.dismiss()
         }
     }
-    public fun Dialapp( Type: Int,  S: String,  I: Dial_App.Interface_new, context: Context): Dialog {
+    public fun Dialapp(Type: Int, S: String, I: Dial_App.Interface_new, context: Context): Dialog {
         var d = Dialog(context)
         val inflater = LayoutInflater.from(context)
-        val view: View = inflater.inflate(R.layout.custome_dial_app, null,false)
+        val view: View = inflater.inflate(R.layout.custome_dial_app, null, false)
         d.setContentView(view)
         d.window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.MATCH_PARENT)
@@ -119,19 +119,18 @@ open class BaseActiity : AppCompatActivity() {
             false
         }
     }
-    fun  AddEditDeleteItem_Card( Count:Int, Id:String,result:Resuilt)
+    fun  AddEditDeleteItem_Card(Count: Int, Id: String, result: Resuilt)
     {
         DialLoad()
         var data_item=AddEditDeleteItemModel()
         data_item.Count= Count.toString()
         data_item.ProductId=Id
-        var req=api?.AddEditDeleteItem_Card("Bearer " +token,data_item)
-        req?.enqueue(object :Callback<Respons_AddEditDeleteItem_Card> {
+        var req=api?.AddEditDeleteItem_Card("Bearer " + token, data_item)
+        req?.enqueue(object : Callback<Respons_AddEditDeleteItem_Card> {
             override fun onResponse(call: Call<Respons_AddEditDeleteItem_Card>, response: Response<Respons_AddEditDeleteItem_Card>) {
                 Log.i("ksdvknsdv", response.code().toString())
                 Dial_Close()
-                if (response.code() == 500)
-                {
+                if (response.code() == 500) {
                     var code500: ErrorCode500? = null
                     val gson = Gson()
                     val adapter: TypeAdapter<ErrorCode500> =
@@ -150,18 +149,15 @@ open class BaseActiity : AppCompatActivity() {
                     ).show()
                     return
                 }
-                if (response.isSuccessful)
-                {
-                    result.Data(response.body()?.data!!,"",true)
+                if (response.isSuccessful) {
+                    result.Data(response.body()?.data!!, "", true)
                     Log.i("fvsfknvsdggu", response.body().toString())
                 }
-                if (response.code()==401)
-                {
-                    Login(securityKey,object :Login{
+                if (response.code() == 401) {
+                    Login(securityKey, object : Login {
                         override fun onLoginCompleted(success: Boolean) {
-                            if (success)
-                            {
-                                AddEditDeleteItem_Card(Count,Id,result)
+                            if (success) {
+                                AddEditDeleteItem_Card(Count, Id, result)
                             }
                         }
 
@@ -171,13 +167,13 @@ open class BaseActiity : AppCompatActivity() {
 
             override fun onFailure(call: Call<Respons_AddEditDeleteItem_Card>, t: Throwable) {
                 Dial_Close()
-                result.Data(-1,"مشکلی در اتصال به اینترنت به وجود آمده",false)
+                result.Data(-1, "مشکلی در اتصال به اینترنت به وجود آمده", false)
             }
 
         })
 
     }
-    fun Login(Seacurity: String,loging: Login)
+    fun Login(Seacurity: String, loging: Login)
     {
         var json = ""
         json = JSONObject()
@@ -220,7 +216,8 @@ open class BaseActiity : AppCompatActivity() {
                     securityKey = Data?.securityKey.toString()
                     token = Data?.token.toString()
                     loging.onLoginCompleted(true)
-                } else {
+                }
+                else {
                     Log.i("dvdgfghjkikgfgdfsds", "not200")
                     var i = Intent(this@BaseActiity, MultyActivity_2::class.java)
                     i.putExtra("Type", "W")
@@ -230,11 +227,11 @@ open class BaseActiity : AppCompatActivity() {
             }
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                 loging.onLoginCompleted(false)
-                var p=   Dialapp(2,"اتصال خود را به اینترنت بررسی کنید",object :Dial_App.Interface_new{
+                var p = Dialapp(2, "اتصال خود را به اینترنت بررسی کنید", object : Dial_App.Interface_new {
                     override fun News() {
                         finish()
                     }
-                },this@BaseActiity)
+                }, this@BaseActiity)
                 p.show()
             }
         })

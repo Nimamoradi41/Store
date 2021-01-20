@@ -1,7 +1,9 @@
 package com.example.store.Main_Fragments
 
 import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -73,7 +75,11 @@ class Frag_All_All : BaseFragment() {
         return V
     }
     private fun SetCate_2(v: View,list:ArrayList<products>) {
-        ad_mains= adapter_Spacial_4(activity!!, list)
+        val dm = DisplayMetrics()
+        activity?.getWindowManager()?.getDefaultDisplay()?.getMetrics(dm)
+        val width = dm.widthPixels
+        val height = dm.widthPixels
+        ad_mains= adapter_Spacial_4(activity!!, list,width)
         v.recy_itemsall_334.adapter=ad_mains
         ad_mains?.click(object : Adapter_discounts.Data_dis {
             override fun Data(I: Int, ID: String, Pos: Int) {
@@ -95,12 +101,14 @@ class Frag_All_All : BaseFragment() {
                         Log.i("kvnsndv", "ASA")
                         if (B)
                         {
-                            activity?.setResult(RESULT_OK)
                             var v=ad_mains?.list?.get(Pos)
                             v?.currentReserved=I
                             ad_mains?.list?.set(Pos, v!!)
                             ad_mains?.notifyItemChanged(Pos)
 //                            MainActivity.mainActivityViewModel?.count?.value=i
+                            var vs=Intent()
+                            vs.putExtra("count",i)
+                            activity?.setResult(RESULT_OK,vs)
                         }
                     }
 

@@ -26,12 +26,12 @@ import kotlinx.android.synthetic.main.custome_special.view.textView5
 import kotlinx.android.synthetic.main.custome_special.view.textView7
 import kotlinx.android.synthetic.main.custome_special_2.view.*
 
-class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>) : RecyclerView.Adapter<adapter_Spacial_4.view>() {
+class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>,var W:Int) : RecyclerView.Adapter<adapter_Spacial_4.view>() {
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
     var interface_1: Adapter_discounts.Data_dis?=null
     var loadmore: Boolean=false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-        var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_2,parent,false)
+        var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3,parent,false)
         return  view(V)
     }
     fun click(da: Adapter_discounts.Data_dis)
@@ -40,20 +40,75 @@ class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>) : Recycler
     }
     override fun onBindViewHolder(holder: view, position: Int) {
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
-        holder.itemView.textView4.setText(list.get(position).title!!)
+//        holder.itemView.textView4.setText(list.get(position).getTitle())
+//        holder.itemView.textView66.setText(list.get(position).priceAfterDiscountForShow.toString())
+
+
+        var v=holder.itemView.layoutParams as RecyclerView.LayoutParams
+        v.height=W*3/4
+        holder.itemView.layoutParams= ViewGroup.LayoutParams(v)
+        holder.itemView.requestLayout()
         var Item=list.get(position)
-
-
         if(Item?.getFirstImage()!=null)
         {
             Log.i("sfkmsmlbab",""+Constants.BASE_URL+"/Images/"+Item?.getFirstImage())
-            Glide.with(c).load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).into(holder.itemView.imageView85);
+//            Glide.with(c).load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).into(holder.itemView.imageView85);
+            Glide.with(c).load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).into(holder.itemView.imageView2);
         }
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
-        holder.itemView.textView4.setText(list.get(position).getTitle())
-        holder.itemView.textView89.setText("%"+list.get(position).getDiscountPercent())
-        holder.itemView.textView7499.setText(list.get(position).getPriceForShow())
-        holder.itemView.textView55959.setText(list.get(position).getPriceForShow())
+
+        holder.itemView.textView4.setText(Item.getTitle())
+        holder.itemView.textView6.setText(Item.getPriceAfterDiscountForShow())
+
+
+//        if (Item.getDiscountPercent()!=null)
+//        {
+//            if (Item.getDiscountPercent()>0)
+//            {
+//                holder.itemView.textView89.setText("%" + Item.getDiscountPercent())
+//                holder.itemView.textView7499.setText(Item.getPriceForShow())
+//                holder.itemView.textView55959.setText(Item.getPriceForShow())
+//            }else{
+//                holder.itemView.textView89.visibility=View.GONE
+//                holder.itemView.imageView33.visibility=View.GONE
+//                holder.itemView.textView7499.visibility=View.GONE
+//                holder.itemView.textView55959.visibility=View.GONE
+//
+//            }
+//        }else{
+//            holder.itemView.textView89.visibility=View.GONE
+//            holder.itemView.imageView33.visibility=View.GONE
+//            holder.itemView.textView7499.visibility=View.GONE
+//            holder.itemView.textView55959.visibility=View.GONE
+//        }
+
+
+        // todo درصد تخفیف گرداشت
+        if (Item.getDiscountPercent()!=null)
+        {
+            if (Item.getDiscountPercent()>0)
+            {
+                holder.itemView.textView3.setText("%" + Item.getDiscountPercent())
+                holder.itemView.textView5.setText(Item.getPriceForShow())
+                holder.itemView.textView7.setText(Item.getPriceForShow())
+            }else{
+                holder.itemView.textView3.visibility=View.GONE
+                holder.itemView.imageView3.visibility=View.GONE
+                holder.itemView.textView5.visibility=View.GONE
+                holder.itemView.textView7.visibility=View.GONE
+
+            }
+        }else{
+            holder.itemView.textView3.visibility=View.GONE
+            holder.itemView.imageView3.visibility=View.GONE
+            holder.itemView.textView5.visibility=View.GONE
+            holder.itemView.textView7.visibility=View.GONE
+        }
+
+//        holder.itemView.textView4.setText(list.get(position).getTitle())
+//        holder.itemView.textView89.setText("%"+list.get(position).getDiscountPercent())
+//        holder.itemView.textView7499.setText(list.get(position).getPriceForShow())
+//        holder.itemView.textView55959.setText(list.get(position).getPriceForShow())
         if (Item.getCurrentReserved()>0)
         {
             holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
@@ -62,12 +117,21 @@ class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>) : Recycler
             holder.itemView.button.setText("افزودن به سبد خرید")
             holder.itemView.button.animate().alpha(1f).setDuration(500).start()
         }
+//        if (Item.getCurrentReserved()>0)
+//        {
+//            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }else  {
+//            holder.itemView.button.setText("افزودن به سبد خرید")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }
 
 
         holder.itemView.setOnClickListener {
             var I=Intent(c,ItemDetail::class.java)
             I.putExtra("data",Item)
-            c.startActivityForResult(I,20)
+            I.putExtra("pos",position)
+            c.startActivityForResult(I,85)
         }
 
         holder.itemView.button.setOnClickListener {

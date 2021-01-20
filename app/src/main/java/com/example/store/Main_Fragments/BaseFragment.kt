@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import com.example.store.*
@@ -45,11 +46,10 @@ open class BaseFragment : Fragment() {
     var fullName = ""
     var gender = 0
     var Dialog_load:Dialog ?=null
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         sharedPreferences = activity?.getSharedPreferences(
             mytag_sharedpreferences, AppCompatActivity.MODE_PRIVATE
         )

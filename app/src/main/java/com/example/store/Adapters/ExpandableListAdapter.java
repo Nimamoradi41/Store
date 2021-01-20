@@ -125,6 +125,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
             if (ID.equals(childText.getId()))
             {
                 txtListChild.setChecked(true);
+                txtListChild.setEnabled(false);
                 Cate.add(ID);
             }
         }
@@ -142,6 +143,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 //
 //                    }
 //                }
+
+
 
 
                 if (txtListChild.isChecked())

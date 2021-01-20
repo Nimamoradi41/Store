@@ -33,19 +33,7 @@
                 android:textColor="@color/Stable_Text"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/imageView34"
-                app:layout_constraintTop_toBottomOf="@+id/textView36" />
-
-            <TextView
-                android:id="@+id/textView70"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:text="ادرس :"
-                android:textColor="@color/Stable_Text"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/rad" />
 
             <TextView
                 android:id="@+id/textView33"
@@ -99,22 +87,6 @@
                 app:layout_constraintEnd_toStartOf="@+id/textView32"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/textView32" />
-
-            <TextView
-                android:id="@+id/textView36"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:gravity="right"
-                android:textColor="@color/Dynamic_Color"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/textView70"
-                app:layout_constraintEnd_toStartOf="@+id/textView70"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/textView70"
-                tools:text="علی" />
 
             <TextView
                 android:id="@+id/textView38"
@@ -189,7 +161,7 @@
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 app:layout_constraintBottom_toBottomOf="@+id/textView32"
-                app:layout_constraintEnd_toEndOf="@+id/textView70"
+                app:layout_constraintEnd_toEndOf="@+id/rad"
                 app:layout_constraintTop_toTopOf="@+id/textView32"
                 app:srcCompat="@drawable/ic_buil_1"
                 tools:ignore="MissingConstraints" />
@@ -222,6 +194,19 @@
                 app:layout_constraintEnd_toEndOf="@+id/imageView36"
                 app:layout_constraintTop_toTopOf="@+id/textView35"
                 app:srcCompat="@drawable/ic_plack" />
+            <RadioButton
+                android:layoutDirection="rtl"
+                android:id="@+id/rad"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:buttonTint="@color/Base_Color"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

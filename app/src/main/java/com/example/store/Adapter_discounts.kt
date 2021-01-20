@@ -20,17 +20,16 @@ import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
 import kotlinx.android.synthetic.main.fragment_custome_slider.view.*
 
-class Adapter_discounts(var c: Activity, var list: discounts) : RecyclerView.Adapter<Adapter_discounts.view>() {
+class Adapter_discounts(var c: Activity, var list: discounts,var H:Int,var W:Int) : RecyclerView.Adapter<Adapter_discounts.view>() {
     var interface_1:Data_dis ?=null
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
 
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special, parent, false)
-//          var v=V.layoutParams as RecyclerView.LayoutParams
-//          v.width=pxToDp(w.toFloat()).toInt()+20
-//          v.height=pxToDp(w.toFloat()).toInt()*2
-//           V.layoutParams= ViewGroup.LayoutParams(v)
-//        V.requestLayout()
+//         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special, parent, false)
+         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3, parent, false)
+
         return  view(V)
     }
 
@@ -47,7 +46,11 @@ class Adapter_discounts(var c: Activity, var list: discounts) : RecyclerView.Ada
         return (px / Resources.getSystem().getDisplayMetrics().density)
     }
     override fun onBindViewHolder(holder: view, position: Int) {
-
+        var v=holder.itemView.layoutParams as RecyclerView.LayoutParams
+        v.width=W/2
+        v.height=W*3/4
+        holder.itemView.layoutParams= ViewGroup.LayoutParams(v)
+        holder.itemView.requestLayout()
         var Item=list.getProducts().get(position)
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
 
@@ -85,12 +88,12 @@ class Adapter_discounts(var c: Activity, var list: discounts) : RecyclerView.Ada
 
 
         holder.itemView.textView4.setText(list.getProducts().get(position).getTitle())
-
+        holder.itemView.textView6.setText(list.getProducts().get(position).getPriceAfterDiscountForShow())
 
 
 //        holder.itemView.textView5.setText(list.getProducts().get(position).getPriceForShow())
 //        holder.itemView.textView7.setText(list.getProducts().get(position).getPriceForShow())
-        holder.itemView.textView6.setText(list.getProducts().get(position).getPriceAfterDiscountForShow())
+
 
         if (Item.getCurrentReserved()>0)
         {

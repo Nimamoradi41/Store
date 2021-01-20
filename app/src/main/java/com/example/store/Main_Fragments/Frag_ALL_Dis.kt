@@ -1,7 +1,9 @@
 package com.example.store.Main_Fragments
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
+import android.util.DisplayMetrics
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.NonNull
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +21,8 @@ import com.example.store.Adapters.adapter_Spacial_4
 import com.example.store.Dialog.Dial_App
 import com.example.store.Models.GetProductModel
 import com.example.store.Models.ResponseMoreData
+import com.example.store.Models.data_accses
+import com.example.store.VIEWMODEL.MainActivityViewModel
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__a_l_l.view.*
@@ -35,6 +41,7 @@ class Frag_ALL_Dis : BaseFragment() {
     var Type=-1
     var CateId=""
     var  Model: GetProductModel ?=null
+    var modelmain: MainActivityViewModel?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         products= arguments?.getSerializable("data2") as discounts
@@ -50,6 +57,19 @@ class Frag_ALL_Dis : BaseFragment() {
         V.recy_itemsss.layoutManager=GridLayoutManager(activity,2)
         SetCate_2(V, products?.products!!)
         Model= GetProductModel()
+        modelmain = ViewModelProviders.of(activity!!)[MainActivityViewModel::class.java]
+        modelmain?.change_Data?.observe(activity!!, object : Observer<data_accses> {
+            override fun onChanged(t: data_accses?) {
+                Log.i("svmsnbsbnhn", t?.Pos.toString())
+                Log.i("svmsnbsbnhn", t?.v?.count.toString())
+                var vc = ad_mains?.list?.get(t?.Pos!!)
+                var f=t?.v?.currentReserved
+                vc?.currentReserved = f!!
+                Log.i("svmsnbsbnhn", f.toString())
+                ad_mains?.list?.set(t?.Pos!!, vc!!)
+                ad_mains?.notifyItemChanged(t?.Pos!!)
+            }
+        })
         V.recy_itemsss.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(@NonNull recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView,dx,dy)
@@ -65,7 +85,11 @@ class Frag_ALL_Dis : BaseFragment() {
         return V
     }
     private fun SetCate_2(v: View,list:ArrayList<products>) {
-        ad_mains= adapter_Spacial_4(activity!!,list)
+        val dm = DisplayMetrics()
+        activity?.getWindowManager()?.getDefaultDisplay()?.getMetrics(dm)
+        val width = dm.widthPixels
+        val height = dm.widthPixels
+        ad_mains= adapter_Spacial_4(activity!!,list,width)
         v.rootView.recy_itemsss.adapter=ad_mains
         ad_mains?.click(object : Adapter_discounts.Data_dis {
             override fun Data(I: Int, ID: String, Pos: Int) {
@@ -87,11 +111,14 @@ class Frag_ALL_Dis : BaseFragment() {
                         Log.i("kvnsndv", "ASA")
                         if (B)
                         {
-                            activity?.setResult(Activity.RESULT_OK)
                             var v=ad_mains?.list?.get(Pos)
                             v?.currentReserved=I
                             ad_mains?.list?.set(Pos, v!!)
                             ad_mains?.notifyItemChanged(Pos)
+                            var vs= Intent()
+                            MultyActivity_2.Count=i
+//                            vs.putExtra("count",i)
+//                            activity?.setResult(Activity.RESULT_OK,vs)
 //                            MainActivity.mainActivityViewModel?.count?.value=i
                         }
                     }

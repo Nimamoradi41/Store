@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel;
 import com.example.store.Models.data_accses;
 import com.example.store.Models.orderItems;
 import com.example.store.data_2;
-import com.example.store.products;
 
 import java.util.ArrayList;
 
-public class MainActivityViewModel  extends ViewModel {
+public class MainActivityViewModel_2 extends ViewModel {
     MutableLiveData<data_2> data=new MutableLiveData<>();
     MutableLiveData<data_accses> change_Data=new MutableLiveData<>();
     MutableLiveData<ArrayList<orderItems>> orderItems=new MutableLiveData<>();

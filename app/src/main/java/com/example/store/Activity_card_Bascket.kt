@@ -15,6 +15,8 @@ import com.example.store.Models.data_card
 import com.example.store.Models.model_Item
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
+import io.github.inflationx.viewpump.ViewPumpContextWrapper
+import kotlinx.android.synthetic.main.activity__second__bascket.*
 import kotlinx.android.synthetic.main.activity_card__bascket.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -28,6 +30,9 @@ class Activity_card_Bascket : BaseActiity() {
     var ad_card:adapter_items_card_bascket ? =null
     var Flag:Boolean=false
     var data_card: data_card?=null
+    override fun attachBaseContext(newBase: Context?) {
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_card__bascket)
@@ -56,6 +61,7 @@ class Activity_card_Bascket : BaseActiity() {
                             override fun Data(i: Int, S: String, B: Boolean) {
                                 if (B)
                                 {
+                                    Log.i("svdnjdnva","Done")
                                     Flag=true
                                    GetCard("")
                                 }
@@ -67,10 +73,21 @@ class Activity_card_Bascket : BaseActiity() {
                 })
         linearLayout5.setOnClickListener {
             Flag=true
-            setResult(RESULT_OK)
+            var i=Intent()
+            if (ad_card?.V==null)
+            {
+                Log.i("vnjfnjnfbjfbs","A")
+            }else{
+                Log.i("vnjfnjnfbjfbs","B")
+            }
+            Log.i("vnjfnjnfbjfbs",ad_card?.V?.size.toString())
+            i.putExtra("data",ad_card?.V)
+            setResult(RESULT_OK,i)
             finish()
         }
         GetCard("")
+
+
 
 
         btn_send.setOnClickListener {
@@ -120,6 +137,20 @@ class Activity_card_Bascket : BaseActiity() {
                     }else{
                         textView12.setText("0")
                     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                     var data=response.body()
                     if (data?.data?.pricePayForShow!=null)
@@ -197,7 +228,9 @@ class Activity_card_Bascket : BaseActiity() {
     override fun onBackPressed() {
         if (Flag)
         {
-            setResult(RESULT_OK)
+            var i=Intent()
+            i.putExtra("data",ad_card?.V)
+            setResult(RESULT_OK,i)
         }
         super.onBackPressed()
     }

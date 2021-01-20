@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
 
-class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos) : RecyclerView.Adapter<Adapter_productBoxDtos_2.view>() {
+class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:Int) : RecyclerView.Adapter<Adapter_productBoxDtos_2.view>() {
     var interface_1: Data_BTO_2?=null
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -29,7 +29,7 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos) : Recy
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special, parent, false)
+         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3, parent, false)
 //         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_productboxdtos, parent, false)
 //          var v=V.layoutParams as RecyclerView.LayoutParams
 //          v.width=pxToDp(w.toFloat()).toInt()+20
@@ -44,6 +44,12 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos) : Recy
         var Item=list.getProducts().get(position)
 
 
+
+        var v=holder.itemView.layoutParams as RecyclerView.LayoutParams
+        v.width=W/2
+        v.height=W*3/4
+        holder.itemView.layoutParams= ViewGroup.LayoutParams(v)
+        holder.itemView.requestLayout()
 
 
         // todo درصد تخفیف گرداشت

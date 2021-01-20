@@ -25,7 +25,7 @@ import kotlinx.android.synthetic.main.custome_productboxdtos.view.titile_discoun
 import kotlinx.android.synthetic.main.custome_special.view.*
 import kotlinx.android.synthetic.main.fragment_mainfrag.view.*
 
-class Adapter_productBoxDtos(var C: Activity, var list: ArrayList<productBoxDtos>) : RecyclerView.Adapter<Adapter_productBoxDtos.view>() {
+class Adapter_productBoxDtos(var C: Activity, var list: ArrayList<productBoxDtos>,var W:Int) : RecyclerView.Adapter<Adapter_productBoxDtos.view>() {
     var interface_1: Adapter_productBoxDtos_2.Data_BTO_2?=null
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
     fun click_2(da: Adapter_productBoxDtos_2.Data_BTO_2)
@@ -44,9 +44,14 @@ class Adapter_productBoxDtos(var C: Activity, var list: ArrayList<productBoxDtos
     }
     override fun onBindViewHolder(holder: view, position: Int) {
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
+
+
+
+
+
         Log.i("dvmlkdnvksfbnvvxzcv",list.get(position).getCategory().getTitle())
         holder.itemView.titile_discounts.setText(list.get(position).getCategory().getTitle())
-        var vv=Adapter_productBoxDtos_2(C,list.get(position))
+        var vv=Adapter_productBoxDtos_2(C,list.get(position),W)
         vv.click_2(object : Adapter_productBoxDtos_2.Data_BTO_2{
             override fun Data(I: Int, ID: String, Pos: Int, Ad: Adapter_productBoxDtos_2) {
                  interface_1?.Data(I,ID,Pos,Ad)

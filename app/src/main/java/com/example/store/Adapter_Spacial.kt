@@ -19,7 +19,7 @@ import com.example.store.Models.model_Item
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
 
-class adapter_Spacial(var c: Activity, var list: specials) : RecyclerView.Adapter<adapter_Spacial.view>() {
+class adapter_Spacial(var c: Activity, var list: specials,var W:Int,var H:Int) : RecyclerView.Adapter<adapter_Spacial.view>() {
     var interface_1: Adapter_discounts.Data_dis?=null
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
     fun click(da: Adapter_discounts.Data_dis)
@@ -27,7 +27,7 @@ class adapter_Spacial(var c: Activity, var list: specials) : RecyclerView.Adapte
         this.interface_1=da
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special, parent, false)
+         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3, parent, false)
 
 
 //          var v=V.layoutParams as RecyclerView.LayoutParams
@@ -46,6 +46,12 @@ class adapter_Spacial(var c: Activity, var list: specials) : RecyclerView.Adapte
         var Item=list.getProducts().get(position)
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
 
+
+        var v=holder.itemView.layoutParams as RecyclerView.LayoutParams
+        v.width=W/2
+        v.height=W*3/4
+        holder.itemView.layoutParams= ViewGroup.LayoutParams(v)
+        holder.itemView.requestLayout()
 
 
         // todo درصد تخفیف گرداشت

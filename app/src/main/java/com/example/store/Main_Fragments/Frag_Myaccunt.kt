@@ -1,39 +1,92 @@
 package com.example.store.Main_Fragments
 
-import android.app.DatePickerDialog
-import android.content.Intent
+import android.R.attr.typeface
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.store.Dialog.Dial_App
 import com.example.store.Models.ResPonseProfile
 import com.example.store.R
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
+import ir.hamsaa.persiandatepicker.Listener
+import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
+import ir.hamsaa.persiandatepicker.util.PersianCalendar
 import kotlinx.android.synthetic.main.fragment_frag__myaccunt.*
 import kotlinx.android.synthetic.main.fragment_frag__myaccunt.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
-import javax.security.auth.callback.Callback
+
 
 class Frag_Myaccunt : BaseFragment() {
 
 
 
+    var Gender:Int ?=null
+
+
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v = inflater.inflate(R.layout.fragment_frag__myaccunt, container, false)
 
         GetProfile(v)
+
+
+        v.btn_save.setOnClickListener {
+            if (v.edt_name.text.isNullOrEmpty())
+            {
+                v.edt_name.setError("نام را وارد کنید")
+                return@setOnClickListener
+            }
+
+
+            if (v.edt_famili.text.isNullOrEmpty())
+            {
+                v.edt_famili.setError("نام خانوادگی  را وارد کنید")
+                return@setOnClickListener
+            }
+
+
+            if (v.edt_codemeli.text.isNullOrEmpty())
+            {
+                v.edt_codemeli.setError("  کد ملی  را وارد کنید")
+                return@setOnClickListener
+            }
+
+            if (v.edy_birthday.text.isNullOrEmpty())
+            {
+                v.edy_birthday.setError(" تاریخ تولد  را وارد کنید")
+                return@setOnClickListener
+            }
+
+
+
+
+             if (rap_2.checkedRadioButtonId==R.id.men)
+             {
+                 Gender=1
+             }else{
+                 Gender=2
+             }
+
+
+            EditProfile(v)
+
+
+        }
+
+        v.edy_birthday.setOnClickListener {
+            showDataPicker(v)
+        }
 //        val datePickerDialog = DatePickerDialog.newInstance(
 //                { _, year, monthOfYear, dayOfMonth ->
 //                    y1 = year
@@ -75,28 +128,25 @@ class Frag_Myaccunt : BaseFragment() {
     }
 
 
-    fun GetProfile(V:View)
+    fun GetProfile(V: View)
     {
         DialLoad()
-        var req=api?.GetProfile("Bearer " +token)
+        var req=api?.GetProfile("Bearer " + token)
         req?.enqueue(object : retrofit2.Callback<ResPonseProfile> {
             override fun onResponse(call: Call<ResPonseProfile>, response: Response<ResPonseProfile>) {
                 Log.i("fkvskfnb", response.code().toString())
                 Dial_Close()
-                if (response.code()==401)
-                {
-                    Login(securityKey,object : Login {
+                if (response.code() == 401) {
+                    Login(securityKey, object : Login {
                         override fun onLoginCompleted(success: Boolean) {
-                            if (success)
-                            {
+                            if (success) {
                                 GetProfile(V)
                             }
                         }
 
                     })
                 }
-                if (response.code() == 500)
-                {
+                if (response.code() == 500) {
                     var code500: ErrorCode500? = null
                     val gson = Gson()
                     val adapter: TypeAdapter<ErrorCode500> =
@@ -116,47 +166,42 @@ class Frag_Myaccunt : BaseFragment() {
                     Log.i("knknvsz", code500?.getMessage().toString())
                     return
                 }
-                if (response.isSuccessful)
-                {
-                    if (response.body()?.data?.firstName!=null)
-                    {
+                if (response.isSuccessful) {
+                    if (response.body()?.data?.firstName != null) {
                         V.edt_name.setText(response.body()?.data?.firstName)
                     }
 
-                    if (response.body()?.data?.lastLogin!=null)
-                    {
-                        V.edt_famili.setText(response.body()?.data?.firstName)
+                    if (response.body()?.data?.lastLogin != null) {
+                        V.edt_famili.setText(response.body()?.data?.lastName)
                     }
 
 
-                    if (response.body()?.data?.birthDayFa!=null)
-                    {
+                    if (response.body()?.data?.birthDayFa != null) {
                         V.edy_birthday.setText(response.body()?.data?.birthDayFa)
                     }
 
 
-                    if (response.body()?.data?.phone!=null)
-                    {
+
+                    if (response.body()?.data?.meliCode != null) {
+                        V.edt_codemeli.setText(response.body()?.data?.meliCode)
+                    }
+
+
+                    if (response.body()?.data?.phone != null) {
                         V.edt_tel.setText(response.body()?.data?.phone)
                     }
-                    Log.i("fkvskfnb",response.body()?.data?.gender.toString())
-
-                   if (response.body()?.data?.gender!=null)
-                   {
-                       if (response.body()?.data?.gender==1)
-                       {
-                           V.rap_2.check(R.id.men)
-                       }
+                    Log.i("fkvskfnb", response.body()?.data?.gender.toString())
+                    Gender= response.body()?.data?.gender
+                    if (response.body()?.data?.gender != null) {
+                        if (response.body()?.data?.gender == 1) {
+                            V.rap_2.check(R.id.men)
+                        }
 
 
-                       if (response.body()?.data?.gender==2)
-                       {
-                           V.rap_2.check(R.id.famel)
-                       }
-                   }
-
-
-
+                        if (response.body()?.data?.gender == 2) {
+                            V.rap_2.check(R.id.famel)
+                        }
+                    }
 
 
                 }
@@ -166,8 +211,8 @@ class Frag_Myaccunt : BaseFragment() {
             override fun onFailure(call: Call<ResPonseProfile>, t: Throwable) {
                 Log.i("fkvskfnb", t.message.toString())
                 Dial_Close()
-                var I=3
-                var p=   Dialapp(I,"لطفا دوباره تلاش کنید",object : Dial_App.Interface_new{
+                var I = 3
+                var p = Dialapp(I, "لطفا دوباره تلاش کنید", object : Dial_App.Interface_new {
                     override fun News() {
                         activity?.finish()
                     }
@@ -181,28 +226,36 @@ class Frag_Myaccunt : BaseFragment() {
 
 
 
-    fun EditProfile(V:View)
-    {
-        DialLoad()
-        var req=api?.GetProfile("Bearer " +token)
 
+    fun EditProfile(V: View)
+    {
+        var v=Edit_Profile()
+        v.birthDayFa= edy_birthday.text?.toString()
+        v.meliCode=edt_codemeli.text?.toString()
+        v.lastName=edt_famili.text?.toString()
+        v.firstName=edt_name.text?.toString()
+        Log.i("dmvsndvdv", Gender.toString())
+        Log.i("dmvsndvdv", edt_codemeli.text?.toString().toString())
+        Log.i("dmvsndvdv", edt_famili.text?.toString().toString())
+        Log.i("dmvsndvdv", edy_birthday.text?.toString().toString())
+        Log.i("dmvsndvdv", edt_name.text?.toString().toString())
+        v.gender=Gender
+        DialLoad()
+        var req=api?.EditProfile("Bearer " + token,v)
         req?.enqueue(object : retrofit2.Callback<ResPonseProfile> {
             override fun onResponse(call: Call<ResPonseProfile>, response: Response<ResPonseProfile>) {
                 Dial_Close()
-                if (response.code()==401)
-                {
-                    Login(securityKey,object : Login {
+                if (response.code() == 401) {
+                    Login(securityKey, object : Login {
                         override fun onLoginCompleted(success: Boolean) {
-                            if (success)
-                            {
+                            if (success) {
                                 EditProfile(V)
                             }
                         }
 
                     })
                 }
-                if (response.code() == 500)
-                {
+                if (response.code() == 500) {
                     var code500: ErrorCode500? = null
                     val gson = Gson()
                     val adapter: TypeAdapter<ErrorCode500> =
@@ -223,42 +276,72 @@ class Frag_Myaccunt : BaseFragment() {
                     return
                 }
 
-                if (response.isSuccessful)
-                {
-
+                if (response.isSuccessful) {
 //                    V.edt_name.setText(response.body()?.data?.fullName)
 //                    V.edt_famili.setText(response.body()?.data?.fullName)
-                    V.edy_birthday.setText(response.body()?.data?.birthDayFa)
-                    V.edt_tel.setText(response.body()?.data?.phone)
-
-                    if (response.body()?.data?.gender==1)
-                    {
-                        V.rap_2.check(R.id.men)
-                    }
-
-
-                    if (response.body()?.data?.gender==2)
-                    {
-                        V.rap_2.check(R.id.famel)
-                    }
-
-
+                     Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
+                    activity?.finish()
 
                 }
             }
 
             override fun onFailure(call: Call<ResPonseProfile>, t: Throwable) {
                 Dial_Close()
-                var I=3
-                var p=   Dialapp(I,"لطفا دوباره تلاش کنید",object : Dial_App.Interface_new{
-                    override fun News() {
-                        activity?.finish()
-                    }
-                }, context!!)
+                var I = 2;
+                var p = Dialapp(
+                        2,
+                        "اتصال خود را به اینترنت بررسی کنید",
+                        object : Dial_App.Interface_new {
+                            override fun News() {
+
+                            }
+                        },
+                        context!!
+                )
                 p.show()
             }
 
         })
+    }
+
+    fun showDataPicker(v:View)
+    {
+      var   picker = PersianDatePickerDialog(context)
+                .setPositiveButtonString("باشه")
+                .setNegativeButton("بیخیال")
+                .setTodayButton("امروز")
+                .setTodayButtonVisible(true)
+                .setMinYear(1300)
+                .setMaxYear(PersianDatePickerDialog.THIS_YEAR)
+                .setActionTextColor(Color.GRAY)
+                .setTitleType(PersianDatePickerDialog.WEEKDAY_DAY_MONTH_YEAR)
+                .setShowInBottomSheet(true)
+                .setListener(object : Listener {
+                    override fun onDateSelected(persianCalendar: PersianCalendar?) {
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getGregorianChange()) //Fri Oct 15 03:25:44 GMT+04:30 1582
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getTimeInMillis()) //1583253636577
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getTime()) //Tue Mar 03 20:10:36 GMT+03:30 2020
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getDelimiter()) //  /
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getPersianLongDate()) // سه‌شنبه  13  اسفند  1398
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getPersianLongDateAndTime()) //سه‌شنبه  13  اسفند  1398 ساعت 20:10:36
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getPersianMonthName()) //اسفند
+                        Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.isPersianLeapYear()) //false
+                        v.edy_birthday.setText(persianCalendar?.getPersianYear().toString()
+                                + "/" + persianCalendar?.getPersianMonth() + "/" +
+                                persianCalendar?.getPersianDay())
+                        v.edy_birthday.setError("",null)
+                    }
+
+
+
+
+                    override fun onDismissed() {
+
+                    }
+
+                })
+
+        picker.show()
     }
     }
 

@@ -14,12 +14,38 @@
              android:layout_width="match_parent"
              android:layout_height="500dp">
 
+             <com.google.android.material.textfield.TextInputLayout
+                 android:id="@+id/textField_8"
+                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 android:gravity="right"
+                 android:layout_marginTop="16dp"
+                 android:hint="ملی کد"
+                 android:textColorHint="@color/Base_Color"
+                 app:boxStrokeColor="@color/Base_Color"
+                 app:layout_constraintEnd_toEndOf="@+id/textField_2"
+                 app:layout_constraintStart_toStartOf="@+id/textField_2"
+                 app:layout_constraintTop_toBottomOf="@+id/textField_2"
+                 tools:ignore="MissingConstraints">
+
+                 <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/edt_codemeli"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:inputType="number"
+                     android:maxLength="10"
+                     android:text="" />
+
+             </com.google.android.material.textfield.TextInputLayout>
+
              <Button
                  android:layout_width="0dp"
                  android:textSize="16sp"
                  android:textStyle="bold"
                  android:textColor="#fff"
                  android:text="ثبت"
+                 android:id="@+id/btn_save"
                  android:background="@drawable/shap_3"
                  android:layout_height="wrap_content"
                  android:layout_marginTop="16dp"
@@ -96,22 +122,22 @@
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:layout_marginStart="16dp"
-                 android:layout_marginEnd="16dp"
                  android:layout_marginTop="16dp"
-                 android:textColorHint="@color/Base_Color"
+                 android:layout_marginEnd="16dp"
                  android:gravity="right"
                  android:hint="تاریخ تولد"
+                 android:textColorHint="@color/Base_Color"
                  app:boxStrokeColor="@color/Base_Color"
                  app:layout_constraintEnd_toEndOf="parent"
                  app:layout_constraintStart_toStartOf="parent"
-                 app:layout_constraintTop_toBottomOf="@+id/textField_2">
+                 app:layout_constraintTop_toBottomOf="@+id/textField_8">
 
                  <com.google.android.material.textfield.TextInputEditText
+                     android:id="@+id/edy_birthday"
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
+                     android:focusable="false"
                      android:inputType="text"
-
-                     android:id="@+id/edy_birthday"
                      android:textColor="#000" />
 
              </com.google.android.material.textfield.TextInputLayout>
@@ -135,7 +161,7 @@
                  <com.google.android.material.textfield.TextInputEditText
                      android:layout_width="match_parent"
                      android:layout_height="wrap_content"
-
+                     android:enabled="false"
                      android:id="@+id/edt_tel"
                      android:textColor="#000" />
 
@@ -157,7 +183,7 @@
                  app:layout_constraintTop_toTopOf="parent"
                   >
 
-                 <com.google.android.material.textfield.TextInputEditText
+                  <com.google.android.material.textfield.TextInputEditText
                      android:layout_width="match_parent"
                      android:id="@+id/edt_name"
                      android:textColor="#000"

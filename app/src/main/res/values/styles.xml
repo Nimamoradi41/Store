@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+
+    <style name="appthem" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
+    </style>
 
     <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
 
@@ -9,7 +14,9 @@
         <item name="background">@drawable/shap_12</item>
 
     </style>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
 
+    </style>
     <style name="SheetDialog"></style>
 </resources>

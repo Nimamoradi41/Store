@@ -25,6 +25,7 @@ class data_card :Serializable {
     var email:String ?=null
     var datePayment:String ?=null
     var datePaymentFa:String ?=null
+    var deliveryTimeMessage:String ?=null
     var id:String ?=null
     var priceForShow:String ?=null
     var discountPriceForShow:String ?=null

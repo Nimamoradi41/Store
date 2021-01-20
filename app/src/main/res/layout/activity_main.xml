@@ -45,7 +45,6 @@
                     tools:layout_editor_absoluteX="134dp"
                     tools:layout_editor_absoluteY="44dp" />
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="wrap_content"

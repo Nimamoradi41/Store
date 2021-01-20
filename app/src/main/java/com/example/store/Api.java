@@ -1,5 +1,8 @@
 package com.example.store;
 
+import com.example.store.Main_Fragments.Edit_Profile;
+import com.example.store.Main_Fragments.Editprofile_Bank;
+import com.example.store.Models.Defult_Response;
 import com.example.store.Models.GetProductModel;
 import com.example.store.Models.RESPONSADRESS;
 import com.example.store.Models.RESPONSCARD;
@@ -13,6 +16,7 @@ import com.example.store.Models.ResponseSEARCH;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Header;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -41,6 +45,17 @@ public interface Api {
 
     @POST("/api/Profile/GetProfile")
     Call<ResPonseProfile> GetProfile(@Header("Authorization") String token);
+
+
+
+    @Multipart
+    @POST("/api/Profile/EditProfile")
+    Call<ResPonseProfile> EditProfile(@Header("Authorization") String token, @Part("body") Edit_Profile edit_profile);
+
+
+    @Multipart
+    @POST("/api/Profile/EditBankinfo")
+    Call<Defult_Response> EditBankinfo(@Header("Authorization") String token, @Part("body") Editprofile_Bank edit_profile);
 
 
     @POST("/api/Address/GetAll")

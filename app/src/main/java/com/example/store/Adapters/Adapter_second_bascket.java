@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class Adapter_second_bascket extends RecyclerView.Adapter<Adapter_second_bascket.view> {
     public ArrayList<ModelAddress> items ;
     Data data;
+    int Pos=-1;
     public void Onclick(Data data)
     {
         this.data=data;
@@ -36,6 +37,29 @@ public class Adapter_second_bascket extends RecyclerView.Adapter<Adapter_second_
     @Override
     public void onBindViewHolder(@NonNull view holder, int position) {
       holder.txt_address.setText(items.get(position).getName());
+
+
+      if (Pos!=-1)
+      {
+          if (Pos==position)
+          {
+              holder.txt_address.setChecked(true);
+          }else {
+              holder.txt_address.setChecked(false);
+          }
+
+      }
+
+
+      holder.txt_address.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View view) {
+              Pos=position;
+              notifyDataSetChanged();
+          }
+      });
+
+
     }
 
     @Override

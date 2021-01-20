@@ -29,7 +29,7 @@ class adapter_address(var c: Activity) : RecyclerView.Adapter<adapter_address.vi
 
     var DA:data_Type?=null
 
-
+   var Selected=-1;
 
 
     fun  DATA(DA:data_Type)
@@ -50,9 +50,15 @@ class adapter_address(var c: Activity) : RecyclerView.Adapter<adapter_address.vi
         var item=list?.get(position)
 
 
+
+
+
+
+
+
         if (item?.fullLocation!=null)
         {
-            holder.itemView.textView36.setText(item.fullLocation)
+            holder.itemView.textView36.setText(item.fullLocation?.trim().toString())
         }else{
             holder.itemView.textView36.setText("نامشخص")
         }
@@ -92,7 +98,7 @@ class adapter_address(var c: Activity) : RecyclerView.Adapter<adapter_address.vi
 
         if (item?.fullLocation!=null)
         {
-            holder.itemView.textView36.setText(item.fullLocation)
+            holder.itemView.textView36.setText(item.fullLocation?.trim().toString())
         }else{
             holder.itemView.textView36.setText("نامشخص")
         }

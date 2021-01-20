@@ -13,4 +13,21 @@
     <color name="Thirth_Color">#ff6523</color>
     <color name="stand_Color">#8D101010</color>
     <color name="Dynamic_Color">#BF000000</color>
+    <color name="colorPrimary">#18A8EE</color>
+    <color name="colorPrimaryDark">#1698D8</color>
+    <color name="colorAccent">#0c72d4</color>
+
+    <color name="news_gradient_1">#BA003D6B</color>
+    <color name="news_gradient_2">#9F05406C</color>
+    <color name="news_gradient_3">#52576b79</color>
+    <color name="news_gradient_4">#00808080</color>
+
+
+    <color name="lightGray">#f0f0f0</color>
+    <color name="middleGray">#aaaaaa</color>
+    <color name="color_selected">#D50000</color>
+    <color name="color_unselected">#aaaaaa</color>
+    <color name="fload">#DD2C00</color>
+    <color name="withe_kam">#f7f9ff</color>
+    <color name="abi_kam">#6d80ff</color>
 </resources>

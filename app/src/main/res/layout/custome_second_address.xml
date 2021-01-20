@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/Back_Color"
+    android:layout_margin="4dp"
+    android:background="@drawable/shap_28"
     android:layout_height="wrap_content">
     <CheckBox
         android:layout_width="match_parent"
@@ -15,7 +16,9 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="4dp"
         android:lineSpacingExtra="4dp"
+        android:buttonTint="@color/Base_Color"
         android:layoutDirection="rtl"
+        android:gravity="right|center"
         android:textColor="@color/Dynamic_Color"
         android:text="خانه \n  زیتون کارمندی خیابان فیلسوف بین خیابان زیبا و خیابان انوشه مجتمع علی پلاک 41 واحد 1 "
         app:layout_constraintBottom_toBottomOf="parent"

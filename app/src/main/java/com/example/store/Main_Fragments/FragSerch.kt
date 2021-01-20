@@ -50,6 +50,7 @@ class FragSerch : BaseFragment() {
                 var f= Frag_Under_Cate()
               var b= Bundle()
               b.putString("Type","Search")
+                I.title= editTextTextPersonName.text.toString()
               b.putSerializable("DATA",I)
               f.arguments=b
                 Log.i("dvksnvnka","AAASDD")
@@ -83,8 +84,6 @@ class FragSerch : BaseFragment() {
 
         return  V
     }
-
-
     fun  Search(S:String)
     {
         var body=RequestBody.create(MediaType.parse("text/plain"),S)

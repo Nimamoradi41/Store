@@ -9,13 +9,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.store.*
+import com.example.store.Adapters.adapter_address_2
 import com.example.store.Dialog.Dial_App
-import com.example.store.MapActivity
-import com.example.store.ModelAddress
 import com.example.store.Models.RESPONSADRESS
 import com.example.store.Models.ResponDelAddress
-import com.example.store.R
-import com.example.store.adapter_Spacial
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__address.*
@@ -26,18 +25,41 @@ import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 import javax.security.auth.callback.Callback
-class Frag_Address : BaseFragment() {
-    var ad_address:adapter_address?=null
+class Frag_Address_2 : BaseFragment() {
+    var ad_address:adapter_address_2?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v= inflater.inflate(R.layout.fragment_frag__address, container, false)
 
-        ad_address= adapter_address(activity!!)
+        ad_address= adapter_address_2(activity!!)
+        if (MultyActivity_2.Pos>=0)
+        {
+            ad_address?.Selected=MultyActivity_2.Pos
+        }
+
         v.rect_address.adapter=ad_address
 
 
+        v.add_address.setOnClickListener {
 
-        ad_address?.DATA(object : adapter_address.data_Type{
+            if (MultyActivity_2.Pos<0)
+            {
+                Toast.makeText(context,"آدرس را انتخاب کنید",Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (MultyActivity_2.address !=null) {
+                var I = Intent()
+                I.putExtra("data", MultyActivity_2.address)
+                I.putExtra("Pos", MultyActivity_2.Pos)
+                activity?.setResult(AppCompatActivity.RESULT_OK, I)
+                activity?.finish()
+            }else{
+                Toast.makeText(context,"آدرس را انتخاب کنید",Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+        ad_address?.DATA(object : adapter_address_2.data_Type{
             override fun Del(S: String,Pos:Int) {
                 if (!isNetConnected())
                 {
@@ -130,6 +152,8 @@ class Frag_Address : BaseFragment() {
                         {
                             v.no_item_Card.visibility=View.VISIBLE
                         }else{
+                            MultyActivity_2.address=response.body()?.data?.get(0)
+                            MultyActivity_2.Pos=0
                             v.no_item_Card.visibility=View.GONE
                             ad_address?.list=response.body()?.data
                             ad_address?.notifyDataSetChanged()

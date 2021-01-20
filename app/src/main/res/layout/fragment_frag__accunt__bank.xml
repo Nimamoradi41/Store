@@ -51,7 +51,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="number"
-                    android:text="6037-9974-3334-3259"
+                    android:id="@+id/edt_numbercart"
+                    android:maxLength="16"
+
                     android:textColor="#000" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -74,31 +76,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="151511515151515151515151515"
+                    android:id="@+id/edt_shaba"
+
                     android:textColor="#000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:hint="کد ملی"
-                android:gravity="left"
-                app:boxStrokeColor="@color/Base_Color"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                >
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:text="1742778887"
-                    android:textColor="#000"
-                    android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -115,12 +95,13 @@
                 app:boxStrokeColor="@color/Base_Color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="بانک ملی"
+                    android:id="@+id/edt_bankname"
+
                     android:textColor="#000" />
 
             </com.google.android.material.textfield.TextInputLayout>

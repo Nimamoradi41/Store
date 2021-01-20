@@ -13,5 +13,5 @@ class Date_profile {
     var profileImage:String ?=null
     var id:String ?=null
 //    var fullName:String ?=null
-    var lastLogin:Int ?=null
+    var lastLogin:String ?=null
 }

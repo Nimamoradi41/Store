@@ -1,6 +1,6 @@
 package com.example.store
-
 import android.app.Activity
+import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ import androidx.lifecycle.observe
 import com.example.store.Dialog.Dial_App
 import com.example.store.Main_Fragments.*
 import com.example.store.Models.data_accses
+import com.example.store.Models.orderItems
 import com.example.store.VIEWMODEL.Data_card
 import com.example.store.VIEWMODEL.MainActivityViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -30,11 +32,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
+import java.util.ArrayList
 
 class MainActivity : BaseActiity() {
-
-
     var F_Cate: CateFrag? = null
     var F_Home: Mainfrag? = null
     var F_Serach: FragSerch? = null
@@ -48,6 +48,8 @@ class MainActivity : BaseActiity() {
     }
 
 
+
+
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }
@@ -57,6 +59,8 @@ class MainActivity : BaseActiity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        var d=getSystemService(UI_MODE_SERVICE) as UiModeManager
+        d.nightMode=UiModeManager.MODE_NIGHT_NO
         setContentView(R.layout.activity_main)
         transaction = supportFragmentManager
         mainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel::class.java]
@@ -89,6 +93,7 @@ class MainActivity : BaseActiity() {
 
                 return@setOnClickListener
             }
+
             startActivityForResult(Intent(this, Activity_card_Bascket::class.java),21)
         }
         linearLayout2.setOnClickListener {
@@ -277,6 +282,16 @@ class MainActivity : BaseActiity() {
            if (resultCode== RESULT_OK)
            {
                GetHome()
+               Log.i("dsvsbnsnfbdkkdvk","K")
+//               if(data!=null)
+//               {
+//                   if (data?.getSerializableExtra("data")!=null)
+//                   {
+//                       Log.i("dsvsbnsnfbdkkdvk","I")
+//                       var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+//                       mainActivityViewModel?.orderItems?.value=data
+//                   }
+//               }
            }
         }
 
@@ -285,10 +300,26 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+                Log.i("dvsdvsdb","A")
+                    if (data!=null)
+                    {
+                        Log.i("dvsdvsdb","B")
+                        var ii=data.getIntExtra("count",-1)
+                        Log.i("dvsdvsdb", ii.toString())
+                        textView24.setText(ii.toString())
+                    }
+//                Log.i("dsvsbnsnfbdkkdvk","U")
+//                if(data!=null)
+//                {
+//                    if (data?.getSerializableExtra("data")!=null)
+//                    {
+//                        Log.i("dsvsbnsnfbdkkdvk","T")
+//                        var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+//                        mainActivityViewModel?.orderItems?.value=data
+//                    }
+//                }
             }
         }
-
-
         if (requestCode==85)
         {
             if (resultCode== RESULT_OK)
@@ -306,6 +337,20 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+                Log.i("dsvsbnsnfbdkkdvk","Q")
+
+                    if (data?.getSerializableExtra("data")!=null)
+                    {
+                        Log.i("dsvsbnsnfbdkkdvk","G")
+                        var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+                        mainActivityViewModel?.orderItems?.value=data
+                    }
+                 else{
+                    Log.i("dsvsbnsnfbdkkdvk","NIMA")
+                    var data=  ArrayList<orderItems>()
+                    mainActivityViewModel?.orderItems?.value=data
+                }
+
             }
         }
 
@@ -315,8 +360,19 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+                Log.i("dsvsbnsnfbdkkdvk","E")
+//                if(data!=null)
+//                {
+//                    if (data?.getSerializableExtra("data")!=null)
+//                    {
+//                        Log.i("dsvsbnsnfbdkkdvk","F")
+//                        var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+//                        mainActivityViewModel?.orderItems?.value=data
+//                    }
+//                }
             }
         }
+
 
 
         if (requestCode==25)
@@ -324,6 +380,13 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+//                Log.i("dsvsbnsnfbdkkdvk","D")
+//                if (data?.getSerializableExtra("data")!=null)
+//                {
+//                    Log.i("dsvsbnsnfbdkkdvk","C")
+//                    var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+//                    mainActivityViewModel?.orderItems?.value=data
+//                }
             }
         }
 
@@ -332,6 +395,13 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+                Log.i("dsvsbnsnfbdkkdvk","B")
+//                if (data?.getSerializableExtra("data")!=null)
+//                {
+//                    Log.i("dsvsbnsnfbdkkdvk","A")
+//                    var data=data?.getSerializableExtra("data") as ArrayList<orderItems>
+//                    mainActivityViewModel?.orderItems?.value=data
+//                }
             }
         }
     }

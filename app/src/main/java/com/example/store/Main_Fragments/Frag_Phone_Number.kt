@@ -69,7 +69,7 @@ class Frag_Phone_Number : BaseFragment() {
          if (isNetConnected())
          {
           DialLoad()
-             phoneNumber="10"
+             phoneNumber=v.editTextNumber.text.trim().toString()
              var json=""
                  json= JSONObject().put("confirmCode", "")
                      .put("phone", phoneNumber).toString()

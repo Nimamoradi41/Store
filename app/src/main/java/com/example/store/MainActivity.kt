@@ -80,6 +80,19 @@ class MainActivity : BaseActiity() {
         SetNavigation()
         Log.i("kvnsndvsdvnfnv",token)
         linearLayout.setOnClickListener {
+            if (mainActivityViewModel?.count?.value==0)
+            {
+                var I=2;
+                var p=   Dialapp(2,"سبد خرید شما خالی است",object : Dial_App.Interface_new{
+                    override fun News() {
+
+                    }
+                }, this)
+                p.show()
+
+                return@setOnClickListener
+            }
+
             if (!isNetConnected())
             {
 
@@ -93,6 +106,9 @@ class MainActivity : BaseActiity() {
 
                 return@setOnClickListener
             }
+
+
+
 
             startActivityForResult(Intent(this, Activity_card_Bascket::class.java),21)
         }

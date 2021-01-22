@@ -1,5 +1,7 @@
 package com.example.store.Main_Fragments
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,9 +23,9 @@ import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 import javax.security.auth.callback.Callback
-
 class Frag_list_orders : BaseFragment() {
   var Ad_adapter:adapter_list_order ?= null
+    @SuppressLint("ResourceType")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
@@ -31,7 +33,28 @@ class Frag_list_orders : BaseFragment() {
         var r=ArrayList<data_Order>()
         Ad_adapter= adapter_list_order(context!!,r)
         V.recy_list_order.adapter=Ad_adapter
+        V.resfresh.setColorSchemeResources(R.color.Base_Color);
         GetOrder(V)
+
+        V.resfresh.setOnRefreshListener {
+            if (!isNetConnected()) {
+                var I = 2;
+                var p = Dialapp(
+                        2,
+                        "اتصال خود را به اینترنت بررسی کنید",
+                        object : Dial_App.Interface_new {
+                            override fun News() {
+
+                            }
+                        },
+                        context!!
+                )
+                p.show()
+                return@setOnRefreshListener
+            }
+
+            GetOrder(V)
+        }
         return  V
     }
 
@@ -39,9 +62,10 @@ class Frag_list_orders : BaseFragment() {
     fun  GetOrder(V:View)
     {
         var req=api?.GetOrder("Bearer " +token)
-
+        DialLoad()
         req?.enqueue(object  : retrofit2.Callback<ResponseOrder> {
             override fun onResponse(call: Call<ResponseOrder>, response: Response<ResponseOrder>) {
+                Dial_Close()
                 Log.i("lmbsmbsd", response.code().toString())
                 if (response.code()==401)
                 {
@@ -79,7 +103,8 @@ class Frag_list_orders : BaseFragment() {
                 if (response.isSuccessful)
                 {
 
-
+                    V.resfresh.isRefreshing=false
+                    Ad_adapter?.list?.clear()
                     Log.i("lmbsmbsd", response.body()?.data?.size!!.toString())
                     Ad_adapter?.list= response.body()?.data!!
                     Ad_adapter?.notifyDataSetChanged()
@@ -99,8 +124,9 @@ class Frag_list_orders : BaseFragment() {
 
                 }
             }
-
             override fun onFailure(call: Call<ResponseOrder>, t: Throwable) {
+                V.resfresh.isRefreshing=false
+                Dial_Close()
                 Log.i("fkvskfnb", t.message.toString())
                 Dial_Close()
                 var I=3

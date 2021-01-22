@@ -125,7 +125,7 @@
 
                     <TextView
                         android:textColor="#000"
-                        android:id="@+id/textView14"
+                        android:id="@+id/textView14_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2000.000 ریال "
@@ -145,12 +145,12 @@
 
                     <TextView
                         android:textColor="#000"
-                        android:id="@+id/textView16"
+                        android:id="@+id/textView16_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2.000  ریال"
                         app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                        app:layout_constraintStart_toStartOf="@+id/textView14"
+                        app:layout_constraintStart_toStartOf="@+id/textView14_2"
                         app:layout_constraintTop_toTopOf="@+id/textView15" />
 
                     <TextView
@@ -167,12 +167,12 @@
 
                     <TextView
                         android:textColor="#000"
-                        android:id="@+id/textView18"
+                        android:id="@+id/textView18_2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="222.000 ریال"
                         app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                        app:layout_constraintStart_toStartOf="@+id/textView16"
+                        app:layout_constraintStart_toStartOf="@+id/textView16_2"
                         app:layout_constraintTop_toTopOf="@+id/textView17" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>

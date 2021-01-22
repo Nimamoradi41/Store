@@ -94,14 +94,19 @@ class Adapter_discounts(var c: Activity, var list: discounts,var H:Int,var W:Int
 //        holder.itemView.textView5.setText(list.getProducts().get(position).getPriceForShow())
 //        holder.itemView.textView7.setText(list.getProducts().get(position).getPriceForShow())
 
-
         if (Item.getCurrentReserved()>0)
         {
             holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }else  {
             holder.itemView.button.setText("افزودن به سبد خرید")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }
 
 

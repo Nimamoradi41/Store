@@ -49,6 +49,9 @@ class Adapter_second_bascket_marsole(var items_2:ArrayList<orderItems>,var C:Con
             Log.i("sfkmsmlbab",""+ Constants.BASE_URL+"/Sliders/"+Item.productFirstImage)
             Glide.with(C).load(Constants.BASE_URL+"/Images/"+Item?.productFirstImage).into(holder.itemView.imageView46);
         }
+
+
+        holder.itemView.txt_item.setText(Item.productTitle)
     }
 
     override fun getItemCount(): Int {

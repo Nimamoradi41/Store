@@ -131,12 +131,34 @@ class Activity_card_Bascket : BaseActiity() {
                     ad_card?.V?.clear()
                     ad_card?.V=response.body()?.data?.orderItems
                     ad_card?.notifyDataSetChanged()
+
+
                     if (response.body()?.data?.orderItems!=null)
                     {
-                        textView12.setText(response.body()?.data?.orderItems!!.size.toString())
+                        if (response.body()?.data?.orderItems?.size==0)
+                        {
+                            var i=Intent()
+                            i.putExtra("data",ad_card?.V)
+                            setResult(RESULT_OK,i)
+                            finish()
+                        }
                     }else{
-                        textView12.setText("0")
+                        var i=Intent()
+                        i.putExtra("data",ad_card?.V)
+                        setResult(RESULT_OK,i)
+                        finish()
                     }
+
+
+//                    if (response.body()?.data?.orderItems!=null)
+//                    {
+//                        textView12.setText(response.body()?.data?.orderItems!!.size.toString())
+//                    }else{
+//                        textView12.setText("0")
+//                    }
+
+
+
 
 
 
@@ -155,9 +177,9 @@ class Activity_card_Bascket : BaseActiity() {
                     var data=response.body()
                     if (data?.data?.pricePayForShow!=null)
                     {
-                        textView14.setText(data.data?.pricePayForShow)
+                        textView14_2.setText(data.data?.pricePayForShow)
                     }else{
-                        textView14.setText(" 0 تومان ")
+                        textView14_2.setText(" 0 تومان ")
                     }
 
 
@@ -166,12 +188,12 @@ class Activity_card_Bascket : BaseActiity() {
                     {
                         if (data.data?.discountPrice!! >0)
                         {
-                            textView16.setText(data.data?.discountPrice!!.toString())
+                            textView16_2.setText(data.data?.discountPrice!!.toString())
                         }else{
-                            textView16.setText("0 تومان")
+                            textView16_2.setText("0 تومان")
                         }
                     }else{
-                        textView16.setText("0 تومان")
+                        textView16_2.setText("0 تومان")
                     }
 
 
@@ -179,9 +201,9 @@ class Activity_card_Bascket : BaseActiity() {
 
                     if (data?.data?.pricePayForShow!=null)
                     {
-                        textView18.setText(data.data?.pricePayForShow)
+                        textView18_2.setText(data.data?.pricePayForShow)
                     }else{
-                        textView18.setText(" 0 تومان ")
+                        textView18_2.setText(" 0 تومان ")
                     }
 
 

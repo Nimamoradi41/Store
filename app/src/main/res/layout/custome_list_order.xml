@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layoutDirection="ltr"
-    android:background="#fff"
+    android:background="@color/Back_Color"
     android:layout_height="wrap_content">
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -18,7 +18,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -74,7 +73,6 @@
                 android:textColor="@color/stand_Color"
                 app:layout_constraintEnd_toEndOf="@+id/textView34"
                 app:layout_constraintTop_toBottomOf="@+id/textView39" />
-
             <TextView
                 android:id="@+id/textView36"
                 android:layout_width="wrap_content"
@@ -82,7 +80,7 @@
                 android:layout_marginEnd="8dp"
                 android:gravity="right"
                 tools:text="261251546"
-                android:textColor="#fdb827"
+                android:textColor="@color/Dynamic_Color"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/textView31"
                 app:layout_constraintEnd_toStartOf="@+id/textView31"
@@ -156,10 +154,11 @@
                 android:background="@drawable/shape_18"
                 android:gravity="center"
                 android:paddingLeft="8dp"
+                android:fontFamily="@font/vazir_med"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
                 android:text="تحویل داده شده"
-                android:textColor="#fdb827"
+                android:textColor="#fff"
                 android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -177,6 +176,7 @@
                 android:paddingRight="8dp"
                 android:paddingBottom="4dp"
                 android:text="مشاهده"
+                android:fontFamily="@font/vazir_med"
                 android:textColor="#fff"
                 android:textSize="14sp"
                 app:layout_constraintBottom_toBottomOf="@+id/button2"
@@ -184,13 +184,12 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/textView37"
                 app:layout_constraintTop_toTopOf="@+id/button2" />
-
             <View
                 android:id="@+id/view"
                 android:layout_width="0dp"
-                android:layout_height="0.5dp"
+                android:layout_height="0.10dp"
                 android:layout_marginTop="8dp"
-                android:background="@color/Dynamic_Color"
+                android:background="@color/stand_Color"
                 app:layout_constraintEnd_toEndOf="@+id/textView31"
                 app:layout_constraintStart_toStartOf="@+id/textView41"
                 app:layout_constraintTop_toBottomOf="@+id/textView36" />

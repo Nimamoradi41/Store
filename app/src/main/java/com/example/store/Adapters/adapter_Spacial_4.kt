@@ -109,13 +109,29 @@ class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>,var W:Int) 
 //        holder.itemView.textView89.setText("%"+list.get(position).getDiscountPercent())
 //        holder.itemView.textView7499.setText(list.get(position).getPriceForShow())
 //        holder.itemView.textView55959.setText(list.get(position).getPriceForShow())
+//        if (Item.getCurrentReserved()>0)
+//        {
+//            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }else  {
+//            holder.itemView.button.setText("افزودن به سبد خرید")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }
+
+
         if (Item.getCurrentReserved()>0)
         {
             holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }else  {
             holder.itemView.button.setText("افزودن به سبد خرید")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }
 //        if (Item.getCurrentReserved()>0)
 //        {

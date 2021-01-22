@@ -8,11 +8,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Main_Fragments.Frag_list_orders">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/resfresh"
+        android:backgroundTint="@color/Base_Color"
+        android:layout_height="match_parent">
+         <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recy_list_order"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_height="match_parent" />
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
     <androidx.cardview.widget.CardView
         android:layout_width="150dp"
         android:visibility="gone"

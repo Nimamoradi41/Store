@@ -7,8 +7,8 @@ class data_card :Serializable {
     var price:Int ?=null
     var discountPrice:Int ?=null
     var pricePay:Int ?=null
-    var discountId:String ?=null
-    var discountCode:Int ?=null
+    var discountId:Int ?=null
+    var discountCode:String ?=null
     var addressName:String ?=null
     var fullLocation:String ?=null
     var latitude:String ?=null

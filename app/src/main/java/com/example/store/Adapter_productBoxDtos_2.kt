@@ -92,15 +92,29 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
 
         holder.itemView.textView6.setText(list.getProducts().get(position).getPriceAfterDiscountForShow())
 
+//        if (Item.getCurrentReserved()>0)
+//        {
+//            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }else  {
+//            holder.itemView.button.setText("افزودن به سبد خرید")
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//        }
+
         if (Item.getCurrentReserved()>0)
         {
             holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }else  {
             holder.itemView.button.setText("افزودن به سبد خرید")
-            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+            }.start()
         }
-
 
         holder.itemView.setOnClickListener {
             var I=Intent(C,ItemDetail::class.java)

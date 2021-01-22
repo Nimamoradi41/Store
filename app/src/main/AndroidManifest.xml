@@ -14,35 +14,47 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        >
-        <activity android:name=".Activity_Second_Bascket"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".Activity_Resuilt_Payment"
+            android:configChanges="uiMode"
             android:screenOrientation="portrait"
-            android:configChanges="uiMode"></activity>
+            android:theme="@style/Theme.Store.NoActionBar" />
+        <activity
+            android:name=".Activity_Second_Bascket"
+            android:configChanges="uiMode"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:host="zarinpalpayment"
+                    android:scheme="return" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MapActivity"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
             android:label="@string/title_activity_map"
-            android:theme="@style/Theme.Store.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Store.NoActionBar" />
         <activity
             android:name=".MainActivity2"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
             android:label="@string/title_activity_main2"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"
             tools:targetApi="q" />
         <activity
             android:name=".BaseActiity"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
             android:label="@string/title_activity_base_actiity"
-
-              />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SplashScreen"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,44 +64,43 @@
         </activity>
         <activity
             android:name=".DetailOrder"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Store.NoActionBar" />
         <activity
             android:name=".MultyActivity_2"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Store.NoActionBar" />
         <activity
             android:name=".MultyActivity"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.Store.NoActionBar" />
         <activity
             android:name=".ProfileActivity"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Tamrin_Android"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".ItemDetail"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".Activity_card_Bascket"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"
             android:configChanges="uiMode"
-                 />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

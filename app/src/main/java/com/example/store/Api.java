@@ -4,6 +4,7 @@ import com.example.store.Main_Fragments.Edit_Profile;
 import com.example.store.Main_Fragments.Editprofile_Bank;
 import com.example.store.Models.Defult_Response;
 import com.example.store.Models.GetProductModel;
+import com.example.store.Models.PaymentModel;
 import com.example.store.Models.RESPONSADRESS;
 import com.example.store.Models.RESPONSCARD;
 import com.example.store.Models.ResPonseProfile;
@@ -13,6 +14,7 @@ import com.example.store.Models.ResponseGetProduct;
 import com.example.store.Models.ResponseMoreData;
 import com.example.store.Models.ResponseOrder;
 import com.example.store.Models.ResponseSEARCH;
+import com.example.store.Models.model_savepayment;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -62,8 +64,24 @@ public interface Api {
     Call<RESPONSADRESS> GETADDRESS(@Header("Authorization") String token);
 
     @Multipart
+    @POST("/api/order/Checkout")
+    Call<RESPONSCARD> Checkout(@Header("Authorization") String token,@Part("body") Model_Checkout body);
+
+
+
+
+
+    @Multipart
     @POST("/api/order/GetCart")
     Call<RESPONSCARD> GETCARD(@Header("Authorization") String token,@Part("body") RequestBody body);
+
+
+
+
+
+    @Multipart
+    @POST("/api/order/SavePayment")
+    Call<model_savepayment> SavePayment(@Header("Authorization") String token, @Part("body") PaymentModel PaymentModel);
 
 
 

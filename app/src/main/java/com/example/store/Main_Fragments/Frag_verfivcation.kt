@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__phone__number.view.*
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.button5
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.holder
@@ -39,6 +40,7 @@ class Frag_verfivcation : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         var v=inflater.inflate(R.layout.fragment_frag_verfivcation, container, false)
+        v.editTextNumber1.requestFocus()
         v.button5.setOnClickListener {
 //            if (v.editTextNumber2.text.trim().toString().isNullOrEmpty())
 //            {
@@ -73,9 +75,13 @@ class Frag_verfivcation : BaseFragment() {
         if (isNetConnected())
         {
             DialLoad()
+            var vvs=editTextNumber1.text.toString()+
+                    editTextNumber2.text.toString()+
+                    editTextNumber3.text.toString()+
+                    editTextNumber4.text.toString()
             var json=""
             Log.i("vmmvdlsjsgvxfsfxsgcd",json)
-            json= JSONObject().put("confirmCode", "1111")
+            json= JSONObject().put("confirmCode", vvs)
                 .put("phone",phoneNumber).toString()
             var body= RequestBody.create(MediaType.parse("text/plain"), json)
             var call=api?.confirmSms(body)

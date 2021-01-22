@@ -1,7 +1,9 @@
 package com.example.store.Adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,6 +26,7 @@ class adapter_list_order(var c:Context,var list:ArrayList<data_Order>) : Recycle
         return  view(v)
     }
 
+    @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: view, position: Int) {
 
         var item=list.get(position)
@@ -47,6 +50,25 @@ class adapter_list_order(var c:Context,var list:ArrayList<data_Order>) : Recycle
 //        {
 //
 //        }
+
+
+
+        if (item.orderStatus==3)
+        {
+            holder.itemView.button2.setBackgroundResource(R.drawable.shape_39)
+            holder.itemView.button2.setText(item.orderStatusTitle)
+//            holder.itemView.button2.setTextColor(Color.parseColor("#25C76C"))
+        } else if (item.orderStatus==1||item.orderStatus==2)
+        {
+            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
+            holder.itemView.button2.setText(item.orderStatusTitle)
+//            holder.itemView.button2.setTextColor(Color.parseColor("#F5254F"))
+        }  else{
+            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
+            holder.itemView.button2.setText(item.orderStatusTitle)
+        }
+
+
 
 
         holder.itemView.button2.setText(item.orderStatusTitle)

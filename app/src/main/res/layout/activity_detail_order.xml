@@ -4,48 +4,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff"
+    android:background="@color/Back_Color"
     tools:context=".DetailOrder">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/constraintLayout3"
         android:layout_width="0dp"
         android:layout_height="60dp"
-        android:background="#7209b7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints">
-        <LinearLayout
-            android:id="@+id/linearLayout555"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="#fff"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/linearLayout555"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView6"
+                <ImageView
+                    android:id="@+id/imageView6"
+                    app:tint="@color/Base_Color"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/textView1581"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/textView1581"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="شماره پیگیری : 255544888"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+               android:text="اهواز مال"
+                android:fontFamily="@font/vazir_med"
+                android:textColor="@color/Base_Color"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
@@ -139,12 +145,11 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         tools:text="261251546"
-                        android:textColor="#fdb827"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/textView31"
                         app:layout_constraintEnd_toStartOf="@+id/textView31"
                         app:layout_constraintTop_toTopOf="@+id/textView31" />
-
                     <TextView
                         android:id="@+id/textView37"
                         android:layout_width="0dp"
@@ -199,7 +204,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         tools:text="25.000 هزارتومان"
-                        android:textColor="@color/Base_Color"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/textView35"
                         app:layout_constraintEnd_toStartOf="@+id/textView35"
@@ -209,9 +214,9 @@
                     <View
                         android:id="@+id/view"
                         android:layout_width="0dp"
-                        android:layout_height="0.5dp"
+                        android:layout_height="0.10dp"
                         android:layout_marginTop="8dp"
-                        android:background="@color/Dynamic_Color"
+                        android:background="@color/stand_Color"
                         app:layout_constraintEnd_toEndOf="@+id/textView31"
                         app:layout_constraintStart_toStartOf="@+id/textView41"
                         app:layout_constraintTop_toBottomOf="@+id/textView36" />
@@ -243,7 +248,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:id="@+id/recy_itemss_2"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
                 android:layout_height="wrap_content" />
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -324,7 +329,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         tools:text="5"
-                        android:textColor="#fdb827"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/count_"
                         app:layout_constraintEnd_toStartOf="@+id/count_"
@@ -338,7 +343,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                        tools:text="250.000 تومان"
-                        android:textColor="@color/Base_Color"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/sum_"
                         app:layout_constraintEnd_toStartOf="@+id/sum_"
@@ -353,7 +358,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                        tools:text="25%"
-                        android:textColor="@color/Base_Color"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/offer"
                         app:layout_constraintEnd_toStartOf="@+id/offer"
@@ -370,13 +375,12 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                        android:text="15.000 تومان"
-                        android:textColor="#fdb827"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/mony_send"
                         app:layout_constraintEnd_toStartOf="@+id/mony_send"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/mony_send" />
-
                     <TextView
                         android:id="@+id/tx_mony"
                         android:layout_width="0dp"
@@ -384,7 +388,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         tools:text="40.000 تومان"
-                        android:textColor="@color/Base_Color"
+                        android:textColor="@color/Dynamic_Color"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/mony"
                         app:layout_constraintEnd_toStartOf="@+id/mony"
@@ -407,7 +411,7 @@
                 android:layout_width="match_parent"
                 android:background="@drawable/shape_18"
                 android:text="پرداخت شده"
-                android:textColor="#fdb827"
+                android:textColor="#fff"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:paddingLeft="8dp"

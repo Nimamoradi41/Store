@@ -19,6 +19,10 @@ import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__address.*
 import kotlinx.android.synthetic.main.fragment_frag__address.view.*
+import kotlinx.android.synthetic.main.fragment_frag__address.view.cardView6
+import kotlinx.android.synthetic.main.fragment_frag__address.view.no_item_Card
+import kotlinx.android.synthetic.main.fragment_frag__address.view.rect_address
+import kotlinx.android.synthetic.main.fragment_frag__address_2.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -29,8 +33,7 @@ class Frag_Address_2 : BaseFragment() {
     var ad_address:adapter_address_2?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var v= inflater.inflate(R.layout.fragment_frag__address, container, false)
-
+        var v= inflater.inflate(R.layout.fragment_frag__address_2, container, false)
         ad_address= adapter_address_2(activity!!)
         if (MultyActivity_2.Pos>=0)
         {
@@ -40,7 +43,7 @@ class Frag_Address_2 : BaseFragment() {
         v.rect_address.adapter=ad_address
 
 
-        v.add_address.setOnClickListener {
+        v.add_address2.setOnClickListener {
 
             if (MultyActivity_2.Pos<0)
             {

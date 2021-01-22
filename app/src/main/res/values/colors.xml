@@ -30,4 +30,6 @@
     <color name="fload">#DD2C00</color>
     <color name="withe_kam">#f7f9ff</color>
     <color name="abi_kam">#6d80ff</color>
+    <color name="Payment_true">#25C76C</color>
+    <color name="Payment_false">#F5254F</color>
 </resources>

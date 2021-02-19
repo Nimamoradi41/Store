@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Store</string>
+    <string name="app_name">هوراد مارکت</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_multy">MultyActivity</string>
@@ -8,11 +8,14 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-
+    <string name="test"> </string>
+    <string name="already_have_an_account"> ما برای شما یک <font color='#902C2C2C'><b> کد چهاررقمی  </b></font>ارسال می کنیم</string>
+    <string name="login_2"> کد ارسال شده را به شماره <font color='#2C2C2C'><b> 09909439787  </b></font>را وارد کنید </string>
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="title_activity_base_actiity">BaseActiity</string>
     <string name="title_activity_main2">MainActivity</string>
     <string name="title_activity_map">MapActivity</string>
-    <string name="name_shop">اهواز مال</string>
+    <string name="name_shop">هایپر مارکت هوراد</string>
+    <string name="title_activity_actvity__confirm">Actvity_Confirm</string>
 </resources>

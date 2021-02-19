@@ -1,6 +1,8 @@
 package com.example.store.Main_Fragments
 
 import android.R.attr.typeface
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -16,29 +18,48 @@ import com.google.gson.TypeAdapter
 import ir.hamsaa.persiandatepicker.Listener
 import ir.hamsaa.persiandatepicker.PersianDatePickerDialog
 import ir.hamsaa.persiandatepicker.util.PersianCalendar
-import kotlinx.android.synthetic.main.fragment_frag__myaccunt.*
-import kotlinx.android.synthetic.main.fragment_frag__myaccunt.view.*
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.*
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.*
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.btn_save
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.edt_codemeli
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.edt_famili
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.edt_name
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.edt_tel
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.edy_birthday_2
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.rap_2
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.*
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
 
 
 class Frag_Myaccunt : BaseFragment() {
-
-
-
     var Gender:Int ?=null
-
-
-
-
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var v = inflater.inflate(R.layout.fragment_frag__myaccunt, container, false)
+        var v = inflater.inflate(R.layout.fragment_frag__myaccunt_2, container, false)
 
-        GetProfile(v)
+        if (isNetConnected())
+        {
+            GetProfile(v)
+        }else{
+            var I = 2;
+            var p = Dialapp(
+                    2,
+                    "اتصال خود را به اینترنت بررسی کنید",
+                    object : Dial_App.Interface_new {
+                        override fun News() {
+                        activity?.finish()
+                        }
+                    },
+                    context!!
+            )
+            p.show()
+        }
+
 
 
         v.btn_save.setOnClickListener {
@@ -62,11 +83,21 @@ class Frag_Myaccunt : BaseFragment() {
                 return@setOnClickListener
             }
 
-            if (v.edy_birthday.text.isNullOrEmpty())
+
+
+
+
+            if (v.edt_codemeli.text?.length!! >10|| v.edt_codemeli.text?.length!! <10)
             {
-                v.edy_birthday.setError(" تاریخ تولد  را وارد کنید")
+                v.edt_codemeli.setError("کد ملی اشتباه است")
                 return@setOnClickListener
             }
+
+//            if (v.edy_birthday.text.isNullOrEmpty())
+//            {
+//                v.edy_birthday.setError(" تاریخ تولد  را وارد کنید")
+//                return@setOnClickListener
+//            }
 
 
 
@@ -84,7 +115,7 @@ class Frag_Myaccunt : BaseFragment() {
 
         }
 
-        v.edy_birthday.setOnClickListener {
+        v.edy_birthday_2.setOnClickListener {
             showDataPicker(v)
         }
 //        val datePickerDialog = DatePickerDialog.newInstance(
@@ -177,13 +208,15 @@ class Frag_Myaccunt : BaseFragment() {
 
 
                     if (response.body()?.data?.birthDayFa != null) {
-                        V.edy_birthday.setText(response.body()?.data?.birthDayFa)
+                        V.edy_birthday_2.setText(response.body()?.data?.birthDayFa)
                     }
 
 
 
                     if (response.body()?.data?.meliCode != null) {
                         V.edt_codemeli.setText(response.body()?.data?.meliCode)
+                    }else{
+                        V.edt_codemeli.setText(phoneNumber)
                     }
 
 
@@ -216,7 +249,7 @@ class Frag_Myaccunt : BaseFragment() {
                     override fun News() {
                         activity?.finish()
                     }
-                }, context!!)
+                }, activity!!)
                 p.show()
             }
 
@@ -230,14 +263,14 @@ class Frag_Myaccunt : BaseFragment() {
     fun EditProfile(V: View)
     {
         var v=Edit_Profile()
-        v.birthDayFa= edy_birthday.text?.toString()
+        v.birthDayFa= edy_birthday_2.text?.toString()
         v.meliCode=edt_codemeli.text?.toString()
         v.lastName=edt_famili.text?.toString()
         v.firstName=edt_name.text?.toString()
         Log.i("dmvsndvdv", Gender.toString())
         Log.i("dmvsndvdv", edt_codemeli.text?.toString().toString())
         Log.i("dmvsndvdv", edt_famili.text?.toString().toString())
-        Log.i("dmvsndvdv", edy_birthday.text?.toString().toString())
+        Log.i("dmvsndvdv", edy_birthday_2.text?.toString().toString())
         Log.i("dmvsndvdv", edt_name.text?.toString().toString())
         v.gender=Gender
         DialLoad()
@@ -279,7 +312,9 @@ class Frag_Myaccunt : BaseFragment() {
                 if (response.isSuccessful) {
 //                    V.edt_name.setText(response.body()?.data?.fullName)
 //                    V.edt_famili.setText(response.body()?.data?.fullName)
-                     Toast.makeText(context,"Done",Toast.LENGTH_SHORT).show()
+                    var v=Intent()
+                    v.putExtra("name",V.edt_name.text.toString()+" "+V.edt_famili.text.toString())
+                    activity?.setResult(Activity.RESULT_OK,v)
                     activity?.finish()
 
                 }
@@ -326,10 +361,10 @@ class Frag_Myaccunt : BaseFragment() {
                         Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getPersianLongDateAndTime()) //سه‌شنبه  13  اسفند  1398 ساعت 20:10:36
                         Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.getPersianMonthName()) //اسفند
                         Log.d("svdbgbs", "onDateSelected: " + persianCalendar?.isPersianLeapYear()) //false
-                        v.edy_birthday.setText(persianCalendar?.getPersianYear().toString()
+                        v.edy_birthday_2.setText(persianCalendar?.getPersianYear().toString()
                                 + "/" + persianCalendar?.getPersianMonth() + "/" +
                                 persianCalendar?.getPersianDay())
-                        v.edy_birthday.setError("",null)
+                        v.edy_birthday_2.setError("",null)
                     }
 
 

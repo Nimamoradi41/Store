@@ -17,62 +17,70 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:background="#7209b7">
-
-                <LinearLayout
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
+                app:cardElevation="5dp"
+                android:elevation="5dp"
+                android:background="#fff">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:background="#fff"
+                    android:layout_height="match_parent">
+                    <LinearLayout
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:gravity="center"
                         android:visibility="gone"
-                        android:id="@+id/imageView7"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/imageView7"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:tint="@color/Base_Color"
+                            app:srcCompat="@drawable/ic_baseline_delete_24" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/textView10"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_delete_24" />
-                </LinearLayout>
+                        android:text="پروفایل"
+                        android:textSize="16sp"
+                        android:textColor="@color/Base_Color"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                    <LinearLayout
+                        android:id="@+id/linearLayout5"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="پروفایل"
-                    android:textSize="16sp"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            app:tint="@color/Base_Color"
+                            app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <LinearLayout
-                    android:id="@+id/linearLayout5"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:id="@+id/imageView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -108,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:text="09909439787"
+                        tools:text="09909439787"
                         android:textColor="#fff"
                         android:textSize="14sp"
                         android:textStyle="bold"
@@ -155,13 +163,13 @@
                         app:layout_constraintTop_toBottomOf="@+id/imageView16"
                         app:srcCompat="@drawable/ic_bank_account"
                         app:tint="@color/Dynamic_Color" />
-
                     <TextView
                         android:id="@+id/textView46"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
+                        android:padding="4dp"
                         android:text="اطلاعات حساب من"
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
@@ -179,6 +187,7 @@
                         android:layout_marginLeft="8dp"
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
+                        android:padding="4dp"
                         android:text="اطلاعات بانکی"
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
@@ -195,6 +204,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
+                        android:padding="4dp"
                         android:rotation="360"
                         app:tint="@color/Base_Color"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
@@ -208,6 +218,7 @@
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
                         android:rotation="360"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView17"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/imageView17"
@@ -236,6 +247,7 @@
                         android:id="@+id/imageView27"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
+                        android:padding="4dp"
                         android:rotation="360"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView18"
                         app:layout_constraintStart_toStartOf="@+id/imageView26"
@@ -248,6 +260,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:rotation="360"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView19"
                         app:layout_constraintStart_toStartOf="@+id/imageView25"
                         app:layout_constraintTop_toTopOf="@+id/imageView19"
@@ -260,6 +273,7 @@
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
                         android:rotation="360"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView20"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@+id/imageView20"
@@ -297,6 +311,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         android:text="سوابق خرید"
+                        android:padding="4dp"
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -312,6 +327,7 @@
                         android:layout_marginEnd="8dp"
                         android:gravity="right"
                         android:text="آدرس های من"
+                        android:padding="4dp"
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
                         android:textStyle="bold"
@@ -325,6 +341,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
+                        android:padding="4dp"
                         android:gravity="right"
                         android:text="کد تخفیف و هدیه"
                         android:textColor="@color/Base_Color"
@@ -378,6 +395,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
+                        android:padding="4dp"
                         android:rotation="360"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView21"
                         app:layout_constraintStart_toStartOf="parent"
@@ -391,6 +409,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
+                        android:padding="4dp"
                         android:rotation="360"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
                         app:layout_constraintStart_toStartOf="parent"
@@ -404,6 +423,7 @@
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:layout_marginStart="16dp"
+                        android:padding="4dp"
                         android:rotation="360"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView22"
                         app:layout_constraintStart_toStartOf="parent"
@@ -462,6 +482,7 @@
                         android:text="قوانین"
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
+                        android:padding="4dp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView21"
                         app:layout_constraintEnd_toStartOf="@+id/imageView21"
@@ -477,6 +498,7 @@
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView39"
                         app:layout_constraintEnd_toStartOf="@+id/imageView39"
                         app:layout_constraintTop_toTopOf="@+id/imageView39"
@@ -491,6 +513,7 @@
                         android:textColor="@color/Base_Color"
                         android:textSize="15sp"
                         android:textStyle="bold"
+                        android:padding="4dp"
                         app:layout_constraintBottom_toBottomOf="@+id/imageView22"
                         app:layout_constraintEnd_toStartOf="@+id/imageView22"
                         app:layout_constraintTop_toTopOf="@+id/imageView22"

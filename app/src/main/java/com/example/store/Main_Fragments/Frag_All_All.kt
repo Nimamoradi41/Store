@@ -59,6 +59,9 @@ class Frag_All_All : BaseFragment() {
         V.recy_itemsall_334.layoutManager= GridLayoutManager(activity,2)
 //        SetCate_2(V, pro!!)
         SetCate_2(V, pro!!)
+        V.linearLayout745.setOnClickListener {
+            activity?.finish()
+        }
         Model= GetProductModel()
         V.recy_itemsall_334.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(@NonNull recyclerView: RecyclerView, dx: Int, dy: Int) {

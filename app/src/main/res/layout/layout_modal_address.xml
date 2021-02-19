@@ -13,233 +13,220 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="800dp">
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField7"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+
+            <EditText
+                android:id="@+id/edt_unit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="right"
+                android:inputType="number"
+                android:textCursorDrawable="@null"
                 android:hint="واحد"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:textColorHint="@color/stand_3"
+                android:fontFamily="@font/vazir_med"
+                android:gravity="right"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField4">
+                app:layout_constraintTop_toBottomOf="@+id/textView107"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/edt_unit"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField8"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/edt_pluq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="right"
-                android:layout_marginTop="16dp"
                 android:hint="پلاک"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:textCursorDrawable="@null"
+                android:gravity="right"
+                android:textColorHint="@color/stand_3"
+                android:fontFamily="@font/vazir_med"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField7">
+                app:layout_constraintTop_toBottomOf="@+id/textView108" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/edt_pluq"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField9"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/edt_phonenumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="right"
+                android:inputType="number"
+                android:textCursorDrawable="@null"
                 android:hint="تلفن"
-                android:layout_marginTop="16dp"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:textColorHint="@color/stand_3"
+                android:fontFamily="@font/vazir_med"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:gravity="right"
+                android:background="@drawable/shape_55"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField8">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/edt_phonenumber"
-                    android:textColor="#000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField11"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:layout_constraintTop_toBottomOf="@+id/textView109" />
+            <EditText
+                android:id="@+id/edt_fullname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
+               android:hint="نام تحویل گیرنده"
+                android:textColorHint="@color/stand_3"
+                android:textCursorDrawable="@null"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
                 android:gravity="right"
-                android:hint="نام تحویل گیرنده"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:fontFamily="@font/vazir_med"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField9">
+                app:layout_constraintTop_toBottomOf="@+id/textView110" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/edt_fullname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <Button
+            <TextView
                 android:id="@+id/button8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/shap_3"
                 android:text="ثبت"
                 android:textColor="#fff"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
                 android:textSize="16sp"
-                android:layout_marginTop="16dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textField7"
+                app:layout_constraintEnd_toEndOf="@+id/edt_fullname"
                 app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textField7"
-                app:layout_constraintTop_toBottomOf="@+id/textField11"
+                app:layout_constraintStart_toStartOf="@+id/edt_fullname"
+                app:layout_constraintTop_toBottomOf="@+id/edt_fullname"
                 app:layout_constraintVertical_bias="0.0" />
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_3"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/edt_building"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="right"
                 android:hint="نام ساختمان"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:textCursorDrawable="@null"
+                android:gravity="right"
+                android:inputType="text"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:textColorHint="@color/stand_3"
+                android:fontFamily="@font/vazir_med"
+                android:paddingBottom="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_2">
+                app:layout_constraintTop_toBottomOf="@+id/textView105"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:id="@+id/edt_building"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField4"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/edt_floor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textCursorDrawable="@null"
+                android:inputType="number"
+               android:hint="طبقه"
                 android:gravity="right"
-                android:hint="طبقه"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:textColorHint="@color/stand_3"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:fontFamily="@font/vazir_med"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_3">
+                app:layout_constraintTop_toBottomOf="@+id/textView106"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/edt_floor"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
+            <EditText
+                android:id="@+id/edt_name_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:hint="نام آدرس"
+                android:textCursorDrawable="@null"
                 android:gravity="right"
-                android:hint="نام آدرس "
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:inputType="text"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:fontFamily="@font/vazir_med"
+                android:textColorHint="@color/stand_3"
+                app:layout_constraintEnd_toEndOf="@+id/textView103"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView44">
+                app:layout_constraintTop_toBottomOf="@+id/textView103"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:inputType="text"
-                    android:id="@+id/edt_name_address"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/Dynamic_Color"
-                    android:textColorHint="@color/Base_Color" />
 
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:id="@+id/edt_address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
+                android:textCursorDrawable="@null"
                 android:gravity="right"
+                android:inputType="text"
                 android:hint="آدرس"
-                android:textColorHint="@color/Base_Color"
-                app:boxStrokeColor="@color/Base_Color"
-                app:boxStrokeWidth="2dp"
+                android:background="@drawable/shape_55"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:fontFamily="@font/vazir_med"
+                android:textColorHint="@color/stand_3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField">
+                app:layout_constraintTop_toBottomOf="@+id/textView104"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:inputType="text"
-                    android:id="@+id/edt_address"
-                    android:layout_height="wrap_content"
-                    android:textColor="#000" />
 
-            </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:rotation="90"
@@ -253,6 +240,110 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_my_arrow"
                 tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView103"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="نام آدرس"
+                android:textColor="@color/stand_Color"
+                android:fontFamily="@font/vazir_med"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView44" />
+
+            <TextView
+                android:id="@+id/textView104"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="آدرس"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_name_address" />
+
+            <TextView
+                android:id="@+id/textView105"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="نام ساختمان"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_address" />
+
+            <TextView
+                android:id="@+id/textView106"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="طبقه"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_building" />
+
+            <TextView
+                android:id="@+id/textView107"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="واحد"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_floor" />
+
+            <TextView
+                android:id="@+id/textView108"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="پلاک"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_unit" />
+
+            <TextView
+                android:id="@+id/textView109"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="تلفن"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_pluq" />
+
+            <TextView
+                android:id="@+id/textView110"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="نام تحویل گیرنده"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_phonenumber" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

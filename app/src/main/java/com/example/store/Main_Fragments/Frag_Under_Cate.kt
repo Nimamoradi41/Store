@@ -54,7 +54,7 @@ class Frag_Under_Cate : BaseFragment() {
     var Model: GetProductModel?=null
     var s=""
     var modelmain: MainActivityViewModel?=null
-    var Id=""
+    var Id_5=""
     var page=1
     var Flag=false
     var ANTI=true
@@ -71,14 +71,11 @@ class Frag_Under_Cate : BaseFragment() {
         D_Cate=java.util.ArrayList<String>()
         if (s.equals("Cate"))
         {
-            Id=arguments?.getString("Id").toString()
+            Id_5=arguments?.getString("Id").toString()
             subCategory= arguments?.getSerializable("subcate") as ArrayList<subCategory>?
         }
 
-
         modelmain = ViewModelProviders.of(activity!!)[MainActivityViewModel::class.java]
-
-
         modelmain?.orderItems?.observe(activity!!,object :Observer<java.util.ArrayList<orderItems>>{
             override fun onChanged(t: java.util.ArrayList<orderItems>?) {
                 if (t?.size==0)
@@ -147,6 +144,7 @@ class Frag_Under_Cate : BaseFragment() {
                             vv.currentReserved = 0
                             ad_mains?.list?.set(index2,vv)
                             ad_mains?.notifyItemChanged(index2)
+                            GetHome()
                         }
                     }
                 }
@@ -204,7 +202,6 @@ class Frag_Under_Cate : BaseFragment() {
 
 
         })
-
         modelmain?.change_Data?.observe(activity!!, object : Observer<data_accses> {
             override fun onChanged(t: data_accses?) {
                 Log.i("svmsnbsbnhn", t?.Pos.toString())
@@ -333,6 +330,24 @@ class Frag_Under_Cate : BaseFragment() {
             var cc=BTS_Sort(Order)
             cc.Click(object : BTS_Sort.data_BTS{
                 override fun Data(i: Int) {
+                    if (i==0)
+                    {
+                    V.textView79.setText("ارزان ترین")
+                    }
+                    if (i==1)
+                    {
+                        V.textView79.setText("گران ترین")
+                    }
+
+                    if (i==2)
+                    {
+                        V.textView79.setText("پرتخفیف ترین")
+                    }
+
+                    if (i==3)
+                    {
+                        V.textView79.setText("جدید ترین")
+                    }
                     if (!isNetConnected())
                     {
                         var I=2;
@@ -449,6 +464,7 @@ class Frag_Under_Cate : BaseFragment() {
             vf.rootView.recy_cate_3.adapter=ad_cate_3
             ad_cate_3?.Click(object : adapter_cate_3.Data_2{
                 override fun data_a(p: subCategory, Pos: Int) {
+                    vf.rootView.recy_cate_3.layoutManager?.scrollToPosition(Pos)
                      if (!isNetConnected())
                      {
                          var I=2;
@@ -503,6 +519,7 @@ class Frag_Under_Cate : BaseFragment() {
                             ad_mains?.list?.set(Pos, v!!)
                             ad_mains?.notifyItemChanged(Pos)
                             MainActivity.mainActivityViewModel?.count?.value=i
+                            GetHome()
                         }
                     }
 
@@ -561,13 +578,27 @@ class Frag_Under_Cate : BaseFragment() {
                 }
                 if (response.isSuccessful)
                 {
-                    ad_cate_3?.Selected=0
-                    ad_cate_3?.notifyDataSetChanged()
+                    if (ad_cate_3?.list!=null)
+                    {
+                        if (ad_cate_3?.list?.size!! >0)
+                        {
+                            var cc= ad_cate_3?.list?.get(0)
+                            cc?.selected=true
+                            ad_cate_3?.Selected=0
+                            ad_cate_3?.list?.set(0, cc!!)
+//                            ad_cate_3?.notifyItemChanged(0)
+//                              ad_cate_3?.notifyDataSetChanged()
+                            ad_cate_3?.notifyDataSetChanged()
+                        }
+
+                    }
+//                    ad_cate_3?.notifyDataSetChanged()
                     ad_mains?.list= response.body()?.data?.products!!
                     Log.i("vksvnksdv", response.body()?.data?.products?.size.toString())
                     Log.i("vksvnksdv", response.body()?.data?.moreDate!!.toString())
                     ad_mains?.moredata= response.body()?.data?.moreDate!!
                     ad_mains?.notifyDataSetChanged()
+
                     if (response.body()?.data?.products!=null)
                     {
                         if(response.body()?.data?.products?.size==0)

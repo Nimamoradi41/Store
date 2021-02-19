@@ -5,11 +5,10 @@
     android:layoutDirection="ltr"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_margin="16dp"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:gravity="center"
         app:cardCornerRadius="8dp"
         app:cardElevation="5dp"
@@ -26,8 +25,8 @@
             >
             <com.airbnb.lottie.LottieAnimationView
                 android:id="@+id/lottieAnimationView"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.509"

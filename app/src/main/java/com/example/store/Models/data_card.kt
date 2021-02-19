@@ -21,11 +21,15 @@ class data_card :Serializable {
     var refId:String ?=null
     var authority:String ?=null
     var bankCard:String ?=null
+    var discuntMessage:String ?=null
     var phone:String ?=null
     var email:String ?=null
     var datePayment:String ?=null
     var datePaymentFa:String ?=null
     var deliveryTimeMessage:String ?=null
+    var deliveryPriceForShow:String ?=null
+    var deliveryPriceMessage:String ?=null
+    var deliveryPrice:Int ?=null
     var id:String ?=null
     var priceForShow:String ?=null
     var discountPriceForShow:String ?=null

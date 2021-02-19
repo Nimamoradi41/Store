@@ -34,14 +34,14 @@ class adapter_serachbar : RecyclerView.Adapter<adapter_serachbar.view>() {
         var item=list?.get(position)
         if (item?.type==1)
         {
-            holder.itemView.textView30.setText("کالا در دسته بندی")
+            holder.itemView.textView30.setText(" در دسته بندی")
             holder.itemView.textView23.setText(list?.get(position)?.title)
         }
 
 
         if (item?.type==2)
         {
-            holder.itemView.textView30.setText(" کالا در برند")
+            holder.itemView.textView30.setText("  در برند")
             holder.itemView.textView23.setText(list?.get(position)?.title)
         }
 

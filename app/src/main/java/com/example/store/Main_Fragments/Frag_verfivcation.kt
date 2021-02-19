@@ -1,5 +1,4 @@
 package com.example.store.Main_Fragments
-
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -19,49 +18,54 @@ import kotlinx.android.synthetic.main.fragment_frag__phone__number.view.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.button5
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.editTextNumber1
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.editTextNumber2
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.editTextNumber3
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.editTextNumber4
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.holder
+import kotlinx.android.synthetic.main.fragment_frag_verfivcation_3.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
-
-
 class Frag_verfivcation : BaseFragment() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         phoneNumber= arguments?.getString("data_2").toString()
     }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?): View? {
-        var v=inflater.inflate(R.layout.fragment_frag_verfivcation, container, false)
+        savedInstanceState: Bundle?): View?
+        {
+//        var v=inflater.inflate(R.layout.fragment_frag_verfivcation, container, false)
+        var v=inflater.inflate(R.layout.fragment_frag_verfivcation_3, container, false)
+
         v.editTextNumber1.requestFocus()
-        v.button5.setOnClickListener {
-//            if (v.editTextNumber2.text.trim().toString().isNullOrEmpty())
-//            {
-//                Snackbar.make(v.holder,"کد تاید اشتباه است",Snackbar.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
-//            if (v.editTextNumber.text.trim().toString().isNullOrEmpty())
-//            {
-//                Snackbar.make(v.holder,"کد تاید اشتباه است",Snackbar.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
-//            if (v.editTextNumber3.text.trim().toString().isNullOrEmpty())
-//            {
-//                Snackbar.make(v.holder,"کد تاید اشتباه است",Snackbar.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
-//            if (v.editTextNumber4.text.trim().toString().isNullOrEmpty())
-//            {
-//                Snackbar.make(v.holder,"کد تاید اشتباه است",Snackbar.LENGTH_SHORT).show()
-//                return@setOnClickListener
-//            }
+        v.button12_3.setOnClickListener {
+            if (v.editTextNumber2.text.trim().toString().isNullOrEmpty())
+            {
+                Snackbar.make(v.holder,"کد را وارد کنید",Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (v.editTextNumber1.text.trim().toString().isNullOrEmpty())
+            {
+                Snackbar.make(v.holder,"کد را وارد کنید",Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (v.editTextNumber3.text.trim().toString().isNullOrEmpty())
+            {
+                Snackbar.make(v.holder,"کد را وارد کنید",Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            if (v.editTextNumber4.text.trim().toString().isNullOrEmpty())
+            {
+                Snackbar.make(v.holder,"کد را وارد کنید",Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
             Log.i("bwrwrweessa",phoneNumber)
             Confirm_2(v)
         }
@@ -112,20 +116,111 @@ class Frag_verfivcation : BaseFragment() {
                     }
                     if (response.isSuccessful)
                     {
-                        DialLoad()
+                     DialLoad()
                         Log.i("lmdldlvdllmdvlmvdlmv",response.body()?.data?.securityKey.toString())
                         sharedPreferences?.edit()?.putString(Constants.USER_SECURITY_KEY,response.body()?.data?.securityKey)?.apply()
                         sharedPreferences?.edit()?.putString(Constants.USER_PHONE_NUMBER,phoneNumber)?.apply()
-                        Login(response.body()?.data?.securityKey.toString(),object  :Login{
-                            override fun onLoginCompleted(success: Boolean) {
-                                if (success)
+                        securityKey= response.body()?.data?.securityKey.toString()
+                        var json = ""
+                        try {
+                            json = JSONObject()
+                                    .put("SecurityKey", securityKey)
+                                    .put("DeviceType", "1")
+                                    .put("AppVersion", "1")
+                                    .put("Imei", "reza")
+                                    .toString()
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
+                        var textBody = RequestBody.create(MediaType.parse("text/plain"), json)
+                        var req: Call<LoginResponse> = api!!.login(textBody)
+                        req.enqueue(object :Callback<LoginResponse>{
+                            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                                Dial_Close()
+                                Log.i("djdjcjdcnc_2", response.code().toString())
+                                if (response.code() == 500) {
+                                    var code500: ErrorCode500? = null
+                                    val gson = Gson()
+                                    val adapter: TypeAdapter<ErrorCode500> =
+                                            gson.getAdapter(ErrorCode500::class.java)
+                                    try {
+                                        if (response.errorBody() != null) code500 = adapter.fromJson(
+                                                response.errorBody()!!.string()
+                                        )
+                                    } catch (e: IOException) {
+                                        e.printStackTrace()
+                                    }
+                                    Toast.makeText(
+                                            context,
+                                            "" + code500?.getMessage(),
+                                            Toast.LENGTH_LONG
+                                    ).show()
+                                    return
+                                }
+                                if (response.isSuccessful)
                                 {
-                                    Log.i("vvmvmmvfkfkfbbn","A")
+                                    Log.i("dvdgfghjkikgfgdfsds","200")
+                                    Log.i("dvdgfghjkikgfgdfsds","200")
+                                    Log.i("poypr","A")
+                                    var Data=response.body()?.data
+                                    sharedPreferences?.edit()?.putString(Constants.USER_TOKEN,Data?.token)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.USER_SECURITY_KEY,Data?.securityKey)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.USER_PHONE_NUMBER,phoneNumber)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.USER_PHONE_NUMBER,phoneNumber)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.storeName, Data?.storeSetting?.storeName)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.rulesUrl, Data?.storeSetting?.rulesUrl)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.startWork, Data?.storeSetting?.startWork)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.endWork, Data?.storeSetting?.endWork)?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.minPriceOrder, Data?.storeSetting?.minPriceOrder.toString())?.apply()
+                                    sharedPreferences?.edit()?.putString(Constants.id_2, Data?.storeSetting?.id.toString())?.apply()
+                                    securityKey= Data?.securityKey.toString()
+                                    token= Data?.token.toString()
+                                    storeName = Data?.storeSetting?.storeName.toString()
+                                    rulesUrl = Data?.storeSetting?.rulesUrl.toString()
+                                    sharedPreferences?.edit()?.putString(Constants.fullName, Data?.fullName?.toString())?.apply()
+                                    fullName= Data?.fullName!!
+                                    startWork = Data?.storeSetting?.startWork.toString()
+                                    endWork = Data?.storeSetting?.endWork.toString()
+                                    minPriceOrder = Data?.storeSetting?.minPriceOrder!!
+                                    id = Data.storeSetting?.id.toString()
+                                    securityKey= Data?.securityKey.toString()
+                                    token= Data?.token.toString()
+//                                    phoneNumber=phoneNumber
+                                    phoneNumber=phoneNumber
+                                    Log.i("wwdsazcwdf", Data?.securityKey.toString())
+                                    Log.i("mkoptr", Data?.token.toString())
                                     GetHome()
+
+                                }else{
+                                    Snackbar.make(v.holder,"کد وارد  شده اشتباه می باشد",Snackbar.LENGTH_SHORT).show()
+//                                    Log.i("dvdgfghjkikgfgdfsds","not200")
+//                                    var i=Intent(activity,MultyActivity_2::class.java)
+//                                    i.putExtra("Type","W")
+//                                    startActivity(i)
+//                                    activity?.finish()
                                 }
                             }
 
+                            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                                loging.onLoginCompleted(false)
+                                 Dial_Close()
+//                                var i=Intent(context,MultyActivity_2::class.java)
+//                                i.putExtra("Type","W")
+//                                startActivity(i)
+//                                activity?.finish()
+                            }
+
                         })
+//                        Login(response.body()?.data?.securityKey.toString(),object  :Login{
+//                            override fun onLoginCompleted(success: Boolean) {
+//                                if (success)
+//                                {
+//                                    Log.i("vvmvmmvfkfkfbbn","A")
+//                                    GetHome()
+//                                }
+//                            }
+//
+//                        })
 
                     }
                 }
@@ -145,7 +240,7 @@ class Frag_verfivcation : BaseFragment() {
             Snackbar.make(v.holder, "اتصال خود را به اینترنت چک کنید", Snackbar.LENGTH_SHORT).show()
         }
     }
-    fun  GetHome()
+    override fun  GetHome()
     {
         var req=api?.GETHOME("Bearer "+token)
         req?.enqueue(object :Callback<RESPOSNHOME>{
@@ -188,9 +283,9 @@ class Frag_verfivcation : BaseFragment() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 //                if (editTextTextPersonName.text.trim())
                 if (p0.toString().trim().isEmpty()) {
-                    V.editTextNumber1.setBackgroundResource(R.drawable.ic_box1)
+//                    V.editTextNumber1.setBackgroundResource(R.drawable.ic_box1)
                 } else {
-                    V.editTextNumber1.setBackgroundResource(R.drawable.ic_box_2)
+//                    V.editTextNumber1.setBackgroundResource(R.drawable.ic_box_2)
                     V.editTextNumber2.requestFocus()
                 }
             }
@@ -207,10 +302,10 @@ class Frag_verfivcation : BaseFragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0.toString().trim().isEmpty()) {
-                    V.editTextNumber2.setBackgroundResource(R.drawable.ic_box1)
+//                    V.editTextNumber2.setBackgroundResource(R.drawable.ic_box1)
                     V.editTextNumber1.requestFocus()
                 } else {
-                    V.editTextNumber2.setBackgroundResource(R.drawable.ic_box_2)
+//                    V.editTextNumber2.setBackgroundResource(R.drawable.ic_box_2)
                     V.editTextNumber3.requestFocus()
                 }
             }
@@ -227,10 +322,10 @@ class Frag_verfivcation : BaseFragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (V.editTextNumber3.text.trim().isEmpty()) {
-                    V.editTextNumber3.setBackgroundResource(R.drawable.ic_box1)
+//                    V.editTextNumber3.setBackgroundResource(R.drawable.ic_box1)
                     V.editTextNumber2.requestFocus()
                 } else {
-                    V.editTextNumber3.setBackgroundResource(R.drawable.ic_box_2)
+//                    V.editTextNumber3.setBackgroundResource(R.drawable.ic_box_2)
                     V.editTextNumber4.requestFocus()
                 }
             }
@@ -247,10 +342,10 @@ class Frag_verfivcation : BaseFragment() {
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 if (p0.toString().isEmpty()) {
-                    V.editTextNumber4.setBackgroundResource(R.drawable.ic_box1)
+//                    V.editTextNumber4.setBackgroundResource(R.drawable.ic_box1)
                     V.editTextNumber3.requestFocus()
                 } else {
-                    V.editTextNumber4.setBackgroundResource(R.drawable.ic_box_2)
+//                    V.editTextNumber4.setBackgroundResource(R.drawable.ic_box_2)
 
                 }
             }

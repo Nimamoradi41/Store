@@ -21,14 +21,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/titile_discounts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="right"
             android:text="مشاهده همه"
-            android:padding="4dp"
-            android:background="@drawable/shap_25"
+           android:drawablePadding="4dp"
+             android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
             android:textColor="@color/Base_Color"
             android:textSize="14sp"
             android:textStyle="bold" />

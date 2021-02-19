@@ -15,39 +15,59 @@ import android.view.View
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.store.Adapters.adapter_slider
+import com.example.store.Adapters.adapter_slider_2
 import com.example.store.Adapters.adapter_slider_item
 import com.example.store.Dialog.Dial_App
+import com.example.store.MainActivity.Companion.mainActivityViewModel
+import com.example.store.Main_Fragments.Login
+import com.example.store.Models.ResGetDetail
 import com.example.store.Models.model_Item
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
 import com.smarteist.autoimageslider.SliderView
 import io.github.inflationx.viewpump.ViewPumpContextWrapper
 import kotlinx.android.synthetic.main.activity_item_detail.*
+import kotlinx.android.synthetic.main.activity_item_detail.button
+import kotlinx.android.synthetic.main.activity_item_detail.imageSlider_2
+import kotlinx.android.synthetic.main.activity_item_detail.linearLayout
+import kotlinx.android.synthetic.main.activity_item_detail.pageIndicatorView_2
+import kotlinx.android.synthetic.main.activity_item_detail.recy_itemsssw
+import kotlinx.android.synthetic.main.activity_item_detail.textView27
+import kotlinx.android.synthetic.main.activity_item_detail.textView5
+import kotlinx.android.synthetic.main.activity_item_detail.textView6
+import kotlinx.android.synthetic.main.activity_item_detail.textView7
+import kotlinx.android.synthetic.main.activity_item_detail.textView81
+import kotlinx.android.synthetic.main.activity_item_detail.textView83
+import kotlinx.android.synthetic.main.activity_item_detail_2.*
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
+import kotlinx.android.synthetic.main.fragment_custome_slider.view.*
 import kotlinx.android.synthetic.main.fragment_mainfrag.view.*
+import okhttp3.MediaType
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ItemDetail : BaseActiity() {
-    var ad_Spa : adapter_Spacial?= null
+    var ad_Spa : Adapter_discounts_2?= null
     var Pos:Int?=null
-    var ad_slider:adapter_slider_item ?= null
+    var  ad_slider : adapter_slider_2? =null
     var Flag:Boolean=false
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }
     var v:products ? =null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_item_detail)
-        v= intent.getSerializableExtra("data") as products?
-        Pos=intent.getIntExtra("pos",-48);
+    private fun SetData() {
         if (v?.title!=null)
         {
             textView27.setText(v?.title)
         }
+
+
 
 
 
@@ -85,10 +105,17 @@ class ItemDetail : BaseActiity() {
 
 
 
-        if (v?.description!=null)
-        {
-            textView28.setText(v?.description)
-        }
+        // TODO Add
+//        if (v?.description!=null)
+//        {
+//            textView81.setText(v?.description)
+//        }
+
+
+//        if (v?.!=null)
+//        {
+//            textView81.setText(v?.description)
+//        }
 
 
 
@@ -118,14 +145,313 @@ class ItemDetail : BaseActiity() {
 
 
 
+    }
+    fun GetDetail(S:String)
+    {
+        var Body=RequestBody.create(MediaType.parse("text/palne"),S)
+        var req=api?.GetDetail("Bearer " +token,Body)
+        req?.enqueue(object : Callback<ResGetDetail> {
+            override fun onResponse(call: Call<ResGetDetail>, response: Response<ResGetDetail>) {
+                Dial_Close()
+                Log.i("zcvmzkmvzkmvmzv",response.code().toString())
+                if (response.isSuccessful)
+                {
+                    var Data =response.body()?.data
+                        if (Data?.images!=null)
+                        {
+                            if (Data.images?.size==0)
+                            {
+                                var vx=ArrayList<String>()
+                                vx.add(Data.firstImage.toString())
+                                ad_slider= adapter_slider_2(supportFragmentManager,vx)
+                                imageSlider_2.adapter=ad_slider
+                                pageIndicatorView_2?.setViewPager(imageSlider_2);
+//                                ad_slider= adapter_slider_item(vx,this@ItemDetail)
+//                                imageSlider.setSliderAdapter(ad_slider!!)
+//                                imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
+//                                imageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
+//                                imageSlider.startAutoCycle()
+                            }else{
+                                ad_slider= adapter_slider_2(supportFragmentManager, Data.images!!)
+                                imageSlider_2.adapter=ad_slider
+                                pageIndicatorView_2?.setViewPager(imageSlider_2);
+//                                ad_slider= adapter_slider_item(Data.images!!,this@ItemDetail)
+//                                imageSlider.setSliderAdapter(ad_slider!!)
+//                                imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
+//                                imageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
+//                                imageSlider.startAutoCycle()
+                            }
+
+                        }else{
+                            var vx=ArrayList<String>()
+                            vx.add(Data?.firstImage.toString())
+                            ad_slider= adapter_slider_2(supportFragmentManager,vx)
+                            imageSlider_2.adapter=ad_slider
+                            pageIndicatorView_2?.setViewPager(imageSlider_2);
+                        }
 
 
 
-        ad_slider= adapter_slider_item(ArrayList<String> (),this)
-        imageSlider.setSliderAdapter(ad_slider!!)
-        imageSlider.setIndicatorAnimation(IndicatorAnimationType.WORM)
-        imageSlider.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION)
-        imageSlider.startAutoCycle()
+
+
+
+
+                        if (!Data?.categoryTitle?.isNullOrEmpty()!!)
+                        {
+                            textView116.setText(Data?.categoryTitle)
+                        }
+
+
+                    if (Data?.brand!=null)
+                    {
+                       if (!Data?.brand?.image.isNullOrEmpty())
+                       {
+                           Glide.with(this@ItemDetail).load(Constants.BASE_URL+"/BrandImg/"+Data?.brand?.image).into(imageView62);
+                       }
+                    }
+
+
+                    if (Data?.title!=null)
+                    {
+                        if (!Data?.brand?.title.isNullOrEmpty())
+                        {
+                            textView114.setText(Data?.brand?.title)
+                        }
+                    }
+
+
+
+
+//                    if (Data?.brand!=null)
+//                    {
+//                        if (!Data?.brand?.title.isNullOrEmpty())
+//                        {
+//                            textView116.setText(Data?.brand?.title.toString())
+//                        }
+//                    }
+
+
+
+
+                    if (!Data?.description.isNullOrEmpty())
+                    {
+                        v?.description=Data?.description
+                        textView81.setText(Data?.description)
+                    }
+                    if (Data?.title!=null)
+                    {
+                        v?.title=Data?.title
+                        textView27.setText(Data?.title)
+                    }
+                    if (Data!=null)
+                    {
+
+
+
+                        if (Data?.discountPercent==0)
+                        {
+                            textView5.visibility=View.GONE
+                            textView86.visibility=View.GONE
+                            textView7.visibility=View.GONE
+                        }else{
+                            if (Data?.price!=null)
+                            {
+                                textView5.setText(Data?.priceForShow)
+                                textView7.setText(Data.priceForShow)
+                                textView86.setText("%"+Data.discountPercent.toString())
+                            }
+                        }
+                    }else{
+                        textView5.visibility=View.GONE
+                        textView86.visibility=View.GONE
+                        textView7.visibility=View.GONE
+                    }
+
+
+
+
+                    if (Data?.priceAfterDiscountForShow!=null)
+                    {
+                        textView6.setText(Data?.priceAfterDiscountForShow)
+                    }
+
+
+                    if (Data?.currentReserved!=null)
+                    {
+                        if (Data?.currentReserved!! >0)
+                        {
+                            textView112.setText(Data.currentReserved!!.toString())
+                        }
+                    }
+
+
+
+                    if (v?.discountPercent!=null)
+                    {
+                        textView86.setText("%"+v?.discountPercent)
+                    }
+//                    var I=Intent(this@SplashScreen,MainActivity::class.java)
+//                    I.putExtra("DATA",response.body()?.getData())
+//                    startActivity(I)
+//                    finish()
+
+
+                    v?.discountPercent= Data?.discountPercent!!
+                    v?.price= Data?.price!!
+                    v?.priceForShow= Data?.priceForShow!!
+                    v?.priceAfterDiscountForShow= Data?.priceAfterDiscountForShow!!
+                    v?.discountPercent= Data?.discountPercent!!
+                    v?.currentReserved= Data?.currentReserved!!
+                    v?.count= Data?.count!!
+                    v?.maxCountReserve= Data?.maxCountReserve!!
+
+                    if(Data.similarProducts!=null)
+                    {
+                        if (Data.similarProducts?.size==0)
+                        {
+                            textView83.visibility=View.INVISIBLE
+                        }else{
+                            ad_Spa?.list= Data.similarProducts!!
+                            ad_Spa?.notifyDataSetChanged()
+                        }
+                    }else{
+                        textView83.visibility=View.INVISIBLE
+                    }
+
+
+
+
+
+                    Dial_Close()
+
+                }
+                if (response.code()==401)
+                {
+                    Login(securityKey,object : Login {
+                        override fun onLoginCompleted(success: Boolean) {
+                            if (success)
+                            {
+                                GetDetail(S)
+                            }
+                        }
+
+                    })
+                }
+            }
+            override fun onFailure(call: Call<ResGetDetail>, t: Throwable) {
+                var I=3
+                Log.i("zcvmzkmvzkmvmzv",t.message.toString())
+                Dial_Close()
+                var p=   Dialapp(I,"لطفا دوباره تلاش کنید",object :Dial_App.Interface_new{
+                    override fun News() {
+                       finish()
+                    }
+                },this@ItemDetail)
+                p.show()
+            }
+        })
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+//        setContentView(R.layout.activity_item_detail)
+        setContentView(R.layout.activity_item_detail_2)
+        DialLoad()
+        v= intent.getSerializableExtra("data") as products?
+        Pos=intent.getIntExtra("pos",-48);
+        window.statusBarColor=Color.parseColor("#ec4646")
+        textView_98.setText(storeName)
+//        SetData()
+
+
+
+        imageView68.setOnClickListener {
+            // Right
+            Log.i("svknsnkvs", imageSlider_2.childCount.toString())
+            Log.i("svknsnkvs_2", imageSlider_2.currentItem.toString())
+            var Current=imageSlider_2.currentItem
+            var Child=imageSlider_2.childCount
+            if (Current<Child)
+            {
+                imageSlider_2.currentItem=Current+1
+            }
+        }
+
+
+        imageView63.setOnClickListener {
+            // Left
+            Log.i("svknsnkvs", imageSlider_2.childCount.toString())
+            Log.i("svknsnkvs_2", imageSlider_2.currentItem.toString())
+            var Current=imageSlider_2.currentItem
+            var Child=imageSlider_2.childCount
+            if (Current>0)
+            {
+                imageSlider_2.currentItem=Current-1
+            }
+        }
+
+        val dm = DisplayMetrics()
+        getWindowManager()?.getDefaultDisplay()?.getMetrics(dm)
+        val width = dm.widthPixels
+        val height = dm.widthPixels
+
+
+
+
+
+
+
+
+
+
+
+        ad_Spa= Adapter_discounts_2(this,ArrayList<products>(),height,width)
+        recy_itemsssw.layoutManager=LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,true)
+        recy_itemsssw.isNestedScrollingEnabled=false
+        recy_itemsssw.adapter=ad_Spa
+        ad_Spa?.click(object : Adapter_discounts_2.Data_dis {
+            override fun Data(I: Int, ID: String, Pos: Int) {
+                if (!isNetConnected()) {
+                    var I = 2;
+                    var p = Dialapp(
+                            2,
+                            "اتصال خود را به اینترنت بررسی کنید",
+                            object : Dial_App.Interface_new {
+                                override fun News() {
+
+                                }
+                            },
+                            this@ItemDetail
+                    )
+                    p.show()
+                    return
+                }
+                Log.i("kvnsndv", I.toString())
+                AddEditDeleteItem_Card(I, ID, object : Resuilt {
+                    override fun Data(i: Int, S: String, B: Boolean) {
+                        if (B) {
+                            var v = ad_Spa?.list?.get(Pos)
+                            v?.currentReserved = I
+                            ad_Spa?.list?.set(Pos, v!!)
+                            ad_Spa?.notifyItemChanged(Pos)
+                            MainActivity.mainActivityViewModel?.count?.value = i
+                            GetHome()
+                        }
+                    }
+
+                })
+            }
+
+        })
+        GetDetail(v?.id.toString())
+
+
+
+
+
+
+
+
+
         linearLayout.setOnClickListener {
             if (Flag)
             {
@@ -136,7 +462,7 @@ class ItemDetail : BaseActiity() {
             }
             finish()
         }
-        button.setOnClickListener {
+        constraintLayout8.setOnClickListener {
             val d= Dialog(this, R.style.CustomDialog)
             d.setCancelable(true)
             var CF= LayoutInflater.from(this).inflate(R.layout.custome_modal, null, false)
@@ -181,11 +507,11 @@ class ItemDetail : BaseActiity() {
                                     if (I>0)
                                     {
 
-                                      button.setText(I.toString()+" عدد ")
-                                      button.animate().alpha(1f).setDuration(500).start()
+                                        textView112.setText(I.toString())
+                                        textView112.animate().alpha(1f).setDuration(500).start()
                                     }else  {
-                                       button.setText("افزودن به سبد خرید")
-                                       button.animate().alpha(1f).setDuration(500).start()
+                                        textView112.setText("0")
+                                        textView112.animate().alpha(1f).setDuration(500).start()
                                     }
 
                                 }
@@ -249,6 +575,34 @@ class ItemDetail : BaseActiity() {
 
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode==20)
+        {
+            if (resultCode== RESULT_OK)
+            {
+//                GetHome()
+                Log.i("nngshfdp","K")
+               if(data!=null)
+               {
+                   if (data.getSerializableExtra("data")!=null)
+                   {
+                       Log.i("dsvsbnsnfbdkkdvk","I")
+                       var data_2=data?.getSerializableExtra("data") as products
+                       var pos=data.getIntExtra("pos",-8)
+                       var v = ad_Spa?.list?.get(pos)
+                       v?.currentReserved = data_2.currentReserved
+                       ad_Spa?.list?.set(pos, v!!)
+                       ad_Spa?.notifyItemChanged(pos)
+                       GetHome()
+//                       MainActivity.mainActivityViewModel?.count?.value = i
+
+                   }
+               }
+            }
+        }
     }
 
     override fun onBackPressed() {

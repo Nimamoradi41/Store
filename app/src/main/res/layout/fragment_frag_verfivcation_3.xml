@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView55"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="64dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_login_2" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:fontFamily="@font/vazir_med"
+           android:text="تایید شماره تلفن"
+            android:textColor="#2C2C2C"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView55" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/vazir_med"
+            android:gravity="center"
+            android:lineSpacingExtra="4dp"
+            android:text="@string/login_2"
+            android:textColor="@color/stand_2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+        <com.dd.ShadowLayout
+            android:id="@+id/shadowLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView69"
+            app:sl_cornerRadius="56dp"
+            app:sl_dx="0dp"
+            app:sl_dy="8dp"
+            app:sl_shadowColor="#456D63FF"
+            app:sl_shadowRadius="8dp">
+
+            <Button
+                android:id="@+id/button12_3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shpe_50"
+                android:elevation="8dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="اعتبارسنجی"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+        </com.dd.ShadowLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView18">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+
+                app:layout_constraintGuide_percent="0.50121653" />
+
+            <EditText
+                android:textCursorDrawable="@null"
+                android:id="@+id/editTextNumber2"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/shape_15"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="14dp"
+                android:textColor="#6D63FF"
+                android:textColorHint="#6B000000"
+                app:layout_constraintEnd_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
+            <EditText
+                android:textCursorDrawable="@null"
+                android:id="@+id/editTextNumber3"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_15"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="14dp"
+                android:textColor="#6D63FF"
+                android:textColorHint="#6B000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline3"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+            <EditText
+                android:textCursorDrawable="@null"
+                android:id="@+id/editTextNumber4"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/shape_15"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="14dp"
+                android:textColor="#6D63FF"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/editTextNumber3"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
+
+            <EditText
+                android:textCursorDrawable="@null"
+                android:id="@+id/editTextNumber1"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_15"
+                android:ems="10"
+                android:gravity="center"
+                android:inputType="number"
+                android:maxLength="1"
+                android:paddingLeft="10dp"
+                android:paddingTop="14dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="14dp"
+                android:textColor="#6D63FF"
+                android:textColorHint="#6B000000"
+                app:layout_constraintEnd_toStartOf="@+id/editTextNumber2"
+                app:layout_constraintTop_toBottomOf="@+id/textView59" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/textView69"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/vazir_med"
+            android:gravity="center"
+            android:text="کد اعتبارسنجی دریافت نکردید ؟"
+            android:textColor="@color/stand_2"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/textView18"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            app:layout_constraintGuide_percent="0.5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
+        <TextView
+            android:id="@+id/textView90"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:gravity="right"
+            android:text="ارسال مجدد"
+            android:textColor="#6D63FF"
+            android:fontFamily="@font/vazir_med"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/textView69"
+            app:layout_constraintEnd_toStartOf="@+id/textView69"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView69" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>

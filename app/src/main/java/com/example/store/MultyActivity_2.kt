@@ -2,6 +2,7 @@ package com.example.store
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -18,16 +19,18 @@ class MultyActivity_2 : BaseActiity() {
     companion object{
         var Count :Int =-4;
         var address :ModelAddress?= null
-        var Pos=0
+        var Pos=-8
+        var mainActivityViewModel : MainActivityViewModel_2?=null
     }
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase!!))
     }
-    var mainActivityViewModel : MainActivityViewModel_2?=null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_multy)
         var Type=intent.getStringExtra("Type")
+//        window.statusBarColor= Color.parseColor("#ec4646")
         mainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel_2::class.java]
 
         if (Type.equals("A"))
@@ -59,10 +62,14 @@ class MultyActivity_2 : BaseActiity() {
 
         if (Type.equals("Map2"))
         {
+            var Frag=Frag_Address_2()
+            var B=Bundle()
+            B.putString("Type_2",intent.getStringExtra("Type_2"))
             textView1er.setText("آدرس های من")
-            Pos=intent.getIntExtra("Pos",-4)
-            address=intent.getSerializableExtra("address") as ModelAddress
-            supportFragmentManager.beginTransaction().add(R.id.Conta, Frag_Address_2()).commit()
+            Frag.arguments=B
+//            Pos=intent.getIntExtra("Pos",-4)
+//            address=intent.getSerializableExtra("address") as ModelAddress
+            supportFragmentManager.beginTransaction().add(R.id.Conta, Frag).commit()
         }
 
 
@@ -90,15 +97,47 @@ class MultyActivity_2 : BaseActiity() {
 
 
 
-        if (Type.equals("P"))
+//        if (Type.equals("P"))
+//        {
+//            holder.visibility=View.GONE
+//            var ccc=Frag_ALL_Dis()
+//            var bbb=Bundle()
+//            bbb.putSerializable("data2",intent.getSerializableExtra("data"))
+//            ccc.arguments=bbb
+//            supportFragmentManager.beginTransaction().add(R.id.Conta,ccc).commit()
+//        }
+        if (Type.equals("main_all"))
         {
             holder.visibility=View.GONE
-            var ccc=Frag_ALL_Dis()
+//            var ccc=Frag_ALL_Dis()
+            var ccc=Frag_Main_All()
             var bbb=Bundle()
-            bbb.putSerializable("data2",intent.getSerializableExtra("data"))
+            bbb.putSerializable("data2",intent.getSerializableExtra("data_products_get"))
+            bbb.putString("Type_Filter",intent.getStringExtra("Type_Filter"))
+            Log.i("dkakcmaka", intent.getStringExtra("Count").toString())
+            bbb.putString("Count",intent.getStringExtra("Count").toString()).toString()
             ccc.arguments=bbb
             supportFragmentManager.beginTransaction().add(R.id.Conta,ccc).commit()
         }
+
+
+        if (Type.equals("main_all_2"))
+        {
+            Log.i("svnshbasvd",intent.getStringExtra("Count").toString())
+            holder.visibility=View.GONE
+//            var ccc=Frag_ALL_Dis()
+            var ccc=Frag_Main_All()
+            var bbb=Bundle()
+            bbb.putSerializable("data2",intent.getSerializableExtra("data_products_get"))
+            bbb.putString("Type_Filter",intent.getStringExtra("Type_Filter"))
+            bbb.putString("IdProduct",intent.getStringExtra("IdProduct"))
+            bbb.putString("Count",intent.getStringExtra("Count").toString()).toString()
+            ccc.arguments=bbb
+            supportFragmentManager.beginTransaction().add(R.id.Conta,ccc).commit()
+        }
+
+
+
 
 
 
@@ -125,9 +164,16 @@ class MultyActivity_2 : BaseActiity() {
             v.arguments=b
             supportFragmentManager.beginTransaction().add(R.id.Conta, v).commit()
         }
-
-
-        linearLayout5.setOnClickListener {
+        linearLayout5.setOnClickListener{
+            Log.i("dvfghghh", Count.toString())
+            if (Count!=-4)
+            {
+                Log.i("dvfghghh","as")
+                var cc=Intent()
+                cc.putExtra("count", Count)
+                setResult(RESULT_OK,cc)
+                finish()
+            }
             if (address!=null)
             {
                 var I=Intent()
@@ -142,15 +188,17 @@ class MultyActivity_2 : BaseActiity() {
 
 
     override fun onBackPressed() {
-//        if (Count!=-4)
-//        {
-//            var cc=Intent()
-//            cc.putExtra("count", Count)
-//           setResult(RESULT_OK,cc)
-//            finish()
-//        }
+        Log.i("dvfghghh", Count.toString())
+        if (Count!=-4)
+        {
+            Log.i("dvfghghh","as")
+            var cc=Intent()
+            cc.putExtra("count", Count)
+            setResult(RESULT_OK,cc)
+            finish()
+        }
 
-        Log.i("fbgnhscdv","A")
+
 
         if (address!=null)
         {

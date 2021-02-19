@@ -37,7 +37,6 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginBottom="16dp" />
             </LinearLayout>
-
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_Slider"
                 android:layout_width="match_parent"
@@ -45,16 +44,27 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"/>
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/pageIndicatorView"
+                android:layout_width="0dp"
+                app:ci_drawable_unselected="@drawable/ic_circ_2"
+                app:ci_drawable="@drawable/ic_circ_1"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view_Slider"
+                tools:ignore="MissingClass" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recy_category"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/view_Slider" />
+                app:layout_constraintTop_toBottomOf="@+id/pageIndicatorView" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/linearLayout3"
@@ -101,8 +111,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_gravity="right"
-                        android:background="@drawable/shap_25"
-                        android:padding="4dp"
+                        android:drawablePadding="4dp"
+                        android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
                         android:text="مشاهده همه"
                         android:textColor="@color/Base_Color"
                         android:textSize="14sp"
@@ -159,13 +169,12 @@
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/titil_spl"
                     tools:ignore="MissingConstraints">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_gravity="right"
-                        android:background="@drawable/shap_25"
-                        android:padding="4dp"
+                        android:layout_gravity="right|center"
+                        android:drawablePadding="4dp"
+                        android:drawableLeft="@drawable/ic_baseline_arrow_back_ios_24"
                         android:text="مشاهده همه"
                         android:textColor="@color/Base_Color"
                         android:textSize="14sp"

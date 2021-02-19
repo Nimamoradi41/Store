@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layoutDirection="ltr"
     android:layout_height="match_parent">
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,16 +43,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 tools:text="لطفا دوباره تلاش کنید"
-                android:textColor="@color/Dynamic_Color"
+                android:fontFamily="@font/vazir_bold"
+
+
+                android:textColor="@color/Base_Color"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
-            <Button
+            <TextView
                 android:id="@+id/button7"
                 android:layout_width="0dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:gravity="center"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"

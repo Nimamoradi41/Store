@@ -4,18 +4,17 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.store.Adapters.adapter_address
 import com.example.store.Dialog.Dial_App
 import com.example.store.MapActivity
 import com.example.store.ModelAddress
 import com.example.store.Models.RESPONSADRESS
 import com.example.store.Models.ResponDelAddress
 import com.example.store.R
-import com.example.store.adapter_Spacial
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__address.*
@@ -25,13 +24,12 @@ import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
-import javax.security.auth.callback.Callback
+
 class Frag_Address : BaseFragment() {
-    var ad_address:adapter_address?=null
+    var ad_address: adapter_address?=null
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v= inflater.inflate(R.layout.fragment_frag__address, container, false)
-
         ad_address= adapter_address(activity!!)
         v.rect_address.adapter=ad_address
 
@@ -51,7 +49,17 @@ class Frag_Address : BaseFragment() {
                     p.show()
                     return
                 }else{
-                    Del_Address(S,Pos,v)
+                    var p=   Dialog_Ask(6,"آدرس حذف بشود؟",object : Dial_App.Interface_new_2{
+                        override fun News(s: String) {
+                             if (s.equals("A"))
+                             {
+                                 Del_Address(S,Pos,v)
+                             }
+                        }
+
+                    }, context!!)
+                    p.show()
+
                 }
 
             }
@@ -67,7 +75,7 @@ class Frag_Address : BaseFragment() {
         })
 
 
-        v.cardView6.setOnClickListener {
+        v.cvdgnfh.setOnClickListener {
             var I=Intent(activity,MapActivity::class.java)
             I.putExtra("Type","A")
             startActivityForResult(I,14151)

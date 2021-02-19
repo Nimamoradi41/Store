@@ -22,8 +22,6 @@ class adapter_cate_3(var list:ArrayList<subCategory>) : RecyclerView.Adapter<ada
     {
         this.data_2=d
     }
-
-
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
@@ -35,9 +33,10 @@ class adapter_cate_3(var list:ArrayList<subCategory>) : RecyclerView.Adapter<ada
     @SuppressLint("ResourceAsColor")
     override fun onBindViewHolder(holder: view, position: Int) {
 
-        if (Selected!=-1)
-        {
-            if (position==Selected)
+        var Item=list.get(position)
+//        if (Selected!=-1)
+//        {
+            if (Item.selected)
             {
                 holder.itemView.textView9.setBackgroundResource(R.drawable.shap_3)
                 holder.itemView.textView9.setTextColor(Color.WHITE)
@@ -45,17 +44,41 @@ class adapter_cate_3(var list:ArrayList<subCategory>) : RecyclerView.Adapter<ada
                 holder.itemView.textView9.setBackgroundColor(Color.WHITE)
                 holder.itemView.textView9.setTextColor(R.color.Base_Color)
             }
-        }
+//        }
 
 
 
         holder.itemView.textView9.setText(list.get(position).title)
         holder.itemView.setOnClickListener {
+
+
+//            if (Selected!=-1)
+//            {
+//                list.get(Selected).selected=true
+//                notifyItemChanged(Selected)
+//                data_2?.data_a(list.get(position),position)
+//            }else{
+//                Selected=position
+//                Item.selected=true
+//                notifyItemChanged(Selected)
+//                data_2?.data_a(list.get(position),position)
+//            }
+
             if (Selected!=position)
             {
+                list.get(Selected).selected=false
+                notifyItemChanged(Selected)
                 Selected=position
+                Item.selected=true
+                notifyItemChanged(Selected)
                 data_2?.data_a(list.get(position),position)
             }
+
+//            if (Selected!=position)
+//            {
+//                Selected=position
+//                data_2?.data_a(list.get(position),position)
+//            }
 
 //            notifyDataSetChanged()
         }

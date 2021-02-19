@@ -1,5 +1,6 @@
 package com.example.store;
 
+import com.example.store.Models.storeSetting;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -20,13 +21,21 @@ public class data {
       this.securityKey = securityKey;
   }
 
-  public int getAge() {
-      return age;
-  }
 
-  public void setAge(int age) {
-      this.age = age;
-  }
+    public com.example.store.appVersion getAppVersion() {
+        return appVersion;
+    }
+
+    public void setAppVersion(com.example.store.appVersion appVersion) {
+        this.appVersion = appVersion;
+    }
+
+    @Expose
+    @SerializedName("appVersion")
+    private appVersion appVersion;
+
+
+
 
   public int getGender() {
       return gender;
@@ -44,13 +53,7 @@ public class data {
       this.fullName = fullName;
   }
 
-  public String getProfileImage() {
-      return profileImage;
-  }
 
-  public void setProfileImage(String profileImage) {
-      this.profileImage = profileImage;
-  }
 
   public String getBirthDayFa() {
       return birthDayFa;
@@ -66,13 +69,16 @@ public class data {
   @Expose
   @SerializedName("securityKey")
   String securityKey;
-  @Expose
-  @SerializedName("age")
-  private int age;
 
+    public storeSetting getStoreSetting() {
+        return storeSetting;
+    }
 
+    public void setStoreSetting(com.example.store.Models.storeSetting storeSetting) {
+        this.storeSetting = storeSetting;
+    }
 
-  @Expose
+    @Expose
   @SerializedName("gender")
   private int gender;
 
@@ -82,15 +88,17 @@ public class data {
   private String fullName;
 
 
-  @Expose
-  @SerializedName("profileImage")
-  private String profileImage;
 
 
 
   @Expose
   @SerializedName("birthDayFa")
   private String birthDayFa;
+
+
+    @Expose
+    @SerializedName("storeSetting")
+      storeSetting storeSetting;
 
 
 }

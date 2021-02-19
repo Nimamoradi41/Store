@@ -1,13 +1,11 @@
 package com.example.store.Adapters
 
 import android.app.Activity
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.store.Main_Fragments.adapter_address
 import com.example.store.ModelAddress
 import com.example.store.MultyActivity_2
 import com.example.store.R
@@ -21,11 +19,9 @@ import kotlinx.android.synthetic.main.customeaddress.view.textView40
 import kotlinx.android.synthetic.main.customeaddress_2.view.*
 
 class adapter_address_2 (var c: Activity) : RecyclerView.Adapter<adapter_address_2.view>() {
-
-
     var DA: data_Type? = null
 
-    var Selected = 0;
+    var Selected = -1;
 
 
     fun DATA(DA: data_Type) {
@@ -107,6 +103,14 @@ class adapter_address_2 (var c: Activity) : RecyclerView.Adapter<adapter_address
         }
 
 
+        if (item?.peykInfo != null) {
+            holder.itemView.textView119.setText(item.peykInfo)
+        } else {
+            holder.itemView.textView119.setText("نامشخص")
+        }
+
+
+
 
         if (item?.fullLocation != null) {
             holder.itemView.rad.setText(item.fullLocation?.trim().toString())
@@ -124,6 +128,12 @@ class adapter_address_2 (var c: Activity) : RecyclerView.Adapter<adapter_address
 
 
         holder.itemView.imageView32.setOnLongClickListener {
+            if (Selected==MultyActivity_2.Pos)
+            {
+                MultyActivity_2.Pos=-8
+                Selected=-1
+//                notifyDataSetChanged()
+            }
             DA?.Del(item?.id.toString(), position)
             return@setOnLongClickListener true
         }

@@ -18,6 +18,7 @@ import androidx.core.view.marginLeft
 import androidx.core.view.marginRight
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.store.Main_Fragments.Mainfrag
 import com.example.store.Models.model_Item
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_productboxdtos.view.*
@@ -44,10 +45,20 @@ class Adapter_productBoxDtos(var C: Activity, var list: ArrayList<productBoxDtos
     }
     override fun onBindViewHolder(holder: view, position: Int) {
 //        holder.itemView.imageView2.setImageResource(list.get(position).img!!)
-
-
-
-
+        holder.itemView.bto_more.setOnClickListener {
+            Log.i("dknadnkvnda","BS")
+            Log.i("dkmcmksdvmkdsmkv",MainActivity.Count_Bascekt.toString())
+            var I=Intent(C, MultyActivity_2::class.java)
+            I.putExtra("Type", "main_all_2")
+            I.putExtra("Type_Filter", "4")
+            I.putExtra("IdProduct", list.get(position).category.id)
+//            I.putExtra("Count", Mainfrag.modelmain?.count?.value.toString())
+            I.putExtra("Count", MainActivity.Count_Bascekt.toString())
+            I.putExtra("data_products_get", list.get(position).products)
+//            I.putExtra("data_products_get", ad_dis?.list?.products)
+//            I.putExtra("t", 3)
+            C?.startActivityForResult(I, 25)
+        }
 
         Log.i("dvmlkdnvksfbnvvxzcv",list.get(position).getCategory().getTitle())
         holder.itemView.titile_discounts.setText(list.get(position).getCategory().getTitle())
@@ -59,21 +70,18 @@ class Adapter_productBoxDtos(var C: Activity, var list: ArrayList<productBoxDtos
 
         })
 
-        holder.itemView.bto_more.setOnClickListener {
-
-                var I=Intent(C,MultyActivity_2::class.java)
-                I.putExtra("Type","X")
-                I.putExtra("data",list.get(position).getProducts())
-                I.putExtra("cateid",list.get(position).getCategory().id)
-                I.putExtra("t",1)
-                C.startActivityForResult(I,26)
-        }
+//        holder.itemView.bto_more.setOnClickListener {
+//
+//                var I=Intent(C,MultyActivity_2::class.java)
+//                I.putExtra("Type","X")
+//                I.putExtra("data",list.get(position).getProducts())
+//                I.putExtra("cateid",list.get(position).getCategory().id)
+//                I.putExtra("t",1)
+//                C.startActivityForResult(I,26)
+//        }
         holder.itemView.recy_itemsss.layoutManager=LinearLayoutManager(C, LinearLayoutManager.HORIZONTAL,true)
         holder.itemView.recy_itemsss.adapter=vv
-
-
     }
-
     override fun getItemCount(): Int {
        return  list.size
     }

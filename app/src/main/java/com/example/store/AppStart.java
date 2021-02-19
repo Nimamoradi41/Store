@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 
 import androidx.annotation.Nullable;
 
@@ -42,6 +43,10 @@ public class AppStart extends Application {
                                 .setFontAttrId(R.attr.fontPath)
                                 .build()))
                 .build());
+
+
+
+
     }
     public static Api getApi() {
         if (api == null) {

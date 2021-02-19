@@ -4,16 +4,85 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@color/Back_Color"
+    android:layoutDirection="ltr"
+    android:id="@+id/holder_889"
     android:layout_height="match_parent"
     tools:context=".Activity_Second_Bascket">
-
-    <ScrollView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView9"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="60dp"
+        android:elevation="5dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff">
+
+            <LinearLayout
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_delete_24" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="مجوز پرداخت"
+                android:textColor="@color/Base_Color"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout66"
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:tint="@color/Base_Color"
+                    app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/cardView9">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,6 +96,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:elevation="5dp"
+                android:visibility="visible"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -35,8 +105,8 @@
                 tools:ignore="MissingConstraints">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
                     android:id="@+id/goo"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="#fff">
 
@@ -80,17 +150,16 @@
                         app:tint="@color/Base_Color" />
 
                     <TextView
-                        android:textColor="@color/Dynamic_Color"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:gravity="right"
                         android:id="@+id/textView65"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
+                        android:gravity="right"
                         android:text="آدرس خود را انتخاب کنید"
-                        app:layout_constraintBottom_toBottomOf="@+id/imageView45"
+                        android:textColor="@color/Dynamic_Color"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toStartOf="@+id/imageView45"
                         app:layout_constraintStart_toEndOf="@+id/imageView47"
                         app:layout_constraintTop_toTopOf="@+id/imageView45" />
@@ -153,22 +222,52 @@
                         app:layout_constraintTop_toBottomOf="@+id/recyclerView"
                         tools:ignore="MissingConstraints" />
 
-                    <CheckBox
-                        android:id="@+id/checkBox2"
-                        android:layout_width="wrap_content"
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:buttonTint="@color/Base_Color"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginBottom="8dp"
-                        android:layoutDirection="rtl"
-                        android:textColor="@color/stand_Color"
+                        android:orientation="vertical"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/textView68"
-                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView68"
-                        tools:text="برای تایید سفارش باید اینجا را کلیک کنید " />
+                        app:layout_constraintTop_toBottomOf="@+id/textView68">
+
+                        <CheckBox
+                            android:id="@+id/checkBox2"
+                            android:tag="0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:buttonTint="@color/Base_Color"
+                            android:layoutDirection="rtl"
+                            android:textColor="@color/stand_Color"
+                            app:layout_constraintEnd_toEndOf="@+id/textView68"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView68"
+                            tools:text="برای تایید سفارش باید اینجا را کلیک کنید " />
+
+                        <CheckBox
+                            android:id="@+id/checkBox3"
+                            android:tag="0"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:buttonTint="@color/Base_Color"
+                            android:layoutDirection="rtl"
+                            android:textColor="@color/stand_Color"
+                            android:visibility="visible"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/textView68"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+                            tools:text="برای تایید سفارش باید اینجا را کلیک کنید " />
+                    </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -189,54 +288,45 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:theme="@style/Theme.AppCompat"
                     android:layout_height="match_parent"
-                    android:background="#fff">
+                    android:background="#fff"
+                    android:theme="@style/Theme.AppCompat">
 
                     <Button
                         android:id="@+id/btn_offer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
-                        android:text="اعمال"
-                        android:theme="@style/Theme.Design.Light.NoActionBar"
                         android:background="@drawable/shape_31"
-                        android:textColor="@color/Base_Color"
+                        android:text="اعمال"
+                        android:textColor="#1C49F3"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView69"
+                        android:theme="@style/Theme.Design.Light.NoActionBar"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView69" />
-
+                        app:layout_constraintTop_toTopOf="parent" />
                     <EditText
+                        android:id="@+id/txt_fff"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginEnd="8dp"
                         android:background="@drawable/shap_29"
+                        android:gravity="right|center"
+                        android:hint="کد تخفیف"
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp"
-                        android:id="@+id/txt_fff"
                         android:singleLine="true"
-                        android:textColor="@color/stand_Color"
+                        android:textColor="#707070"
+                        android:textColorHint="@color/stand_3"
+                        android:textCursorDrawable="@null"
                         app:layout_constraintBottom_toBottomOf="@+id/btn_offer"
-                        app:layout_constraintEnd_toStartOf="@+id/textView69"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/btn_offer"
                         app:layout_constraintTop_toTopOf="@+id/btn_offer"
                         tools:ignore="MissingConstraints" />
 
-                    <TextView
-                        android:id="@+id/textView69"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="8dp"
-                        android:text="کد تخفیف : "
-                        android:textColor="@color/stand_Color"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
@@ -247,10 +337,11 @@
                 android:layout_margin="8dp"
                 android:background="#fff"
                 android:elevation="4dp"
+                android:visibility="visible"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="4dp"
-                app:layout_constraintEnd_toEndOf="@+id/cardView8"
-                app:layout_constraintStart_toStartOf="@+id/cardView8"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView8">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -258,108 +349,214 @@
                     android:layout_height="wrap_content"
                     android:background="#fff">
 
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/imageView58"
+                        tools:ignore="MissingConstraints">
+
+                        <TextView
+                            android:id="@+id/dveifoh_5_6"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:textColor="@color/Sabz_Pay"
+                            app:layout_constraintBottom_toBottomOf="@+id/tetsv"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tetsv"
+                            tools:text="2000.000 ریال " />
+
+                        <TextView
+                            android:id="@+id/tetsv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="16dp"
+                            android:layout_marginBottom="16dp"
+                            android:text="مبلغ نهایی "
+                            android:textColor="@color/Sabz_Pay"
+                            android:textSize="15sp"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                     <TextView
                         android:id="@+id/textView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:layout_marginEnd="16dp"
-                        android:text="تعداد اقلام :"
-                        android:textColor="#B7000000"
+                        android:text="تعداد اقلام"
+                        android:textColor="@color/stand_3"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/textView95"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="5"
-                        android:textColor="#000"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:text="کرایه"
+                        android:textColor="@color/stand_3"
+                        app:layout_constraintEnd_toStartOf="@+id/view9"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView9751_4_5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/stand_Color"
                         app:layout_constraintBottom_toBottomOf="@+id/textView11"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@+id/textView11" />
+                        app:layout_constraintEnd_toStartOf="@+id/textView11"
+                        app:layout_constraintHorizontal_bias="0.38"
+                        app:layout_constraintStart_toEndOf="@+id/view9"
+                        app:layout_constraintTop_toTopOf="@+id/textView11"
+                        tools:text="5" />
+
+                    <TextView
+                        android:id="@+id/textView96_46"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="رایگان"
+                        android:textSize="12sp"
+                        android:gravity="left"
+                        android:singleLine="true"
+                        android:textColor="@color/Dynamic_2"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                        app:layout_constraintEnd_toStartOf="@+id/textView95"
+                        app:layout_constraintStart_toStartOf="@+id/textView14_2_4_5"
+                        app:layout_constraintTop_toTopOf="@+id/textView11"
+                        app:layout_constraintVertical_bias="0.0" />
 
                     <TextView
                         android:id="@+id/textView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:text="جمع کل :"
-                        android:textColor="#B7000000"
+                        android:layout_marginTop="8dp"
+                        android:text="جمع کل "
+                        android:textColor="@color/Dynamic_2"
                         app:layout_constraintEnd_toEndOf="@+id/textView11"
-                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+                        app:layout_constraintTop_toBottomOf="@+id/view7" />
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/textView14_2_4_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2000.000 ریال "
-                        android:textColor="#000"
+                        android:layout_marginStart="16dp"
+                        android:textColor="@color/Dynamic_2"
                         app:layout_constraintBottom_toBottomOf="@+id/textView13"
-                        app:layout_constraintStart_toStartOf="@+id/textView12"
-                        app:layout_constraintTop_toTopOf="@+id/textView13" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView13"
+                        app:layout_constraintVertical_bias="0.0"
+                        tools:text="2000.000 ریال " />
 
                     <TextView
                         android:id="@+id/textView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:text="تخفیف :"
-                        android:textColor="#B7000000"
+                        android:text="تخفیف "
+                        android:textColor="@color/Abi_Asemoni"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/textView13"
                         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                     <TextView
-                        android:id="@+id/textView16"
+                        android:id="@+id/textView16_2_4_5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2.000  ریال"
-                        android:textColor="#000"
+                        android:textColor="@color/Abi_Asemoni"
                         app:layout_constraintBottom_toBottomOf="@+id/textView15"
-                        app:layout_constraintStart_toStartOf="@+id/textView14"
-                        app:layout_constraintTop_toTopOf="@+id/textView15" />
+                        app:layout_constraintStart_toStartOf="@+id/textView14_2_4_5"
+                        app:layout_constraintTop_toTopOf="@+id/textView15"
+                        app:layout_constraintVertical_bias="1.0"
+                        tools:text="2.000  ریال" />
 
-                    <TextView
-                        android:id="@+id/textView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:text="قابل پرداخت :"
-                        android:textColor="#B7000000"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="@+id/textView15"
-                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                    <View
+                        android:id="@+id/view7"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="8dp"
+                        android:background="#E4E2E2"
+                        app:layout_constraintEnd_toEndOf="@+id/textView11"
+                        app:layout_constraintStart_toStartOf="@+id/textView96_46"
+                        app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-                    <TextView
-                        android:id="@+id/textView18"
+                    <View
+                        android:id="@+id/view9"
+                        android:layout_width="2dp"
+                        android:layout_height="0dp"
+                        android:background="#E4E2E2"
+                        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+                    <ImageView
+                        android:id="@+id/imageView58"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="222.000 ریال"
-                        android:textColor="#000"
-                        app:layout_constraintBottom_toBottomOf="@+id/textView17"
-                        app:layout_constraintStart_toStartOf="@+id/textView16"
-                        app:layout_constraintTop_toTopOf="@+id/textView17" />
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView15"
+                        app:srcCompat="@drawable/ic_line_line" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
 
-            <Button
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/btn_send_2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/shap_3"
+                android:background="@drawable/shap_3_1"
+                android:elevation="5dp"
+                android:gravity="center"
                 android:text="پرداخت"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/cardView2"
-                app:layout_constraintStart_toStartOf="@+id/cardView2"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="پرداخت"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_arow_6"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="MissingConstraints" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 
 

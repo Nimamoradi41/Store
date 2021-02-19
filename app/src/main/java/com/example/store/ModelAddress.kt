@@ -5,6 +5,8 @@ import java.io.Serializable
 class ModelAddress :Serializable {
  var id :String ?=null
  var name :String ?=null
+ var peykInfo :String ?=null
+ var distance :String ?=null
  var location :String ?=null
  var home :String ?=null
  var floor :String ?=null

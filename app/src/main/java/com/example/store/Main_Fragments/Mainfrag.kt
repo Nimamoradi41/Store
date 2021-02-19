@@ -11,24 +11,28 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import com.example.store.*
-import com.example.store.Adapters.adapter_Category
-import com.example.store.Adapters.adapter_main_cate
-import com.example.store.Adapters.adapter_slider
+import com.example.store.Adapters.*
 import com.example.store.Dialog.Dial_App
 import com.example.store.VIEWMODEL.MainActivityViewModel
 import kotlinx.android.synthetic.main.fragment_cate.view.*
+import kotlinx.android.synthetic.main.fragment_mainfrag.*
 import kotlinx.android.synthetic.main.fragment_mainfrag.view.*
 
+
 class Mainfrag : BaseFragment() {
-    var  ad_slider : adapter_slider ? =null
+    var  ad_slider : adapter_slider__3? =null
     var ad_Cate :adapter_Category ?= null
     var ad_dis : Adapter_discounts?= null
     var ad_Spa_1 : adapter_Spacial?= null
     var ad_productBoxDtos_ : Adapter_productBoxDtos?= null
-    var modelmain: MainActivityViewModel ?=null
+
     var V:View ?=null
+
     companion object{
+        var modelmain: MainActivityViewModel ?=null
+        var Count:String ?=null
         var child:FragmentManager ?=null
     }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,9 +44,9 @@ class Mainfrag : BaseFragment() {
     ): View? {
         // Inflate the layout for this fragment.
          V=inflater.inflate(R.layout.fragment_mainfrag, container, false)
-         modelmain = ViewModelProviders.of(activity!!)[MainActivityViewModel::class.java]
-        child=childFragmentManager
-         modelmain?.data?.observe(activity!!, object : Observer<data_2> {
+         modelmain= ViewModelProviders.of(requireActivity())[MainActivityViewModel::class.java]
+         child=childFragmentManager
+         modelmain?.data?.observe(requireActivity(), object : Observer<data_2> {
              override fun onChanged(t: data_2?) {
                  SetSlider(t?.sliders!!)
                  SetCate(t.categories!!, V!!)
@@ -52,28 +56,45 @@ class Mainfrag : BaseFragment() {
              }
          })
          SetMore_Discount()
-        SetMore_more()
+         SetMore_more()
         return V
     }
 
 
     fun   SetMore_Discount()
     {
-     V?.discounts_more?.setOnClickListener {
+        Log.i("dkmcmksdvmkdsmkv",MainActivity.mainActivityViewModel?.count?.value.toString())
+      V?.discounts_more?.setOnClickListener {
          var I=Intent(activity, MultyActivity_2::class.java)
-         I.putExtra("Type", "P")
-         I.putExtra("data", ad_dis?.list)
+//         I.putExtra("Type", "P")
+         I.putExtra("Type", "main_all")
+         I.putExtra("Type_Filter", "2")
+//         Log.i("dkakcmaka", modelmain?.count.toString())
+//         I.putExtra("Count", modelmain?.count?.value.toString())
+         I.putExtra("Count", MainActivity.Count_Bascekt.toString())
+//         I.putExtra("data_products_get", ad_dis?.list)
+         I.putExtra("data_products_get", ad_dis?.list?.products)
          activity?.startActivityForResult(I, 22)
      }
     }
 
     fun   SetMore_more()
     {
+        Log.i("dkmcmksdvmkdsmkv",MainActivity.mainActivityViewModel?.count?.value.toString())
+        Log.i("afhdahdhjf", modelmain?.count?.value.toString())
         V?.spa_more?.setOnClickListener {
+//            var I=Intent(activity, MultyActivity_2::class.java)
+//            I.putExtra("Type", "G")
+//            I.putExtra("data", ad_Spa_1?.list?.products)
+//            I.putExtra("t", 3)
+//            activity?.startActivityForResult(I, 25)
             var I=Intent(activity, MultyActivity_2::class.java)
-            I.putExtra("Type", "G")
-            I.putExtra("data", ad_Spa_1?.list?.products)
-            I.putExtra("t", 3)
+            I.putExtra("Type", "main_all")
+            I.putExtra("Type_Filter", "2")
+            I.putExtra("Count", MainActivity.Count_Bascekt.toString())
+            I.putExtra("data_products_get", ad_Spa_1?.list?.products)
+//            I.putExtra("data_products_get", ad_dis?.list?.products)
+//            I.putExtra("t", 3)
             activity?.startActivityForResult(I, 25)
         }
     }
@@ -121,7 +142,7 @@ class Mainfrag : BaseFragment() {
             V?.rootView?.titil_spl?.setText(data.category.title)
             V?.rootView?.titil_spl?.visibility=View.VISIBLE
             V?.rootView?.recy_special_2?.visibility=View.VISIBLE
-            ad_Spa_1= adapter_Spacial(activity!!, data,width,height)
+            ad_Spa_1= adapter_Spacial(requireActivity(), data, width, height)
             V?.rootView?.recy_special_2?.layoutManager=LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -174,15 +195,17 @@ class Mainfrag : BaseFragment() {
         if (c!=null)
         {
             V?.rootView?.view_Slider?.visibility=View.VISIBLE
-            ad_slider= adapter_slider(childFragmentManager, c)
+            ad_slider= adapter_slider__3(childFragmentManager,c)
             V?.rootView?.view_Slider?.adapter=ad_slider
+            V?.rootView?.pageIndicatorView?.setViewPager(V?.rootView?.view_Slider);
         }else{
             V?.rootView?.view_Slider?.visibility=View.GONE
         }
 
     }
-    private fun Setdiscounts(c: discounts) {
 
+
+    private fun Setdiscounts(c: discounts) {
         val dm = DisplayMetrics()
         activity?.getWindowManager()?.getDefaultDisplay()?.getMetrics(dm)
         val width = dm.widthPixels
@@ -193,7 +216,7 @@ class Mainfrag : BaseFragment() {
             V?.rootView?.titile_discounts?.visibility=View.VISIBLE
             V?.rootView?.discounts_more?.visibility=View.VISIBLE
             V?.rootView?.titile_discounts?.setText(c.categories.title)
-            ad_dis= Adapter_discounts(activity!!, c,width,height)
+            ad_dis= Adapter_discounts(activity!!, c, width, height)
             V?.rootView?.recy_discounts?.layoutManager=LinearLayoutManager(
                 context,
                 LinearLayoutManager.HORIZONTAL,
@@ -251,7 +274,7 @@ class Mainfrag : BaseFragment() {
         if (c.size!=null)
         {
             V?.rootView?.recy_productBoxDtos?.visibility=View.VISIBLE
-            ad_productBoxDtos_= Adapter_productBoxDtos(activity!!, c,width)
+            ad_productBoxDtos_= Adapter_productBoxDtos(activity!!, c, width)
             V?.rootView?.recy_productBoxDtos?.layoutManager=LinearLayoutManager(context)
             V?.rootView?.recy_productBoxDtos?.adapter=ad_productBoxDtos_
             ad_productBoxDtos_?.click_2(object : Adapter_productBoxDtos_2.Data_BTO_2 {

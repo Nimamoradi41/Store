@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="8dp"
+        android:elevation="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/imageView52"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:padding="6dp"
+                android:tint="@color/stand_3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_baseline_delete_24" />
+
+            <ImageView
+                android:id="@+id/imageView53"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                 />
+
+            <TextView
+                android:id="@+id/textView85"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/vazir_med"
+                android:gravity="center|right"
+                android:maxLines="2"
+                tools:text="پنیر پیتزا پروسس رنده شده 500 گرمی "
+                android:textColor="@color/Dynamic_Color"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView53"
+                app:layout_constraintEnd_toStartOf="@+id/imageView53"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView52"
+                app:layout_constraintTop_toTopOf="@+id/imageView53"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/textView87"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/vazir_med"
+                tools:text="50,000 تومان "
+                android:textColor="#5BCF71"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView53"
+                app:layout_constraintEnd_toStartOf="@+id/imageView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView88" />
+
+            <TextView
+                android:id="@+id/textView86"
+                android:visibility="visible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/sha_44"
+                android:fontFamily="@font/vazir_med"
+                android:paddingRight="12dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="50%"
+                android:textStyle="bold"
+                android:textColor="#5BCF71"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView53"
+                app:layout_constraintEnd_toStartOf="@+id/textView87"
+                app:layout_constraintHorizontal_bias="0.88"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView88"
+                app:layout_constraintVertical_bias="0.517" />
+
+            <TextView
+                android:id="@+id/textView88"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                android:fontFamily="@font/vazir_med"
+                tools:text="25,000 تومان"
+                android:textColor="@color/stand_Color"
+                app:layout_constraintEnd_toStartOf="@+id/imageView53"
+                app:layout_constraintTop_toBottomOf="@+id/textView85" />
+
+            <ImageView
+                android:id="@+id/imageView51"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:tint="#5CC652"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/textView91"
+                app:layout_constraintTop_toBottomOf="@+id/imageView53"
+                app:srcCompat="@drawable/ic_plus" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.37" />
+
+            <ImageView
+                android:id="@+id/imageView54"
+                android:layout_width="35dp"
+                android:tint="#EE517F"
+                android:layout_height="35dp"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView51"
+                app:srcCompat="@drawable/ic_dsdf" />
+
+            <TextView
+                android:id="@+id/textView91"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                tools:text="2"
+                android:fontFamily="@font/vazir_med"
+                android:textColor="@color/Dynamic_Color"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView54"
+                app:layout_constraintStart_toEndOf="@+id/imageView54"
+                app:layout_constraintTop_toTopOf="@+id/imageView54"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/view6"
+                android:layout_width="0dp"
+                android:background="@color/stand_Color"
+                android:layout_height="1dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView88"
+                app:layout_constraintEnd_toEndOf="@+id/textView88"
+                app:layout_constraintStart_toStartOf="@+id/textView88"
+                app:layout_constraintTop_toTopOf="@+id/textView88" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

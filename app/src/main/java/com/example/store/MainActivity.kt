@@ -3,6 +3,7 @@ import android.app.Activity
 import android.app.UiModeManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -33,7 +34,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
-
 class MainActivity : BaseActiity() {
     var F_Cate: CateFrag? = null
     var F_Home: Mainfrag? = null
@@ -44,10 +44,10 @@ class MainActivity : BaseActiity() {
     companion object {
         var transaction: FragmentManager? = null
         var Count = 0;
+        var Count_Bascekt = 0;
+        var act:Activity ?=null
         var mainActivityViewModel :MainActivityViewModel ?=null
     }
-
-
 
 
     override fun attachBaseContext(newBase: Context?) {
@@ -59,16 +59,24 @@ class MainActivity : BaseActiity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         var d=getSystemService(UI_MODE_SERVICE) as UiModeManager
         d.nightMode=UiModeManager.MODE_NIGHT_NO
+        act=this
         setContentView(R.layout.activity_main)
+//        window.statusBarColor= Color.parseColor("#ec4646")
+//        Log.i("dsvlavml", sharedPreferences?.getString(Constants.storeName,"").toString())
+        textView.setText(sharedPreferences?.getString(Constants.storeName,"").toString().toString())
         transaction = supportFragmentManager
         mainActivityViewModel = ViewModelProviders.of(this)[MainActivityViewModel::class.java]
         var v=intent.getSerializableExtra("DATA") as data_2?
         mainActivityViewModel?.data?.value= v
 //        mainActivityViewModel?.count?.value=v?.cartCount
         textView24.setText(mainActivityViewModel?.data?.value?.cartCount.toString())
+        Count_Bascekt= mainActivityViewModel?.data?.value?.cartCount!!
         mainActivityViewModel?.count?.observe(this, Observer {
+            Mainfrag.Count=it.toString()
+            Count_Bascekt=it
             textView24.setText(it.toString())
         })
         F_Home = Mainfrag()
@@ -113,7 +121,24 @@ class MainActivity : BaseActiity() {
             startActivityForResult(Intent(this, Activity_card_Bascket::class.java),21)
         }
         linearLayout2.setOnClickListener {
-            startActivity(Intent(this, ProfileActivity::class.java))
+            if (isNetConnected())
+            {
+                startActivity(Intent(this, ProfileActivity::class.java))
+            }else{
+                var I = 2;
+                var p = Dialapp(
+                        2,
+                        "اتصال خود را به اینترنت بررسی کنید",
+                        object : Dial_App.Interface_new {
+                            override fun News() {
+
+                            }
+                        },
+                       this
+                )
+                p.show()
+            }
+
         }
     }
 
@@ -313,15 +338,18 @@ class MainActivity : BaseActiity() {
 
         if (requestCode==22)
         {
+            Log.i("dvfghghh","A")
             if (resultCode== RESULT_OK)
             {
+                Log.i("dvfghghh","b")
                 GetHome()
-                Log.i("dvsdvsdb","A")
+                Log.i("dvfghghh","n")
                     if (data!=null)
                     {
-                        Log.i("dvsdvsdb","B")
+                        Log.i("dvfghghh","m")
+                        Log.i("dvfghghh","d")
                         var ii=data.getIntExtra("count",-1)
-                        Log.i("dvsdvsdb", ii.toString())
+                        Log.i("dvfghghh", ii.toString())
                         textView24.setText(ii.toString())
                     }
 //                Log.i("dsvsbnsnfbdkkdvk","U")
@@ -396,6 +424,14 @@ class MainActivity : BaseActiity() {
             if (resultCode== RESULT_OK)
             {
                 GetHome()
+                if (data!=null)
+                {
+                    Log.i("dvfghghh","m")
+                    Log.i("dvfghghh","d")
+                    var ii=data.getIntExtra("count",-1)
+                    Log.i("dvfghghh", ii.toString())
+                    textView24.setText(ii.toString())
+                }
 //                Log.i("dsvsbnsnfbdkkdvk","D")
 //                if (data?.getSerializableExtra("data")!=null)
 //                {
@@ -527,43 +563,7 @@ class MainActivity : BaseActiity() {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0)
     }
-    fun  GetHome()
-    {
-        var req=api?.GETHOME("Bearer " +token)
-        req?.enqueue(object : Callback<RESPOSNHOME> {
-            override fun onResponse(call: Call<RESPOSNHOME>, response: Response<RESPOSNHOME>) {
-                Log.i("zcvmzkmvzkmvmzv",response.code().toString())
-                if (response.isSuccessful)
-                {
-                    mainActivityViewModel?.data?.value=response.body()?.data
-                    mainActivityViewModel?.count?.value=response.body()?.data?.cartCount
-                }
-                if (response.code()==401)
-                {
-                    Login(securityKey,object : Login {
-                        override fun onLoginCompleted(success: Boolean) {
-                            if (success)
-                            {
-                                GetHome()
-                            }
-                        }
 
-                    })
-                }
-            }
-            override fun onFailure(call: Call<RESPOSNHOME>, t: Throwable) {
-                var I=3
-                var p=   Dialapp(I,"لطفا دوباره تلاش کنید",object :Dial_App.Interface_new{
-                    override fun News() {
-                        GetHome()
-                    }
-                },this@MainActivity)
-                p.show()
-
-            }
-
-        })
-    }
 
 
 

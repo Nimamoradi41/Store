@@ -15,7 +15,10 @@ class data_Order  :Serializable{
    var latitude:String ?=null
    var longitude:String ?=null
    var addressTel:String ?=null
+   var addressPeykInfo:String ?=null
+   var addressDistance:String ?=null
    var deliveryCode:String ?=null
+   var deliveryPriceForShow:String ?=null
    var numberTracking:String ?=null
    var moneyReturn:Boolean ?=null
    var moneyReturnDesc:String ?=null

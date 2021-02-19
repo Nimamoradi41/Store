@@ -2,7 +2,6 @@ package com.example.store.Main_Fragments
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
 class ErrorCode500 {
 
     @SerializedName("IsSuccess")

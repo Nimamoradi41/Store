@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,28 +52,31 @@ class adapter_list_order(var c:Context,var list:ArrayList<data_Order>) : Recycle
 //
 //        }
 
-
-
-        if (item.orderStatus==3)
+        if (item.orderStatus==3||item.orderStatus==4||item.orderStatus==5||item.orderStatus==6||item.orderStatus==7||item.orderStatus==9)
         {
-            holder.itemView.button2.setBackgroundResource(R.drawable.shape_39)
-            holder.itemView.button2.setText(item.orderStatusTitle)
+
+//            holder.itemView.button2.setBackgroundResource(R.drawable.shape_39)
+//            holder.itemView.button2.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setTextColor(Color.parseColor("#179225"))
 //            holder.itemView.button2.setTextColor(Color.parseColor("#25C76C"))
         } else if (item.orderStatus==1||item.orderStatus==2)
         {
-            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
-            holder.itemView.button2.setText(item.orderStatusTitle)
+//            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
+//            holder.itemView.button2.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setTextColor(Color.parseColor("#F5254F"))
 //            holder.itemView.button2.setTextColor(Color.parseColor("#F5254F"))
         }  else{
-            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
-            holder.itemView.button2.setText(item.orderStatusTitle)
+//            holder.itemView.button2.setBackgroundResource(R.drawable.shape_40)
+//            holder.itemView.button2.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setText(item.orderStatusTitle)
+            holder.itemView.textView97.setTextColor(Color.parseColor("#F5254F"))
         }
 
 
-
-
-        holder.itemView.button2.setText(item.orderStatusTitle)
-        if (item.numberTracking!=null)
+//        holder.itemView.button2.setText(item.orderStatusTitle)
+        if (!item.numberTracking.isNullOrEmpty())
         {
             holder.itemView.textView36.setText(item.numberTracking)
         }
@@ -80,22 +84,27 @@ class adapter_list_order(var c:Context,var list:ArrayList<data_Order>) : Recycle
         {
             holder.itemView.textView37.setText(item.addressFullName)
         }
-        if (item.addressFullName!=null)
+
+
+
+        if (!item.datePaymentFa.isNullOrEmpty())
         {
-            holder.itemView.textView38.setText(item.addressFullName)
+            holder.itemView.textView38.setText(item.datePaymentFa)
         }
-        if (item.fullLocation!=null)
+
+
+
+        if (!item.fullLocation.isNullOrEmpty())
         {
             holder.itemView.textView39.setText(item.fullLocation)
         }
-        if (item.pricePayForShow!=null)
+
+
+
+        if (!item.pricePayForShow.isNullOrEmpty())
         {
             holder.itemView.textView40.setText(item.pricePayForShow)
         }
-
-
-
-
 
 
 
@@ -105,7 +114,6 @@ class adapter_list_order(var c:Context,var list:ArrayList<data_Order>) : Recycle
         c.startActivity(I)
     }
     }
-
     override fun getItemCount(): Int {
         return  list.size
     }

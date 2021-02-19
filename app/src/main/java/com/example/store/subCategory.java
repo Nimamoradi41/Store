@@ -20,6 +20,16 @@ public class subCategory implements Serializable {
     @SerializedName("description")
     String description;
 
+    Boolean Selected=false;
+
+    public Boolean getSelected() {
+        return Selected;
+    }
+
+    public void setSelected(Boolean selected) {
+        Selected = selected;
+    }
+
     @Expose
     @SerializedName("subCategory")
     ArrayList<subCategory> subCategory;

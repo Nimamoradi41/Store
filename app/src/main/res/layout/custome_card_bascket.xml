@@ -39,15 +39,16 @@
                 android:id="@+id/textView19"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
                 android:text="گوشت 200 گرمی بهین گوشت"
-                android:textColor="#000"
+                android:textColor="@color/Dynamic_Color"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView8"
                 app:layout_constraintEnd_toStartOf="@+id/imageView8"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/imageView8" />
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/view2"
+                app:layout_constraintTop_toTopOf="@+id/imageView8"
+                app:layout_constraintVertical_bias="0.645" />
 
             <TextView
                 android:id="@+id/textView20"
@@ -55,19 +56,19 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="قیمت :"
-                android:textColor="#424242"
+                android:textColor="@color/stand_Color"
                 app:layout_constraintEnd_toEndOf="@+id/imageView8"
-                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
-
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
             <TextView
                 android:id="@+id/textView21"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
-                android:gravity="right"
+                android:gravity="left"
                 android:text="251.000 ریال"
-                android:textColor="#424242"
+                android:textStyle="bold"
+                android:textColor="@color/Dynamic_Color"
                 app:layout_constraintBottom_toBottomOf="@+id/textView20"
                 app:layout_constraintEnd_toStartOf="@+id/textView20"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,28 +76,55 @@
 
             <ImageView
                 android:id="@+id/imageView9"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
-                app:tint="@color/Base_Color"
+                android:padding="6dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView20"
-                app:layout_constraintTop_toBottomOf="@+id/textView21"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_baseline_delete_24"
+                app:tint="@color/Base_Color" />
 
             <Button
+                style="@style/Theme.AppCompat.NoActionBar"
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:background="@drawable/shap_3"
+                android:background="@drawable/shape_45"
+                android:fontFamily="@font/vazir_med"
+                android:textColor="#fff"
+                android:textSize="13sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
                 app:layout_constraintStart_toStartOf="@+id/textView21"
-                app:layout_constraintTop_toBottomOf="@+id/textView21" />
+                app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="0.1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/stand_Color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView8" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="0dp"
+                android:layout_height="0.1dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/stand_Color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView21" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

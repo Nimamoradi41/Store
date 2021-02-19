@@ -26,6 +26,7 @@ import com.example.store.VIEWMODEL.MainActivityViewModel
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__a_l_l.view.*
+import kotlinx.android.synthetic.main.fragment_frag__all__all.view.*
 import kotlinx.android.synthetic.main.fragment_frag__under__cate.view.*
 import okhttp3.Callback
 import okhttp3.MediaType
@@ -56,6 +57,9 @@ class Frag_ALL_Dis : BaseFragment() {
        var V=inflater.inflate(R.layout.fragment_frag__a_l_l, container, false)
         V.recy_itemsss.layoutManager=GridLayoutManager(activity,2)
         SetCate_2(V, products?.products!!)
+        V.linearLayout5896.setOnClickListener {
+            activity?.finish()
+        }
         Model= GetProductModel()
         modelmain = ViewModelProviders.of(activity!!)[MainActivityViewModel::class.java]
         modelmain?.change_Data?.observe(activity!!, object : Observer<data_accses> {

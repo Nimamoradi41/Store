@@ -1,7 +1,9 @@
 package com.example.store;
 
+import android.Manifest;
 import android.os.Bundle;
 
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,5 +22,6 @@ public class BlankFragment_test_2 extends Fragment {
                              Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_blank_test_2, container, false);
+
     }
 }

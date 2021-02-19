@@ -11,6 +11,7 @@ import com.example.store.Constants
 import com.example.store.R
 import com.example.store.Models.modeli_category
 import com.example.store.categories
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custome_category.view.*
 import kotlinx.android.synthetic.main.fragment_custome_slider.view.*
 
@@ -34,7 +35,8 @@ class adapter_Category(var c:Context,var list:ArrayList<categories>) : RecyclerV
         if (list.get(position).image1.isNotEmpty()&&list.get(position).image1!=null)
         {
                 Log.i("sfkmsmlbab",""+ Constants.BASE_URL+"/CategoryImg/"+list.get(position).image1)
-                Glide.with(c).load(Constants.BASE_URL+"/CategoryImg/"+list.get(position).image1).into(holder.itemView.imageView4);
+//                Glide.with(c).load(Constants.BASE_URL+"/CategoryImg/"+list.get(position).image1).into(holder.itemView.imageView4);
+            Picasso.get().load(Constants.BASE_URL+"/CategoryImg/"+list.get(position).image1).placeholder(R.drawable.holder).into(holder.itemView.imageView4)
         }
        holder.itemView.textView2.setText(list.get(position).title)
         holder.itemView.setOnClickListener {

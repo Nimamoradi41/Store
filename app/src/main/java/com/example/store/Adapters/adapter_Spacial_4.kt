@@ -20,18 +20,22 @@ import com.example.store.Models.model_Item
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
 import kotlinx.android.synthetic.main.custome_special.view.button
+import kotlinx.android.synthetic.main.custome_special.view.imageView2
+import kotlinx.android.synthetic.main.custome_special.view.imageView3
 import kotlinx.android.synthetic.main.custome_special.view.textView3
 import kotlinx.android.synthetic.main.custome_special.view.textView4
 import kotlinx.android.synthetic.main.custome_special.view.textView5
+import kotlinx.android.synthetic.main.custome_special.view.textView6
 import kotlinx.android.synthetic.main.custome_special.view.textView7
 import kotlinx.android.synthetic.main.custome_special_2.view.*
+import kotlinx.android.synthetic.main.custome_special_4.view.*
 
 class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>,var W:Int) : RecyclerView.Adapter<adapter_Spacial_4.view>() {
     public  class view(itemView: View) : RecyclerView.ViewHolder(itemView)
     var interface_1: Adapter_discounts.Data_dis?=null
     var loadmore: Boolean=false
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-        var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3,parent,false)
+        var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_4,parent,false)
         return  view(V)
     }
     fun click(da: Adapter_discounts.Data_dis)
@@ -109,30 +113,30 @@ class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>,var W:Int) 
 //        holder.itemView.textView89.setText("%"+list.get(position).getDiscountPercent())
 //        holder.itemView.textView7499.setText(list.get(position).getPriceForShow())
 //        holder.itemView.textView55959.setText(list.get(position).getPriceForShow())
+        if (Item.getCurrentReserved()>0)
+        {
+            holder.itemView.button_22.setText(Item.getCurrentReserved().toString())
+            holder.itemView.button_22.animate().alpha(1f).setDuration(500).start()
+        }else  {
+            holder.itemView.button_22.setText("0")
+            holder.itemView.button_22.animate().alpha(1f).setDuration(500).start()
+        }
+
+
 //        if (Item.getCurrentReserved()>0)
 //        {
 //            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+////            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+//                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+//            }.start()
 //        }else  {
 //            holder.itemView.button.setText("افزودن به سبد خرید")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+////            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+//                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+//            }.start()
 //        }
-
-
-        if (Item.getCurrentReserved()>0)
-        {
-            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
-            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
-                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
-            }.start()
-        }else  {
-            holder.itemView.button.setText("افزودن به سبد خرید")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
-            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
-                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
-            }.start()
-        }
 //        if (Item.getCurrentReserved()>0)
 //        {
 //            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
@@ -150,7 +154,7 @@ class adapter_Spacial_4(var c:Activity, var list:ArrayList<products>,var W:Int) 
             c.startActivityForResult(I,85)
         }
 
-        holder.itemView.button.setOnClickListener {
+        holder.itemView.constraintLayout888.setOnClickListener {
             val d=Dialog(c, R.style.CustomDialog)
             d.setCancelable(true)
             var v=LayoutInflater.from(c).inflate(R.layout.custome_modal, null, false)

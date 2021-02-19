@@ -61,18 +61,18 @@ class BTS_Sort(var I: Int) : BottomSheetDialogFragment() {
 
 
         view.button9.setOnClickListener {
-
-
             val radioButtonID: Int = view.rag.getCheckedRadioButtonId()
             val radioButton: View = view.rag.findViewById(radioButtonID)
             val idx: Int = view.rag.indexOfChild(radioButton)
-            if (Frag_Under_Cate.Order!=idx)
-            {
-                d?.Data(idx)
-                dismiss()
-            }else{
-                dismiss()
-            }
+            d?.Data(idx)
+            dismiss()
+//            if (Frag_Under_Cate.Order!=idx)
+//            {
+//                d?.Data(idx)
+//                dismiss()
+//            }else{
+//                dismiss()
+//            }
 
 
         }

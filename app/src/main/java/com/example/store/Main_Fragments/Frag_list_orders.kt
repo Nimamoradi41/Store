@@ -18,7 +18,7 @@ import com.example.store.R
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_blankrf.view.*
-import kotlinx.android.synthetic.main.fragment_frag__myaccunt.view.*
+import kotlinx.android.synthetic.main.fragment_frag__myaccunt_2.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.io.IOException
@@ -35,7 +35,6 @@ class Frag_list_orders : BaseFragment() {
         V.recy_list_order.adapter=Ad_adapter
         V.resfresh.setColorSchemeResources(R.color.Base_Color);
         GetOrder(V)
-
         V.resfresh.setOnRefreshListener {
             if (!isNetConnected()) {
                 var I = 2;

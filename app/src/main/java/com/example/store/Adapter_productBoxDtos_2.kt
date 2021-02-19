@@ -1,5 +1,6 @@
 package com.example.store
 
+import android.animation.AnimatorInflater
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
@@ -13,8 +14,18 @@ import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.custome_modal.view.*
 import kotlinx.android.synthetic.main.custome_special.view.*
+import kotlinx.android.synthetic.main.custome_special.view.button
+import kotlinx.android.synthetic.main.custome_special.view.imageView2
+import kotlinx.android.synthetic.main.custome_special.view.imageView3
+import kotlinx.android.synthetic.main.custome_special.view.textView3
+import kotlinx.android.synthetic.main.custome_special.view.textView4
+import kotlinx.android.synthetic.main.custome_special.view.textView5
+import kotlinx.android.synthetic.main.custome_special.view.textView6
+import kotlinx.android.synthetic.main.custome_special.view.textView7
+import kotlinx.android.synthetic.main.custome_special_4.view.*
 
 class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:Int) : RecyclerView.Adapter<Adapter_productBoxDtos_2.view>() {
     var interface_1: Data_BTO_2?=null
@@ -29,7 +40,7 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): view {
-         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_3, parent, false)
+         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_special_4, parent, false)
 //         var V=LayoutInflater.from(parent.context).inflate(R.layout.custome_productboxdtos, parent, false)
 //          var v=V.layoutParams as RecyclerView.LayoutParams
 //          v.width=pxToDp(w.toFloat()).toInt()+20
@@ -46,7 +57,7 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
 
 
         var v=holder.itemView.layoutParams as RecyclerView.LayoutParams
-        v.width=W/2
+        v.width=W/2-(W/20)
         v.height=W*3/4
         holder.itemView.layoutParams= ViewGroup.LayoutParams(v)
         holder.itemView.requestLayout()
@@ -79,11 +90,12 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
         if(Item?.getFirstImage()!=null)
         {
             Log.i("sfkmsmlbab",""+Constants.BASE_URL+"/Images/"+Item?.getFirstImage())
-            Glide.with(C).load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).into(holder.itemView.imageView2);
+//            Glide.with(C).load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).into(holder.itemView.imageView2);
+            Picasso.get().load(Constants.BASE_URL+"/Images/"+Item?.getFirstImage()).placeholder(R.drawable.holder).into(holder.itemView.imageView2)
         }
 
         holder.itemView.textView4.setText(list.getProducts().get(position).getTitle())
-//        holder.itemView.textView3.setText("%"+list.getProducts().get(position).getDiscountPercent())
+        holder.itemView.textView3.setText("%"+list.getProducts().get(position).getDiscountPercent())
 
 
 //        holder.itemView.textView5.setText(list.getProducts().get(position).getPriceForShow())
@@ -92,29 +104,38 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
 
         holder.itemView.textView6.setText(list.getProducts().get(position).getPriceAfterDiscountForShow())
 
+        if (Item.getCurrentReserved()>0)
+        {
+            holder.itemView.button_22.setText(Item.getCurrentReserved().toString())
+            holder.itemView.button_22.animate().alpha(1f).setDuration(500).start()
+        }else  {
+            holder.itemView.button_22.setText("0")
+            holder.itemView.button_22.animate().alpha(1f).setDuration(500).start()
+        }
+
+
+        var animator = AnimatorInflater.loadAnimator(
+            C,
+            com.example.store.R.animator.animatior_1
+        )
+        animator.setTarget(holder.itemView.imageView3)
+
+        animator.start()
+
 //        if (Item.getCurrentReserved()>0)
 //        {
 //            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+////            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+//                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+//            }.start()
 //        }else  {
 //            holder.itemView.button.setText("افزودن به سبد خرید")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+////            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
+//            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
+//                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
+//            }.start()
 //        }
-
-        if (Item.getCurrentReserved()>0)
-        {
-            holder.itemView.button.setText(Item.getCurrentReserved().toString()+" عدد ")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
-            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
-                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
-            }.start()
-        }else  {
-            holder.itemView.button.setText("افزودن به سبد خرید")
-//            holder.itemView.button.animate().alpha(1f).setDuration(500).start()
-            holder.itemView.button.animate().scaleX(0f).scaleY(0f).setDuration(200).withEndAction {
-                holder.itemView.button.animate().scaleX(1f).scaleY(1f).setDuration(200)
-            }.start()
-        }
 
         holder.itemView.setOnClickListener {
             var I=Intent(C,ItemDetail::class.java)
@@ -125,7 +146,7 @@ class Adapter_productBoxDtos_2(var C: Activity, var list: productBoxDtos,var W:I
 
 
 
-        holder.itemView.button.setOnClickListener {
+        holder.itemView.constraintLayout888.setOnClickListener {
             val d=Dialog(C, R.style.CustomDialog)
             d.setCancelable(true)
             var v=LayoutInflater.from(C).inflate(R.layout.custome_modal, null, false)

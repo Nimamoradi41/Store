@@ -51,7 +51,16 @@ class Adapter_second_bascket_marsole(var items_2:ArrayList<orderItems>,var C:Con
         }
 
 
-        holder.itemView.txt_item.setText(Item.productTitle)
+
+
+        if (position+1==items_2.size)
+        {
+
+            Log.i("skvnkasndkv","AD")
+            holder.itemView.view_eer.visibility=View.GONE
+        }
+        holder.itemView.txt_item.setText(Item.productTitle  )
+
     }
 
     override fun getItemCount(): Int {

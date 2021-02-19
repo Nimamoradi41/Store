@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="ltr"
+    android:background="#fff"
+    tools:context=".Main_Fragments.Frag_Myaccunt">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp">
+
+
+            <EditText
+                android:id="@+id/edt_codemeli"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
+                android:layout_marginTop="8dp"
+                android:gravity="right"
+                android:inputType="number"
+                android:maxLength="10"
+                android:hint="کد ملی"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView63"
+                app:layout_constraintStart_toStartOf="@+id/edt_famili"
+                app:layout_constraintTop_toBottomOf="@+id/textView63"
+                tools:ignore="MissingConstraints" />
+
+
+            <TextView
+                android:id="@+id/btn_save"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/shap_3"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="ثبت"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/edt_tel"
+                app:layout_constraintStart_toStartOf="@+id/edt_tel"
+                app:layout_constraintTop_toBottomOf="@+id/edt_tel" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/shape_10"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/edy_birthday"
+                app:layout_constraintEnd_toStartOf="@+id/guideline11"
+                app:layout_constraintStart_toStartOf="@+id/edt_codemeli"
+                app:layout_constraintTop_toTopOf="@+id/edy_birthday_2">
+
+
+                <RadioGroup
+                    android:id="@+id/rap_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <RadioButton
+                        android:id="@+id/men"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/Base_Color"
+
+                        android:text="آقا"
+                        android:textColor="@color/stand_Color" />
+
+                    <RadioButton
+                        android:id="@+id/famel"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/Base_Color"
+                        android:text="خانم"
+                        android:textColor="@color/stand_Color" />
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView53"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="جنسیت"
+                android:visibility="gone"
+                android:paddingRight="3dp"
+                android:paddingLeft="3dp"
+                android:textColor="@color/stand_Color"
+                android:background="@color/white"
+                app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
+                app:layout_constraintEnd_toEndOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout4" />
+
+            <EditText
+                android:id="@+id/edy_birthday_2"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shape_55"
+                android:drawableRight="@drawable/ic_calender_4"
+                android:drawablePadding="8dp"
+                android:focusable="false"
+                android:hint="تاریخ تولد"
+                android:inputType="text"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView98"
+                app:layout_constraintStart_toStartOf="@+id/guideline11"
+                app:layout_constraintTop_toBottomOf="@+id/textView98"
+                tools:ignore="MissingConstraints" />
+
+
+            <EditText
+                android:id="@+id/edt_tel"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textCursorDrawable="@null"
+                android:gravity="right"
+                android:enabled="false"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:hint="شماره تلفن"
+                android:textColorHint="@color/stand_3"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/textView99"
+                app:layout_constraintStart_toStartOf="@+id/constraintLayout4"
+                app:layout_constraintTop_toBottomOf="@+id/textView99" />
+
+
+
+
+            <EditText
+                android:gravity="right"
+                android:id="@+id/edt_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/shape_55"
+                android:paddingTop="10dp"
+                android:hint="نام"
+                android:textColorHint="@color/stand_3"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:singleLine="true"
+                android:paddingBottom="10dp"
+                android:textColor="#000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView60" />
+
+
+            <EditText
+                android:id="@+id/edt_famili"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textCursorDrawable="@null"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:hint="نام خانوادگی"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:background="@drawable/shape_55"
+                android:textColorHint="@color/stand_3"
+                app:layout_constraintEnd_toEndOf="@+id/textView17"
+                app:layout_constraintStart_toStartOf="@+id/edt_name"
+                app:layout_constraintTop_toBottomOf="@+id/textView17"
+                tools:ignore="MissingConstraints" />
+
+
+
+            <TextView
+                android:id="@+id/textView60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="نام"
+                android:textSize="15sp"
+                android:fontFamily="@font/vazir_med"
+                android:textColor="@color/stand_Color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="نام خانوادگی"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_name" />
+
+            <TextView
+                android:id="@+id/textView63"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="کد ملی"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_famili" />
+
+            <TextView
+                android:id="@+id/textView98"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="تاریخ تولد"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_codemeli" />
+
+            <TextView
+                android:id="@+id/textView99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="شماره تلفن"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edy_birthday_2" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline11"
+                app:layout_constraintGuide_percent="0.5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</LinearLayout>

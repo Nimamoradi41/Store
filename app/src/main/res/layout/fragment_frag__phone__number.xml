@@ -8,6 +8,7 @@
     android:layoutDirection="ltr"
     android:layout_height="match_parent"
     tools:context=".Main_Fragments.Frag_Phone_Number">
+  
 
 
     <TextView
@@ -16,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="اهواز مال"
+        android:text="هایپر مارکت هوراد"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="@color/Base_Color"
@@ -38,12 +39,14 @@
 
     <TextView
         android:id="@+id/textView59"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
-        android:textColor="@color/stand_Color"
         android:text="شماره تلفن خود را برای دریافت کد تایید وارد کنید"
+        android:textColor="@color/stand_Color"
         app:layout_constraintEnd_toEndOf="@+id/textView58"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView58" />
     <EditText
         android:textColor="@color/Dynamic_Color"

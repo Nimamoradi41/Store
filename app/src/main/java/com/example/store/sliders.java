@@ -1,7 +1,10 @@
 package com.example.store;
 
+import androidx.viewpager.widget.ViewPager;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.smarteist.autoimageslider.IndicatorView.PageIndicatorView;
 
 import java.io.Serializable;
 

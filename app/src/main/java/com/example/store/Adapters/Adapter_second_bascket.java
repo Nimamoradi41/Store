@@ -51,6 +51,8 @@ public class Adapter_second_bascket extends RecyclerView.Adapter<Adapter_second_
       }
 
 
+
+
       holder.txt_address.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {

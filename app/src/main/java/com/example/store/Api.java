@@ -7,6 +7,8 @@ import com.example.store.Models.GetProductModel;
 import com.example.store.Models.PaymentModel;
 import com.example.store.Models.RESPONSADRESS;
 import com.example.store.Models.RESPONSCARD;
+import com.example.store.Models.ResGetDetail;
+import com.example.store.Models.ResGetDiscounts;
 import com.example.store.Models.ResPonseProfile;
 import com.example.store.Models.ResponDelAddress;
 import com.example.store.Models.ResponseAddress;
@@ -49,6 +51,10 @@ public interface Api {
     Call<ResPonseProfile> GetProfile(@Header("Authorization") String token);
 
 
+    @POST("/api/Profile/GetDiscounts")
+    Call<ResGetDiscounts> GetDiscounts(@Header("Authorization") String token);
+
+
 
     @Multipart
     @POST("/api/Profile/EditProfile")
@@ -74,6 +80,12 @@ public interface Api {
     @Multipart
     @POST("/api/order/GetCart")
     Call<RESPONSCARD> GETCARD(@Header("Authorization") String token,@Part("body") RequestBody body);
+
+
+
+    @Multipart
+    @POST("/api/Product/GetDetail")
+    Call<ResGetDetail> GetDetail(@Header("Authorization") String token, @Part("body") RequestBody body);
 
 
 

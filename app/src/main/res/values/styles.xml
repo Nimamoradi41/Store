@@ -2,15 +2,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
 
-    <style name="appthem" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="appthem" parent="Theme.AppCompat.DayNight.DarkActionBar">
         <item name="android:forceDarkAllowed" tools:targetApi="q">true</item>
-    </style>
+        <item name="colorPrimary">@color/Base_Color</item>
+        <item name="colorAccent">@color/Base_Color</item>
+        <item name="colorPrimaryDark">@color/Base_Color</item>
 
+    </style>
     <style name="CustomDialog" parent="Theme.AppCompat.Dialog">
 
-
     </style>
-
+  <style name="app_them" parent="Theme.MaterialComponents.Light.NoActionBar">
+      <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+      <item name="android:statusBarColor">@color/Base_Color</item>
+  </style>
 
     <style name="mythe">
         <item name="background">@drawable/shap_12</item>
@@ -18,7 +23,46 @@
     </style>
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
 
-
+        <item name="android:statusBarColor">@color/Base_Color</item>
     </style>
     <style name="SheetDialog"></style>
+
+    <style name="CustomCardViewStyle" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/myradois</item>
+    </style>
+
+    <style name="myradois" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">24dp</item>
+        <item name="cornerSizeBottomLeft">24dp</item>
+    </style>
+
+    <style name="my">
+        <item name="background">@drawable/shap_3</item>
+    </style>
+
+    <style name="MyButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="shapeAppearanceOverlay">@style/MyShapeAppearance</item>
+    </style>
+    <style name="MyShapeAppearance">
+        <item name="cornerFamily" tools:ignore="DuplicateDefinition">rounded</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+<!--        <item name="background">@drawable/shap_3</item>-->
+        <item name="backgroundColor">@color/Base_Color</item>
+        <item name="colorButtonNormal">@color/Base_Color</item>
+        <item name="colorPrimary">@color/Base_Color</item>
+        <item name="color">@color/Base_Color</item>
+        <item name="colorAccent">@color/Base_Color</item>
+        <item name="colorControlNormal">@color/Base_Color</item>
+        <item name="colorOnBackground">@color/Base_Color</item>
+        <item name="cornerSizeBottomRight">8dp</item>
+        <item name="cornerSizeBottomLeft">8dp</item>
+        <item name="cornerSizeTopRight">8dp</item>
+    </style>
+
+    <style name="stack" parent="Widget.MaterialComponents.Button">
+        <item name="background">@drawable/shap_3</item>
+    </style>
 </resources>

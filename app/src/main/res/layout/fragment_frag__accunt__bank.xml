@@ -8,103 +8,151 @@
     android:background="@color/white"
     tools:context=".Main_Fragments.Frag_Myaccunt">
     <ScrollView
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="500dp">
 
-
-            <Button
+            <TextView
                 android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@drawable/shap_3"
+                android:gravity="center"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
                 android:text="ثبت"
                 android:textColor="#fff"
-                android:textStyle="bold"
                 android:textSize="16sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/textField4"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/textField4"
-                app:layout_constraintTop_toBottomOf="@+id/textField4" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_3"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginTop="16dp"
-                android:gravity="left"
-                android:hint="شماره کارت"
-                app:boxStrokeColor="@color/Base_Color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_2">
+                app:layout_constraintTop_toBottomOf="@+id/edt_shaba" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:id="@+id/edt_numbercart"
-                    android:maxLength="16"
 
-                    android:textColor="#000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField4"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <EditText
+                android:singleLine="true"
+                android:id="@+id/edt_numbercart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textCursorDrawable="@null"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="left"
-                android:hint="شماره شبا IR"
-                app:boxStrokeColor="@color/Base_Color"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textField_3">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edt_shaba"
-
-                    android:textColor="#000" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField_2"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:gravity="right"
-                android:hint="نام بانک"
-                app:boxStrokeColor="@color/Base_Color"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:hint="شماره کارت"
+                android:textColorHint="@color/stand_3"
+                android:fontFamily="@font/vazir_med"
+                android:layout_marginEnd="16dp"
+                android:inputType="number"
+                android:maxLength="16"
+                app:layout_constraintEnd_toEndOf="@+id/textView101"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toBottomOf="@+id/textView101"
+                tools:ignore="MissingConstraints" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/edt_bankname"
 
-                    android:textColor="#000" />
+            <EditText
+                android:singleLine="true"
+                android:id="@+id/edt_shaba"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:textCursorDrawable="@null"
+                android:gravity="right"
+                android:layout_marginEnd="16dp"
+                android:inputType="number"
+                android:hint="شماره شبا"
+                android:fontFamily="@font/vazir_med"
+                android:background="@drawable/shape_55"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/stand_3"
+                app:layout_constraintEnd_toEndOf="@+id/textView102"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView102"
+                tools:ignore="MissingConstraints" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+            <EditText
+                android:singleLine="true"
+                android:id="@+id/edt_bankname"
+                android:layout_width="match_parent"
+                android:gravity="right"
+                android:textCursorDrawable="@null"
+                android:layout_height="wrap_content"
+                android:background="@drawable/shape_55"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="8dp"
+                android:paddingLeft="8dp"
+                android:hint="نام بانک "
+                android:fontFamily="@font/vazir_med"
+                android:textColorHint="@color/stand_3"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="@+id/textView100"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView100"
+                tools:ignore="MissingConstraints" />
+
+
+
+            <TextView
+                android:textColor="@color/stand_Color"
+                android:fontFamily="@font/vazir_med"
+                android:textSize="15sp"
+                android:id="@+id/textView100"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="نام بانک "
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView101"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="شماره کارت"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_bankname" />
+
+            <TextView
+                android:id="@+id/textView102"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/vazir_med"
+                android:text="شماره شبا"
+                android:textColor="@color/stand_Color"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_numbercart" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

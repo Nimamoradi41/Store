@@ -1,0 +1,45 @@
+<animated-vector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="512dp"
+            android:height="512dp"
+            android:viewportWidth="512"
+            android:viewportHeight="512">
+            <path
+                android:name="path"
+                android:pathData="M 256 48 C 141.1 48 48 141.1 48 256 C 48 370.9 141.1 464 256 464 C 370.9 464 464 370.9 464 256 C 464 141.1 370.9 48 256 48 Z M 256 446.7 C 150.9 446.7 65.3 361.2 65.3 256 C 65.3 150.9 150.8 65.3 256 65.3 C 361.1 65.3 446.7 150.8 446.7 256 C 446.7 361.1 361.1 446.7 256 446.7 Z"
+                android:fillColor="#000"
+                android:strokeWidth="1"/>
+            <path
+                android:name="path_1"
+                android:pathData="M 256 96 C 167.6 96 96 167.6 96 256 C 96 344.4 167.6 416 256 416 C 344.4 416 416 344.4 416 256 C 416 167.6 344.4 96 256 96 Z"
+                android:fillColor="#000"
+                android:strokeWidth="1"/>
+        </vector>
+    </aapt:attr>
+    <target android:name="path">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillColor"
+                android:duration="1000"
+                android:valueFrom="#CC9696"
+                android:valueTo="#dc1c1c"
+                android:valueType="colorType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+    <target android:name="path_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:propertyName="fillColor"
+                android:duration="1000"
+                android:valueFrom="#CC9696"
+                android:valueTo="#dc1c1c"
+                android:valueType="colorType"
+                android:interpolator="@android:interpolator/fast_out_slow_in"/>
+        </aapt:attr>
+    </target>
+</animated-vector>

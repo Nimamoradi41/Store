@@ -4,64 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="#fff"
+    android:background="@color/Back_Color"
+    android:layoutDirection="ltr"
     android:layout_height="match_parent"
     tools:context=".MultyActivity">
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.cardview.widget.CardView
+        app:cardElevation="5dp"
+        android:elevation="5dp"
         android:layout_width="match_parent"
-        android:background="#7209b7"
+        android:background="@color/Back_Color"
         android:id="@+id/holder"
         android:layout_height="60dp">
+      <androidx.constraintlayout.widget.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+          <LinearLayout
+              android:visibility="gone"
+              android:layout_width="45dp"
+              android:layout_height="45dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintTop_toTopOf="parent">
+              <ImageView
+                  android:id="@+id/imageView7"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  app:srcCompat="@drawable/ic_baseline_delete_24" />
+          </LinearLayout>
 
-        <LinearLayout
-            android:visibility="gone"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+          <TextView
+              android:id="@+id/textView1er"
+              android:layout_width="wrap_content"
+              android:textColor="@color/Base_Color"
+              android:textStyle="bold"
+              android:layout_height="wrap_content"
+              android:text="پروفایل"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintEnd_toEndOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imageView7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_delete_24" />
-        </LinearLayout>
+          <LinearLayout
+              android:id="@+id/linearLayout5"
+              android:layout_width="45dp"
+              android:layout_height="45dp"
+              android:gravity="center"
+              android:orientation="horizontal"
+              app:layout_constraintBottom_toBottomOf="parent"
+              app:layout_constraintStart_toStartOf="parent"
+              app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/textView1er"
-            android:layout_width="wrap_content"
-            android:textColor="#fff"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:text="پروفایل"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+              <ImageView
+                  android:id="@+id/imageView6"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_weight="1"
+                  app:tint="@color/Base_Color"
+                  app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
+          </LinearLayout>
+      </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/ic_baseline_arrow_back_24" />
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
     <FrameLayout
         android:id="@+id/Conta"
         android:layout_width="match_parent"

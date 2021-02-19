@@ -18,10 +18,12 @@ import com.example.store.Models.ResponDelAddress
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
 import kotlinx.android.synthetic.main.fragment_frag__address.*
+import kotlinx.android.synthetic.main.fragment_frag__address.no_item_Card
 import kotlinx.android.synthetic.main.fragment_frag__address.view.*
 import kotlinx.android.synthetic.main.fragment_frag__address.view.cardView6
 import kotlinx.android.synthetic.main.fragment_frag__address.view.no_item_Card
 import kotlinx.android.synthetic.main.fragment_frag__address.view.rect_address
+import kotlinx.android.synthetic.main.fragment_frag__address_2.*
 import kotlinx.android.synthetic.main.fragment_frag__address_2.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -31,19 +33,49 @@ import java.io.IOException
 import javax.security.auth.callback.Callback
 class Frag_Address_2 : BaseFragment() {
     var ad_address:adapter_address_2?=null
+    var Type=""
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Type= arguments?.getString("Type_2").toString()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
         var v= inflater.inflate(R.layout.fragment_frag__address_2, container, false)
         ad_address= adapter_address_2(activity!!)
-        if (MultyActivity_2.Pos>=0)
-        {
-            ad_address?.Selected=MultyActivity_2.Pos
-        }
+//        if (MultyActivity_2.Pos>=0)
+//        {
+//            ad_address?.Selected=MultyActivity_2.Pos
+//        }
 
         v.rect_address.adapter=ad_address
+        MultyActivity_2.Pos=-8
+        MultyActivity_2.address=null
+        Log.i("svknsnkvs", MultyActivity_2.Pos.toString())
 
 
         v.add_address2.setOnClickListener {
+
+
+
+            if (Type.equals("A"))
+            {
+                var Inte=Intent(requireActivity(),Activity_Second_Bascket::class.java)
+                Inte.putExtra("data_1",MultyActivity_2.address)
+                startActivity(Inte)
+                activity?.finish()
+            }
+
+
+            if (Type.equals("B"))
+            {
+                var Inte=Intent(requireActivity(),Activity_Second_Bascket::class.java)
+                Inte.putExtra("data_1",MultyActivity_2.address)
+                startActivity(Inte)
+            }
+
+
+
 
             if (MultyActivity_2.Pos<0)
             {
@@ -51,10 +83,12 @@ class Frag_Address_2 : BaseFragment() {
                 return@setOnClickListener
             }
             if (MultyActivity_2.address !=null) {
+                Log.i("svsdvghgjjioi", MultyActivity_2.Pos.toString())
+                Log.i("svsdvghgjjioi", MultyActivity_2.address.toString())
                 var I = Intent()
                 I.putExtra("data", MultyActivity_2.address)
-                I.putExtra("Pos", MultyActivity_2.Pos)
-                activity?.setResult(AppCompatActivity.RESULT_OK, I)
+//                I.putExtra("Pos", MultyActivity_2.Pos)
+                activity?.setResult(Activity.RESULT_OK,I)
                 activity?.finish()
             }else{
                 Toast.makeText(context,"آدرس را انتخاب کنید",Toast.LENGTH_SHORT).show()
@@ -76,7 +110,17 @@ class Frag_Address_2 : BaseFragment() {
                     p.show()
                     return
                 }else{
-                    Del_Address(S,Pos,v)
+                    var p=   Dialog_Ask(6,"آدرس حذف بشود؟",object : Dial_App.Interface_new_2{
+                        override fun News(s: String) {
+                            if (s.equals("A"))
+                            {
+                                Del_Address(S,Pos,v)
+                            }
+                        }
+
+                    }, context!!)
+                    p.show()
+
                 }
 
             }
@@ -153,10 +197,10 @@ class Frag_Address_2 : BaseFragment() {
                     }else{
                         if (response.body()?.data?.size==0)
                         {
+                            v.add_address2.visibility=View.GONE
                             v.no_item_Card.visibility=View.VISIBLE
                         }else{
-                            MultyActivity_2.address=response.body()?.data?.get(0)
-                            MultyActivity_2.Pos=0
+                            v.add_address2.visibility=View.VISIBLE
                             v.no_item_Card.visibility=View.GONE
                             ad_address?.list=response.body()?.data
                             ad_address?.notifyDataSetChanged()
@@ -225,6 +269,10 @@ class Frag_Address_2 : BaseFragment() {
 
                 if (response.isSuccessful)
                 {
+                    if (MultyActivity_2.Pos==i)
+                    {
+                        MultyActivity_2.Pos=-1
+                    }
                     ad_address?.list?.removeAt(i)
                     ad_address?.notifyItemRemoved(i)
                     ad_address?.notifyItemRangeChanged(0, ad_address?.list?.size!!)
@@ -256,16 +304,33 @@ class Frag_Address_2 : BaseFragment() {
             if (resultCode==Activity.RESULT_OK)
             {
                 no_item_Card.visibility=View.GONE
+                add_address2.visibility=View.VISIBLE
                 var v= ModelAddress()
                 v= data?.getSerializableExtra("data") as ModelAddress
-                ad_address?.list?.add(v)
-                ad_address?.notifyItemInserted(ad_address?.list?.size!! - 1)
+                MultyActivity_2.address=v
+                if (ad_address?.list==null)
+                {
+                    Log.i("sgvsgdvdasdv","AS")
+//                    MultyActivity_2.Pos=0
+                    ad_address?.list?.add(v)
+                    ad_address?.notifyDataSetChanged()
+                }else{
+                    Log.i("sgvsgdvdasdv","DF")
+                    ad_address?.list?.add(v)
+                    ad_address?.notifyItemInserted(ad_address?.list?.size!! - 1)
+//                    MultyActivity_2.Pos= ad_address?.list?.size!!
+//                    ad_address?.Selected=MultyActivity_2.Pos
+//                    ad_address?.notifyDataSetChanged()
+                }
+
+
             }
         }
         if (requestCode==1457)
         {
             if (resultCode==Activity.RESULT_OK)
             {
+                Log.i("sjvnsjvnasS","AADSC")
                 no_item_Card.visibility=View.GONE
                 var v= ModelAddress()
                 var p=data?.getIntExtra("pos",-8)

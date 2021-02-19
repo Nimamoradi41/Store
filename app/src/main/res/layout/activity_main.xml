@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:background="#EFEFEF"
     android:id="@+id/root"
+
     android:layoutDirection="ltr"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -20,8 +21,10 @@
         app:layout_constraintTop_toTopOf="parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:background="#fff"
-            android:layout_height="match_parent">
+            android:background="#ffffff"
+            android:forceDarkAllowed="false"
+            android:layout_height="match_parent"
+            tools:targetApi="q">
             <LinearLayout
                 android:id="@+id/linearLayout2"
                 android:layout_width="wrap_content"
@@ -71,36 +74,38 @@
             </LinearLayout>
 
             <TextView
+                android:forceDarkAllowed="false"
                 android:id="@+id/textView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginEnd="16dp"
+                tools:text="هایپر مارکت اهورا"
                 android:gravity="center"
                 android:fontFamily="@font/vazir_med"
-                android:text="اهواز مال"
-                android:textColor="#7209b7"
+                android:textStyle="bold"
+                android:textColor="@color/Base_Color"
                 app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
                 app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
                 app:layout_constraintStart_toEndOf="@+id/linearLayout"
                 app:layout_constraintTop_toTopOf="@+id/linearLayout2"
                 tools:ignore="MissingConstraints"/>
             <TextView
+                android:forceDarkAllowed="false"
                 android:id="@+id/textView24"
                 android:layout_width="17dp"
                 android:layout_height="17dp"
                 android:background="@drawable/shape_21"
                 android:gravity="center"
-                android:text="10"
+                android:text="0"
                 android:textStyle="bold"
-                android:textColor="@color/Base_Color"
+                android:textColor="@color/white"
                 android:textSize="8sp"
                 app:layout_constraintEnd_toEndOf="@+id/linearLayout"
                 app:layout_constraintTop_toTopOf="@+id/linearLayout" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
@@ -110,6 +115,7 @@
         app:labelVisibilityMode="labeled"
         app:menu="@menu/main_menu"
         style="@style/font"
+        android:theme="@style/font"
         android:backgroundTint="#fff"
         android:layoutDirection="rtl"
         android:layout_height="wrap_content"

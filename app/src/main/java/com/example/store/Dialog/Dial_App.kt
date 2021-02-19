@@ -41,6 +41,10 @@ class Dial_App(var Type: Int, var S: String, var I: Interface_new, context: Cont
     public interface Interface_new{
         public fun News()
     }
+
+    public interface Interface_new_2{
+        public fun News(s:String)
+    }
 }
 
 

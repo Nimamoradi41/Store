@@ -6,13 +6,13 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class products implements Serializable {
+public class    products implements Serializable {
     @Expose
     @SerializedName("title")
     String title;
 
-//    @SerializedName("images")
-//    ArrayList<String> images;
+    @SerializedName("images")
+    ArrayList<String> images;
 //    // TODO CHANGE IT
     @Expose
     @SerializedName("firstImage")
@@ -86,13 +86,13 @@ public class products implements Serializable {
         this.title = title;
     }
 
-//    public ArrayList<String> getImages() {
-//        return images;
-//    }
-//
-//    public void setImages(ArrayList<String> images) {
-//        this.images = images;
-//    }
+    public ArrayList<String> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<String> images) {
+        this.images = images;
+    }
 
     public String getFirstImage() {
         return firstImage;

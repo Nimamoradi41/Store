@@ -2,12 +2,16 @@ package com.example.store.Adapters
 
 import com.example.store.R
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.viewpager.widget.PagerAdapter
+import com.bumptech.glide.Glide
+import com.example.store.Constants
 import com.smarteist.autoimageslider.SliderViewAdapter
+import kotlinx.android.synthetic.main.custome_special.view.*
 import kotlinx.android.synthetic.main.itemslider.view.*
 
 
@@ -17,7 +21,7 @@ class adapter_slider_item(var s: ArrayList<String>, var context: Context): Slide
 
     }
     override fun getCount(): Int {
-    return   3
+    return  s.size
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?): view {
@@ -26,6 +30,12 @@ class adapter_slider_item(var s: ArrayList<String>, var context: Context): Slide
     }
 
     override fun onBindViewHolder(viewHolder: adapter_slider_item.view?, position: Int) {
-        viewHolder?.itemView?.rootView?.img?.setBackgroundResource(com.example.store.R.drawable.item_1);
+        if(s.get(position)!=null)
+        {
+//            Log.i("sfkmsmlbab",""+ Constants.BASE_URL+"/Sliders/"+Item?.getFirstImage())
+            Glide.with(context).load(Constants.BASE_URL+"/Images/"+s.get(position)).into(viewHolder?.itemView?.rootView?.img!!);
+        }
+
+
     }
 }

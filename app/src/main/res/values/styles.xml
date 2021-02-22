@@ -22,7 +22,6 @@
 
     </style>
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
         <item name="android:statusBarColor">@color/Base_Color</item>
     </style>
     <style name="SheetDialog"></style>

@@ -1,9 +1,11 @@
 package com.example.store
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,8 +16,10 @@ import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import com.example.store.Main_Fragments.ErrorCode500
 import com.example.store.Main_Fragments.Login
@@ -40,6 +44,7 @@ import kotlinx.android.synthetic.main.activity_actvity__confirm.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation.view.*
 import kotlinx.android.synthetic.main.fragment_frag_verfivcation_3.view.*
+import kotlinx.android.synthetic.main.layout_loading_2.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONException
@@ -58,7 +63,7 @@ class Activity_PassWord : BaseActiity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity__pass_word)
-//        window.statusBarColor= Color.parseColor("#ec4646")
+        window.statusBarColor= Color.parseColor("#6D63FF")
         editTextNumber1.requestFocus()
         textView90.alpha=0.2f
         textView90.isEnabled=false
@@ -304,8 +309,8 @@ class Activity_PassWord : BaseActiity() {
                                         if(!response.body()?.data?.appVersion?.allowedToLogin!!)
                                         {
                                             Dexter.withActivity(this@Activity_PassWord).withPermissions(
-                                                android.Manifest.permission.READ_EXTERNAL_STORAGE,
-                                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                                                    android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                                                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
                                             ).withListener(object : MultiplePermissionsListener {
                                                 override fun onPermissionsChecked(report: MultiplePermissionsReport) {
                                                     if (report.areAllPermissionsGranted()) {
@@ -316,28 +321,39 @@ class Activity_PassWord : BaseActiity() {
                                                             if (file.exists()) file.delete()
                                                             var url = response.body()?.data?.appVersion?.url
                                                             if (!url?.startsWith("http://")!! && !url.startsWith("https://")) url = "http://$url"
+                                                            Dia_Download= Dialog(this@Activity_PassWord)
+                                                            Dia_Download?.setCancelable(false)
+                                                            val inflater = LayoutInflater.from(this@Activity_PassWord)
+                                                            val view_4: View = inflater.inflate(R.layout.layout_loading_2, null, false)
+                                                            Dia_Download?.setContentView(view_4)
+                                                            Dia_Download?.window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                                                                    ConstraintLayout.LayoutParams.MATCH_PARENT)
+                                                            Dia_Download?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                                            Dia_Download?.show()
                                                             Ion.with(this@Activity_PassWord)
-                                                                .load(url)
-                                                                .progressHandler(ProgressCallback { downloaded, total ->
-
-                                                                    Log.i("MyTagg", "onProgress: $downloaded : $total")
-                                                                })
-                                                                .write(file)
-                                                                .setCallback { e, result ->
-                                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                                                        if (!packageManager.canRequestPackageInstalls()) {
-                                                                            Log.i("dvnkavjnanjvanv","UIYIYI")
-                                                                            startActivityForResult(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(
-                                                                                Uri.parse(String.format("package:%s", packageName))), 1234)
+                                                                    .load(url)
+                                                                    .progressHandler(ProgressCallback { downloaded, total ->
+                                                                        var dd=(downloaded*100)/total
+                                                                        view_4.progress_bar_1.setProgress(dd.toInt())
+                                                                        view_4.progressss.setText(dd.toString()+" % ")
+                                                                        Log.i("MyTagg", "onProgress: $downloaded : $total")
+                                                                    })
+                                                                    .write(file)
+                                                                    .setCallback { e, result ->
+                                                                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                                            if (!packageManager.canRequestPackageInstalls()) {
+                                                                                Log.i("dvnkavjnanjvanv","UIYIYI")
+                                                                                startActivityForResult(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(
+                                                                                        Uri.parse(String.format("package:%s", packageName))), 1234)
+                                                                            } else {
+                                                                                Log.i("dvnkavjnanjvanv","ASD")
+                                                                                InstallUpdate(result!!)
+                                                                            }
                                                                         } else {
-                                                                            Log.i("dvnkavjnanjvanv","ASD")
+                                                                            Log.i("dvnkavjnanjvanv","HJKHKK")
                                                                             InstallUpdate(result!!)
                                                                         }
-                                                                    } else {
-                                                                        Log.i("dvnkavjnanjvanv","HJKHKK")
-                                                                        InstallUpdate(result!!)
                                                                     }
-                                                                }
                                                         }
                                                     } else {
                                                         if (report.isAnyPermissionPermanentlyDenied) {

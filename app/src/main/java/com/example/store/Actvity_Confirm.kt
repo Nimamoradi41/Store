@@ -37,7 +37,7 @@ class Actvity_Confirm : BaseActiity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actvity__confirm)
-//        window.statusBarColor= Color.parseColor("#7209b7")
+        window.statusBarColor= Color.parseColor("#6D63FF")
         if (!phoneNumber.isNullOrEmpty())
         {
             editTextTextPersonName4.setText(phoneNumber.toString())
@@ -53,6 +53,13 @@ class Actvity_Confirm : BaseActiity() {
             if (editTextTextPersonName4.text.trim().toString().isNullOrEmpty())
             {
                 Snackbar.make(holder_2, "شماره تلفن را وارد کنید", Snackbar.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+
+            if (editTextTextPersonName4.text.length<11)
+            {
+                Snackbar.make(holder_2, "شماره تلفن اشتباه است", Snackbar.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 

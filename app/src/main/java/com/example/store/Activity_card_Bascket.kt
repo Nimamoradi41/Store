@@ -70,6 +70,7 @@ class Activity_card_Bascket : BaseActiity() {
                                     Log.i("svdnjdnva","Done")
                                     Flag=true
                                     GetCard("")
+                                    setResult(RESULT_OK)
                                 }
                             }
 

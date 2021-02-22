@@ -44,6 +44,7 @@ import kotlinx.android.synthetic.main.custome_dial_app.view.button7
 import kotlinx.android.synthetic.main.custome_dial_app.view.imageView10
 import kotlinx.android.synthetic.main.custome_dial_app.view.textView22
 import kotlinx.android.synthetic.main.custome_dial_app_2.view.*
+import kotlinx.android.synthetic.main.layout_loading_2.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONObject
@@ -71,6 +72,7 @@ open class BaseActiity : AppCompatActivity() {
     var token = ""
     var securityKey = ""
     var Density_Device=""
+    var Dia_Download : Dialog ?=null
     var Dialog_load:Dialog?=null
     companion object{
         var api:Api ?= null
@@ -382,8 +384,10 @@ open class BaseActiity : AppCompatActivity() {
         })
 
     }
+
     fun Login(Seacurity: String, loging: Login)
     {
+        Log.i("zvknsvnasdknv","jdjcdn")
         var json = ""
         json = JSONObject()
             .put("SecurityKey", Seacurity)
@@ -396,6 +400,7 @@ open class BaseActiity : AppCompatActivity() {
         req.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 Log.i("djdjcjdcnc", response.code().toString())
+                Log.i("zvknsvnasdknv","A")
                 if (response.code() == 500) {
                     var code500: ErrorCode500? = null
                     val gson = Gson()
@@ -420,6 +425,7 @@ open class BaseActiity : AppCompatActivity() {
                     Dial_Close()
                     if(!response.body()?.data?.appVersion?.allowedToLogin!!)
                     {
+                        Dial_Close()
                         Dexter.withActivity(this@BaseActiity).withPermissions(
                             android.Manifest.permission.READ_EXTERNAL_STORAGE,
                             android.Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -433,10 +439,21 @@ open class BaseActiity : AppCompatActivity() {
                                         if (file.exists()) file.delete()
                                         var url = response.body()?.data?.appVersion?.url
                                         if (!url?.startsWith("http://")!! && !url.startsWith("https://")) url = "http://$url"
+                                        Dia_Download= Dialog(this@BaseActiity)
+                                        Dia_Download?.setCancelable(false)
+                                        val inflater = LayoutInflater.from(this@BaseActiity)
+                                        val view_4: View = inflater.inflate(R.layout.layout_loading_2, null, false)
+                                        Dia_Download?.setContentView(view_4)
+                                        Dia_Download?.window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                                            ConstraintLayout.LayoutParams.MATCH_PARENT)
+                                        Dia_Download?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                        Dia_Download?.show()
                                         Ion.with(this@BaseActiity)
                                             .load(url)
                                             .progressHandler(ProgressCallback { downloaded, total ->
-
+                                                var dd=(downloaded*100)/total
+                                                view_4.progress_bar_1.setProgress(dd.toInt())
+                                                view_4.progressss.setText(dd.toString()+" % ")
                                                 Log.i("MyTagg", "onProgress: $downloaded : $total")
                                             })
                                             .write(file)
@@ -493,7 +510,6 @@ open class BaseActiity : AppCompatActivity() {
                         token = Data?.token.toString()
                         loging.onLoginCompleted(true)
                     }
-
                 } else {
                     Log.i("dvdgfghjkikgfgdfsds", "not200")
                     var i = Intent(this@BaseActiity, Actvity_Confirm::class.java)
@@ -504,6 +520,7 @@ open class BaseActiity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                Log.i("zvknsvnasdknv", t.message.toString())
                 loging.onLoginCompleted(false)
                 Dial_Close()
                 var p = Dialapp(2, "اتصال خود را به اینترنت بررسی کنید", object : Dial_App.Interface_new {

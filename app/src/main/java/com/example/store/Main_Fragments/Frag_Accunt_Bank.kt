@@ -41,6 +41,9 @@ class Frag_Accunt_Bank : BaseFragment() {
             }
 
 
+
+
+
             if (v.edt_numbercart.text.isNullOrEmpty())
             {
                 v.edt_numbercart.setError("  شماره کارت  را وارد کنید")
@@ -48,11 +51,19 @@ class Frag_Accunt_Bank : BaseFragment() {
             }
 
 
-            if (v.edt_shaba.text.isNullOrEmpty())
+
+            if (v.edt_numbercart.text.length<16)
             {
-                v.edt_shaba.setError(" شماره شبا  را وارد کنید")
+                v.edt_numbercart.setError("  شماره کارت  اشتباه است")
                 return@setOnClickListener
             }
+
+
+
+
+
+
+
 
 
 

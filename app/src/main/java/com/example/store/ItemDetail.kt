@@ -504,6 +504,12 @@ class ItemDetail : BaseActiity() {
                                 {
                                     v?.currentReserved=I
                                     Flag=true;
+                                    var Inte=Intent()
+                                    Inte.putExtra("pos",Pos)
+                                    Inte.putExtra("data",v)
+                                    setResult(RESULT_OK,Inte)
+
+
                                     if (I>0)
                                     {
 

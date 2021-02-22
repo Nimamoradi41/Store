@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="800dp">
+            android:layout_height="wrap_content">
 
 
             <EditText
@@ -77,6 +77,7 @@
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:paddingRight="8dp"
+                android:maxLength="11"
                 android:paddingLeft="8dp"
                 android:gravity="right"
                 android:background="@drawable/shape_55"

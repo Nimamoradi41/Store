@@ -7,7 +7,11 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.net.ConnectivityManager
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -18,12 +22,20 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import com.example.store.*
 import com.example.store.Dialog.Dial_App
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import com.google.gson.TypeAdapter
+import com.karumi.dexter.Dexter
+import com.karumi.dexter.MultiplePermissionsReport
+import com.karumi.dexter.PermissionToken
+import com.karumi.dexter.listener.PermissionRequest
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener
+import com.koushikdutta.ion.Ion
+import com.koushikdutta.ion.ProgressCallback
 import kotlinx.android.synthetic.main.custome_dial_app.view.*
 import kotlinx.android.synthetic.main.custome_dial_app.view.button7
 import kotlinx.android.synthetic.main.custome_dial_app.view.imageView10
@@ -31,6 +43,7 @@ import kotlinx.android.synthetic.main.custome_dial_app.view.textView22
 import kotlinx.android.synthetic.main.custome_dial_app_2.view.*
 import kotlinx.android.synthetic.main.fragment_frag__phone__number.view.*
 import kotlinx.android.synthetic.main.layout_loading.view.*
+import kotlinx.android.synthetic.main.layout_loading_2.view.*
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import org.json.JSONException
@@ -38,6 +51,7 @@ import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.File
 import java.io.IOException
 
 open class BaseFragment : Fragment() {
@@ -47,6 +61,7 @@ open class BaseFragment : Fragment() {
     var phoneNumber = ""
     var securityKey = ""
     var token = ""
+    var Dia_Download : Dialog ?=null
     var fullName = ""
     var gender = 0
     var storeName = ""
@@ -343,36 +358,100 @@ open class BaseFragment : Fragment() {
                 }
                 if (response.isSuccessful)
                 {
-                    Log.i("dvdgfghjkikgfgdfsds","200")
-                    Log.i("dvdgfghjkikgfgdfsds","200")
-                    Log.i("poypr","A")
-                    var Data=response.body()?.data
-                    sharedPreferences?.edit()?.putString(Constants.USER_TOKEN,Data?.token)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.USER_SECURITY_KEY,Data?.securityKey)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.USER_PHONE_NUMBER,phoneNumber)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.storeName, Data?.storeSetting?.storeName)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.rulesUrl, Data?.storeSetting?.rulesUrl)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.startWork, Data?.storeSetting?.startWork)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.endWork, Data?.storeSetting?.endWork)?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.minPriceOrder, Data?.storeSetting?.minPriceOrder.toString())?.apply()
-                    sharedPreferences?.edit()?.putString(Constants.id_2, Data?.storeSetting?.id.toString())?.apply()
-                    securityKey = Data?.securityKey.toString()
-                    storeName = Data?.storeSetting?.storeName.toString()
-                    rulesUrl = Data?.storeSetting?.rulesUrl.toString()
-                    sharedPreferences?.edit()?.putString(Constants.fullName, Data?.fullName?.toString())?.apply()
-                    fullName= Data?.fullName!!
-                    startWork = Data?.storeSetting?.startWork.toString()
-                    endWork = Data?.storeSetting?.endWork.toString()
-                    minPriceOrder = Data?.storeSetting?.minPriceOrder!!
-                    id = Data.storeSetting?.id.toString()
-                    securityKey= Data?.securityKey.toString()
-                    token= Data?.token.toString()
-                    phoneNumber=phoneNumber
-                    Log.i("wwdsazcwdf", Data?.securityKey.toString())
-                    Log.i("mkoptr", Data?.token.toString())
-                    loging.onLoginCompleted(true)
+                    if(!response.body()?.data?.appVersion?.allowedToLogin!!)
+                    {
+                        Dial_Close()
+                        Dexter.withActivity(requireActivity()).withPermissions(
+                                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        ).withListener(object : MultiplePermissionsListener {
+                            override fun onPermissionsChecked(report: MultiplePermissionsReport) {
+                                if (report.areAllPermissionsGranted()) {
+                                    if (isNetConnected()) {
+                                        Log.i("sdvkadnv","A")
+                                        Log.i("svknasnvjdnvaka","True")
+                                        val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString() + "/Store.apk")
+                                        if (file.exists()) file.delete()
+                                        var url = response.body()?.data?.appVersion?.url
+                                        if (!url?.startsWith("http://")!! && !url.startsWith("https://")) url = "http://$url"
+                                        Dia_Download= Dialog(requireActivity())
+                                        Dia_Download?.setCancelable(false)
+                                        val inflater = LayoutInflater.from(requireActivity())
+                                        val view_4: View = inflater.inflate(R.layout.layout_loading_2, null, false)
+                                        Dia_Download?.setContentView(view_4)
+                                        Dia_Download?.window?.setLayout(ConstraintLayout.LayoutParams.MATCH_PARENT,
+                                                ConstraintLayout.LayoutParams.MATCH_PARENT)
+                                        Dia_Download?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+                                        Dia_Download?.show()
+                                        Ion.with(requireActivity())
+                                                .load(url)
+                                                .progressHandler(ProgressCallback { downloaded, total ->
+                                                    var dd=(downloaded*100)/total
+                                                    view_4.progress_bar_1.setProgress(dd.toInt())
+                                                    view_4.progressss.setText(dd.toString()+" % ")
+                                                    Log.i("MyTagg", "onProgress: $downloaded : $total")
+                                                })
+                                                .write(file)
+                                                .setCallback { e, result ->
+                                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                                        if (!activity?.packageManager?.canRequestPackageInstalls()!!) {
+                                                            Log.i("dvnkavjnanjvanv","UIYIYI")
+                                                            startActivityForResult(Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).setData(
+                                                                    Uri.parse(String.format("package:%s", activity?.packageName))), 1234)
+                                                        } else {
+                                                            Log.i("dvnkavjnanjvanv","ASD")
+                                                            InstallUpdate(result!!)
+                                                        }
+                                                    } else {
+                                                        Log.i("dvnkavjnanjvanv","HJKHKK")
+                                                        InstallUpdate(result!!)
+                                                    }
+                                                }
+                                    }
+                                } else {
+                                    if (report.isAnyPermissionPermanentlyDenied) {
+                                        Toast.makeText(requireActivity(),"با توجه به اینکه شما مجوزهای دسترسی را قبول نکردید ، امکان استفاده از اپلیکیشن وجود ندارد",Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            }
+
+                            override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>, token: PermissionToken) {
+                                Toast.makeText(requireActivity(),"با توجه به اینکه شما مجوزهای دسترسی را قبول نکردید ، امکان استفاده از اپلیکیشن وجود ندارد",Toast.LENGTH_LONG).show()
+                            }
+                        }).check()
+                    }else{
+                        Log.i("dvdgfghjkikgfgdfsds","200")
+                        Log.i("dvdgfghjkikgfgdfsds","200")
+                        Log.i("poypr","A")
+                        var Data=response.body()?.data
+                        sharedPreferences?.edit()?.putString(Constants.USER_TOKEN,Data?.token)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.USER_SECURITY_KEY,Data?.securityKey)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.USER_PHONE_NUMBER,phoneNumber)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.storeName, Data?.storeSetting?.storeName)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.rulesUrl, Data?.storeSetting?.rulesUrl)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.startWork, Data?.storeSetting?.startWork)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.endWork, Data?.storeSetting?.endWork)?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.minPriceOrder, Data?.storeSetting?.minPriceOrder.toString())?.apply()
+                        sharedPreferences?.edit()?.putString(Constants.id_2, Data?.storeSetting?.id.toString())?.apply()
+                        securityKey = Data?.securityKey.toString()
+                        storeName = Data?.storeSetting?.storeName.toString()
+                        rulesUrl = Data?.storeSetting?.rulesUrl.toString()
+                        sharedPreferences?.edit()?.putString(Constants.fullName, Data?.fullName?.toString())?.apply()
+                        fullName= Data?.fullName!!
+                        startWork = Data?.storeSetting?.startWork.toString()
+                        endWork = Data?.storeSetting?.endWork.toString()
+                        minPriceOrder = Data?.storeSetting?.minPriceOrder!!
+                        id = Data.storeSetting?.id.toString()
+                        securityKey= Data?.securityKey.toString()
+                        token= Data?.token.toString()
+                        phoneNumber=phoneNumber
+                        Log.i("wwdsazcwdf", Data?.securityKey.toString())
+                        Log.i("mkoptr", Data?.token.toString())
+                        loging.onLoginCompleted(true)
+                    }
+
                 }else{
-                    loging.onLoginCompleted(false)
+//                    loging.onLoginCompleted(false)
                     Log.i("dvdgfghjkikgfgdfsds","not200")
                     var i=Intent(activity,Actvity_Confirm::class.java)
                     i.putExtra("Type","W")
@@ -391,7 +470,28 @@ open class BaseFragment : Fragment() {
 
         })
     }
-
+    fun InstallUpdate(result: File) {
+        val intent: Intent
+        Log.i("ahbahbcabhs","F")
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Log.i("ahbahbcabhs","A")
+//            val apkUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID +".fileprovider", result)
+            val apkUri = FileProvider.getUriForFile(requireActivity(), BuildConfig.APPLICATION_ID +".contentprovider", result)
+            Log.i("ahbahbcabhs","c")
+            intent = Intent(Intent.ACTION_INSTALL_PACKAGE)
+            intent.data = apkUri
+            intent.flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
+        } else {
+            Log.i("ahbahbcabhs","B")
+            val apkUri = Uri.fromFile(result)
+            intent = Intent(Intent.ACTION_VIEW)
+            intent.setDataAndType(apkUri, "application/vnd.android.package-archive")
+            Log.i("ahbahbcabhs","F")
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        }
+        startActivity(intent)
+        activity?.finish()
+    }
 
     fun isNetConnected(): Boolean {
         val cn = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
